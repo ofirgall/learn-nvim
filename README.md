@@ -7,8 +7,8 @@
 # Chapters
 
 * [Chapter 0 - Why Should I Learn?](chapters/00-why-should-i-learn.md)
-* [Chapter 1 - Basic Configuration](chapters/01-basic-config.md)
-* how to read vim
+* [Chapter 1 - The vim Language](chapters/01-the-vim-language.md)
+* [Chapter 2 - Basic Configuration](chapters/02-basic-config.md)
 * Basic movements
 * the :help command
 * copy, paste, visual mode
