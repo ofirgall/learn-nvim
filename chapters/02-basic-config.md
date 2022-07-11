@@ -52,3 +52,8 @@ This is the basic links for you get start going:
 1. [Setup Treesitter](https://nvchad.github.io/quickstart/post-install#install-treesitter-parsers)
 
 I recommend to learn more about NvChad later if you decide to stick with preconfigured config.
+
+---
+
+## Common Settings
+TODO

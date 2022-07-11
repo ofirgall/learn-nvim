@@ -1,4 +1,6 @@
 # Why should I learn nvim?
+TODO: hard to learn but worth it, many hours coding, etc.
+
 #### You can use vim with any keyboard
 vim give you the option to use only the basic keyboard keys, the alphabetical keys, ctrl, alt, shift, escape, enter, you don't need to find where is pageup/down, home, end each time you switch keyboard/laptop.
 
