@@ -37,5 +37,6 @@ For example, to search for text across the project [telescope.nvim](https://gith
 #### Rich plugin ecosystem
 nvim has a huge community that develops plugins for everything you can and can't imagine. \
 nvim doesn't miss any IDE feature that other IDE's has to offer.
+nvim plugins are the first to "evolve" when new tech is coming to the IDE world nvim community is the first to adapt it, e.g: ripgrep
 
 You can take a look at [awesome nvim plugin list](https://github.com/rockerBOO/awesome-neovim) I recommend to "watch" to get updates about new plugins.
