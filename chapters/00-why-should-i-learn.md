@@ -10,8 +10,18 @@ vim can be used without mouse at all, it's even recommended to use it without a 
 vim is designed to use [type touching](https://www.ratatype.com/static/i/learn/keyboard/en/keyboard.webp), the important binds are next/on the keys your hands always should be on, `asdf jkl;`, it isn't a must to touch type (I don't touch type in 100%) but I recommend to try to switch to it anyways.
 
 #### The right way to program
-Its a strong saying but I'm convinced that `nvim` is the right way to program.
-TODO: complete this
+Its a strong saying but I'm convinced that `nvim` is the right way to program. 
+
+When you are using vim you "talk" to the editor rather then "move" the editor, imagine rather than ask from your friend to pour you a glass of water you would give instruction to your friend for how to pour you a glass of water, which would look like something like this:
+1. Open the bottle
+1. Grab the glass
+1. Grab the bottle
+1. Make an angle with the bottle towards the glass
+1. Put down the bottle
+1. Close the bottle
+
+Wouldn't be easier just say "Hey can you pour me glass of water?"
+Well that how it feels to use other editors after you are using vim, vim lets you "talk" to the editor.
 
 #### Feel "at home" everywhere
 Most TUIs programs support `vim` binds which will make you feel fast in any program that you usually use, `less`, `man`, `tmux` and many more.
