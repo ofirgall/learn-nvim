@@ -14,8 +14,10 @@ TODO: add next chapter in each page
 * [Chapter 1 - The vim Language](chapters/01-the-vim-language.md)
 * [Chapter 2 - Basic Configuration](chapters/02-basic-config.md)
 * [Chapter 3 - Movements and Operators](chapters/03-movements-and-operators.md)
-* copy, paste, visual mode
+* [Chapter 4 - Copy, Paste and Visual Mode](chapters/04-copy-paste-visual.md)
 * quickfix list
+* subitute
+* `!` commands
 * dot
 * Text objects
 * treesitter text objects
