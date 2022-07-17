@@ -15,12 +15,12 @@ TODO: add next chapter in each page
 * [Chapter 2 - Basic Configuration](chapters/02-basic-config.md)
 * [Chapter 3 - Movements and Operators](chapters/03-movements-and-operators.md)
 * [Chapter 4 - Copy, Paste and Visual Mode](chapters/04-copy-paste-visual.md)
+* [Chapter 5 - Text objects](chapters/05-text-objects.md)
+* [Chapter 6 - Splits and Actual Tabs]
 * quickfix list
 * subitute
 * `!` commands
 * dot
-* Text objects
-* treesitter text objects
 * undo/redo + undotree
 * code navigation (telescope + lsp)
 * Last? Advanced Configuration
