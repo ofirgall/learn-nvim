@@ -53,6 +53,10 @@ This is the basic links for you get start going:
 
 I recommend to learn more about NvChad later if you decide to stick with preconfigured config.
 
+_**Learn**_ how to install plugins, I will recommend few plugins along the way, make sure you are not lazy to install them.
+
+I recommend to start backup your config with some kind of dotfiles, I use [dotbot](https://github.com/anishathalye/dotbot).
+
 ---
 
 ## Common Settings
