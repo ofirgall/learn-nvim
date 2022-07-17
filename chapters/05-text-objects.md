@@ -22,6 +22,15 @@ You can read more about this at `:help text-objects`.
 
 For the config I use, `f` is a function, so if I to change the current content of the function I am on, I hit `cif`, `change inner function`, and you can this on other code objects.
 
+It change the way you think about editing code, you think with code object movement rather than think about how to move to cursor to where. \
+For example, change the 3rd argument in the next function.
+```python
+def foo(a: int, b: Any, c: Tuple[int, Optional[str]]):
+	pass # <--- cursor here
+```
+You can use `[m` to move up to the function signature, then `]a` 3 times (unfortunately you can't do `3]a` to do it [yet](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/231)).
+
+### Config
 My config (adds pair movement as well):
 ```lua
 textobjects = {
