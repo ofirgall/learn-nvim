@@ -81,6 +81,8 @@ Those are movements! You will need to enter a `char` after the quick search key.
 
 Those movements are very useful to manipulate text in the same line. This is the reason I used `wrapped lines` in vim.
 
+I highly recommend to install [clever-f.vim](https://github.com/rhysd/clever-f.vim) it will help you get used to this awesome movements fast.
+
 ---
 
 ## Operators

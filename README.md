@@ -27,4 +27,3 @@ TODO: add next chapter in each page
 * Git fugitive
 * Other plugin tutorials
 * leap.nvim
-* clever-f
