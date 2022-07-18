@@ -28,7 +28,14 @@ For example, change the 3rd argument in the next function.
 def foo(a: int, b: Any, c: Tuple[int, Optional[str]]):
 	pass # <--- cursor here
 ```
-You can use `[m` to move up to the function signature, then `]a` 3 times (unfortunately you can't do `3]a` to do it [yet](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/231)).
+You can use `[m` to move up to the function signature, then `]a` 3 times (unfortunately you can't do `3]a` to do it [yet](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/231)), then you can press `cia` to keep the `,` but change the content of the argument or you can press `cad` to delete the whole argument.
+
+In standard editor you would need to go the signature manually or using reverse search, hold `ctrl` and hit the arrows until you reach `c`, hold `ctrl+shift` and hitting right arrow 9 times (depends on the editor, tested on sublime), that's tedious.
+
+
+It changed the way I think about editing code, now I can think with elements from the code, `go to next/prev function`, `yank inner function`, `delete a function`, `change inner argument`, rather thinking how to move to cursor that related to the code elements.
+
+---
 
 ### Config
 My config (adds pair movement as well):
