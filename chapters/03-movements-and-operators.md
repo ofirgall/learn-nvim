@@ -90,6 +90,8 @@ The main ones
 * `y` - **Y**ank (copy)
 * `d` - **D**elete
 * `c` - **C**hange, delete the text and enters insert mode
+* `<` - remove indentation (left)
+* `>` - add indentation (right)
 
 ---
 

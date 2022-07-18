@@ -8,8 +8,9 @@
 
 TODO: add skip for I already know vim i want to know how to config nvim
 TODO: Add why you wrote this guide
-
 TODO: add next chapter in each page
+
+
 * [Chapter 0 - Why Should I Learn?](chapters/00-why-should-i-learn.md)
 * [Chapter 1 - The vim Language](chapters/01-the-vim-language.md)
 * [Chapter 2 - Basic Configuration](chapters/02-basic-config.md)
@@ -17,11 +18,7 @@ TODO: add next chapter in each page
 * [Chapter 4 - Copy, Paste and Visual Mode](chapters/04-copy-paste-visual.md)
 * [Chapter 5 - Text objects](chapters/05-text-objects.md)
 * [Chapter 6 - Splits and Actual Tabs](chapters/06-splits-and-actual-tabs.md)
-* quickfix list
-* subitute
-* `!` commands
-* dot
-* undo/redo + undotree
+* [Chapter 7 - Vim Goodies](chapters/07-vim-goodies.md)
 * code navigation (telescope + lsp)
 * Last? Advanced Configuration
 * Git fugitive
