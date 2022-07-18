@@ -46,7 +46,7 @@ In part of my learning I skipped the preconfigured stage, I didn't really try an
 
 This is the basic links for you get start going:
 1. [Install](https://nvchad.github.io/quickstart/install)
-1. [Key Mappings](https://nvchad.github.io/config/Mappings)
+1. [Key Mappings](https://nvchad.github.io/config/Mappings) [core/mappings.lua](https://github.com/NvChad/NvChad/blob/main/lua/core/mappings.lua)
 1. [Custom Config](https://nvchad.github.io/config/Custom%20config)
 1. [Setup LSP](https://nvchad.github.io/config/Lsp%20stuff)
 1. [Setup Treesitter](https://nvchad.github.io/quickstart/post-install#install-treesitter-parsers)
