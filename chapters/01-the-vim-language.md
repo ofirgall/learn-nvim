@@ -42,7 +42,7 @@ You can type `:help <key>` to open `help` `split` for that key, the key can be a
 
 ###### Leader
 Leader is remapable, the default map for it is `,` usually people change it to `<Space>` \
-It used mainly to don't override default keys.
+Because vim maps almost all the keyboard by defualt, it used to bind plugins and don't override default keys.
 
 ## Help
 There is an help page for everything start use it as a beginner its like `man` just better and for `vim`.
