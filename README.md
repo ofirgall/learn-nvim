@@ -31,6 +31,6 @@ I want to make a guide that covers the basics of vim, gives the tools to learn v
 * [Chapter 8 - Advanced Configuration](chapters/08-advanced-config.md)
 * [Chapter 9 - Code Navigation](chapters/09-code-navigation.md)
 * [Chapter 10 - Complete and Snippets Engines](chapters/10-complete-engine.md)
-* Git fugitive
+* [Chapter 11 - Git](chapters/11-git.md)
 * Other plugin tutorials
 * leap.nvim
