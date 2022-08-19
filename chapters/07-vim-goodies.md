@@ -1,5 +1,5 @@
 # Vim Goodies
-This chapter will briefly cover few other vim features.
+This chapter will briefly cover few of many other vim features.
 
 ## Quickfix list
 The quickfix list is a list that has entries of `file`, `location(row, col)` and `text`. \
