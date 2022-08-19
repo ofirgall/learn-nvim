@@ -42,3 +42,7 @@ nvim doesn't miss any IDE feature that other IDE's has to offer.
 nvim plugins are the first to "evolve" when new tech is coming to the IDE world nvim community is the first to adapt it, e.g: ripgrep
 
 You can take a look at [awesome nvim plugin list](https://github.com/rockerBOO/awesome-neovim) I recommend to "watch" to get updates about new plugins.
+
+---
+
+[Next Chapter](01-the-vim-language.md)

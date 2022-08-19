@@ -72,3 +72,7 @@ map('n', '<M-k>', '<cmd>BufferLineCycleNext<CR>', default_opts) -- Alt+k to move
 map('n', '<M-J>', '<cmd>BufferLineMovePrev<CR>', default_opts) -- Alt+Shift+j grab to with you to left
 map('n', '<M-K>', '<cmd>BufferLineMoveNext<CR>', default_opts) -- Alt+Shift+k grab to with you to right
 ```
+
+---
+
+[Previous Chapter](./05-text-objects.md) | [Next Chapter](./07-vim-goodies.md)

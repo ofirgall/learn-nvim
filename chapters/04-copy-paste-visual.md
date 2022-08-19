@@ -40,3 +40,7 @@ map('n', '<M-V>', '"+P') -- paste from os clipboard
 ## Plugins
 * [nvim-pasta](https://github.com/hrsh7th/nvim-pasta) to cycle fast in my copy history after pasting instead of using the `registers`.
 * [registers.nvim](https://github.com/tversteeg/registers.nvim) to see the registers before yanking from/to them.
+
+---
+
+[Previous Chapter](./03-movements-and-operators.md) | [Next Chapter](./05-text-objects.md)

@@ -56,3 +56,7 @@ To exit from each mode back to normal press `Escape` I recommend to remap it to 
 * Visual (v) - Select and copy/replace text
 * Visual Line (V) - Select and copy/replace text by lines
 * Command (:,/) - Inserting a command
+
+---
+
+[Previous Chapter](00-why-should-i-learn.md) | [Next Chapter](./02-basic-config.md)

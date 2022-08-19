@@ -20,8 +20,6 @@ I didn't understand where to start from, should I learn vim first? how do I conf
 I want to make a guide that covers the basics of vim, gives the tools to learn vim (the fishing rod instead of the fish), and a guide that helps you configure nvim.
 
 # Chapters
-TODO: add next chapter in each page
-
 * [Chapter 0 - Why Should I Learn?](chapters/00-why-should-i-learn.md)
 * [Chapter 1 - The vim Language](chapters/01-the-vim-language.md)
 * [Chapter 2 - Basic Configuration](chapters/02-basic-config.md)

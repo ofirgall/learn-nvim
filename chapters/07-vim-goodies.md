@@ -110,3 +110,7 @@ You can do cool stuff with when combining `:help gn`
 
 ## External Command
 You can run external terminal commands from vim, for example: `!ls`
+
+---
+
+[Previous Chapter](./06-splits-and-actual-tabs.md) | [Next Chapter](./08-advanced-config.md)

@@ -125,3 +125,7 @@ For example: when I'm using `y3j`/`y3<Enter>` ill think of it as `yank 3 down`, 
 ---
 
 There are many more movements and operators but those are the ones I feel the most important, it takes some time to get used to work with this method but once you understand it, it will stick good.
+
+---
+
+[Previous Chapter](./02-basic-config.md) | [Next Chapter](./04-copy-paste-visual.md)

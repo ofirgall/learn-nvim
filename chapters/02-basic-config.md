@@ -90,3 +90,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	callback = function() vim.highlight.on_yank({timeout=350, higroup='Visual'}) end
 })
 ```
+
+---
+
+[Previous Chapter](./01-the-vim-language.md) | [Next Chapter](./03-movements-and-operators.md)
