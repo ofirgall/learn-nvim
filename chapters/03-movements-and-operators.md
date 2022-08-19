@@ -72,6 +72,8 @@ map('n', 'n', 'nzz') -- Auto recenter after n
 map('n', 'N', 'Nzz') -- Auto recenter after N
 ```
 
+If you enabled `opt.ignorecase` you can add `\C` at the end of your search to re enable case.
+
 ### Quick search
 Those are movements! You will need to enter a `char` after the quick search key.
 * `f` - jump to the next `char`, I remember it as **F**ind

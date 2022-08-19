@@ -66,4 +66,27 @@ I recommend to start backup your config with some kind of dotfiles, I use [dotbo
 ---
 
 ## Sensibile Settings
-TODO
+```lua
+local opt = vim.opt
+
+opt.number = true -- Enables line numbers
+opt.relativenumber = true -- Enables relative line numbers
+opt.autoindent = true -- Indent automatically
+opt.tabstop = 4 -- Tab equals 4 spaces
+opt.shiftwidth = 4 -- Tab equals 4 spaces
+opt.smarttab = true -- Tab equals 4 spaces
+opt.softtabstop = 4 -- Tab equals 4 spaces
+opt.cursorline = true -- Enables cursor line
+opt.ignorecase = true -- Ignore case when searching
+opt.splitright = true -- Split to the right on vertical
+opt.splitbelow = true -- Spplit below when horziontal
+opt.swapfile = false -- Dont use swap files (I use AutoSave.nvim instead)
+opt.updatetime = 100 -- mainly for trld.nvim which utilize CursorHold autocmd
+opt.formatoptions:append('cro') -- continue comments when going down a line, hit C-u to remove the added comment prefix
+
+-- Highlight on yank
+vim.api.nvim_create_autocmd('TextYankPost', {
+	pattern = '*',
+	callback = function() vim.highlight.on_yank({timeout=350, higroup='Visual'}) end
+})
+```
