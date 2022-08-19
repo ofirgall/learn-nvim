@@ -4,12 +4,17 @@
 
 ---
 
+# What is really Neovim(nvim)?
+Neovim is a fork of vim which integrates lsp client and lua api for configruation and plugin creation. \
+Because of the lua integration nvim amazing community created an amazing [plugin ecosystem](https://github.com/rockerBOO/awesome-neovim) which feels designed right, robust, scalable, replacable.
+
+## I already know vim I just want to learn nvim
+Great you can skip half of the guide :) \
+Read [Chapter 2](chapters/02-basic-config.md) and then skip to [Chapter 8](chapters/08-code-navigation.md)
+
+
 # Chapters
-
-TODO: add skip for I already know vim i want to know how to config nvim
-TODO: Add why you wrote this guide
 TODO: add next chapter in each page
-
 
 * [Chapter 0 - Why Should I Learn?](chapters/00-why-should-i-learn.md)
 * [Chapter 1 - The vim Language](chapters/01-the-vim-language.md)
