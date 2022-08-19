@@ -32,7 +32,7 @@ TODO: add next chapter in each page
 * [Chapter 7 - Vim Goodies](chapters/07-vim-goodies.md)
 * [Chapter 8 - Advanced Configuration](chapters/08-advanced-config.md)
 * [Chapter 9 - Code Navigation](chapters/09-code-navigation.md)
-* [Chapter 10 - Complete Engine](chapters/10-complete-engine.md) TODO: hint to skip this chapter if you are using preconfigured configruation
+* [Chapter 10 - Complete and Snippets Engines](chapters/10-complete-engine.md)
 * Git fugitive
 * Other plugin tutorials
 * leap.nvim
