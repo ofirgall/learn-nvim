@@ -32,5 +32,7 @@ I want to make a guide that covers the basics of vim, gives the tools to learn v
 * [Chapter 9 - Code Navigation](chapters/09-code-navigation.md)
 * [Chapter 10 - Complete and Snippets Engines](chapters/10-complete-engine.md)
 * [Chapter 11 - Git](chapters/11-git.md)
-* Other plugin tutorials
-* leap.nvim
+* [Chapter 12 - Debug](chapters/12-debug.md)
+* [Chapter 13 - Hyrda](chapters/13-hydra.md)
+* [Chapter 14 - UI](chapters/14-ui.md)
+* [Chapter 15 - Misc Plugins and Summary](chapters/15-misc-and-summary.md)
