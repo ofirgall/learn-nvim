@@ -5,6 +5,12 @@ Setup your editor that it will be nice for you to look at and it won't be filled
 I recommend to create your own configuration but it takes time and effort. \
 We will talk about the advantages at the [advanced configuration chapter](TODO) but I recommend to use preconfigured configuration for now, unless you are a config nerd like me.
 
+--- 
+
+## How to Install nvim
+I recommend to install the [latest release](https://github.com/neovim/neovim/releases), `Nvim development` is the nightly. \
+You can install [nightly](https://github.com/neovim/neovim/releases/tag/nightly) which is pretty stable and doesn't brake often but you don't want to bother yourself with bugs as a beginner.
+
 ---
 
 ## Plugin Tools
@@ -59,5 +65,5 @@ I recommend to start backup your config with some kind of dotfiles, I use [dotbo
 
 ---
 
-## Common Settings
+## Sensibile Settings
 TODO
