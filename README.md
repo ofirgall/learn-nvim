@@ -19,7 +19,8 @@ TODO: add next chapter in each page
 * [Chapter 5 - Text objects](chapters/05-text-objects.md)
 * [Chapter 6 - Splits and Actual Tabs](chapters/06-splits-and-actual-tabs.md)
 * [Chapter 7 - Vim Goodies](chapters/07-vim-goodies.md)
-* code navigation (telescope + lsp)
+* [Chapter 8 - Code Navigation](chapters/08-code-navigation.md)
+* [Chapter 9 - Complete Engine](chapters/09-complete-engine.md)
 * Last? Advanced Configuration
 * Git fugitive
 * Other plugin tutorials
