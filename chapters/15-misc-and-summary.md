@@ -67,6 +67,14 @@ Improves startup time
 ---
 
 # Summary
+Thanks for reading! I hope this guide helped you learn Neovim. \
+If you found mistakes make sure to leave feedback at the [issues section](https://github.com/ofirgall/learn-nvim/issues) \
+If you liked the guide consider to leave a `star`.
+
+To keep up with new plugins and updates I recommend to:
+* Watch [awesome-neovim](https://github.com/rockerBOO/awesome-neovim) to get notified for new PR's (plugins)
+* Subscribe to [/r/neovim](https://www.reddit.com/r/neovim/)
+* Keep an eye on [This week in Neovim](https://this-week-in-neovim.org/)
 
 ---
 
