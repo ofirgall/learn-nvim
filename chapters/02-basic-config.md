@@ -3,7 +3,7 @@ One of the strengths of nvim is that its highly configurable, you can customize 
 Setup your editor that it will be nice for you to look at and it won't be filled with useless buttons/stuff.
 
 I recommend to create your own configuration but it takes time and effort. \
-We will talk about the advantages at the [advanced configuration chapter](TODO) but I recommend to use preconfigured configuration for now, unless you are a config nerd like me.
+We will talk about the advantages at the [advanced configuration chapter](https://github.com/ofirgall/learn-nvim/blob/master/chapters/08-advanced-config.md) but I recommend to use preconfigured configuration for now, unless you are a config nerd like me.
 
 --- 
 
