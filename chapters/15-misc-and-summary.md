@@ -24,13 +24,13 @@ Auto saves the file when a text has been edited, don't worry about losing your d
 Be a good programmer and don't leave junk for git.
 
 ### [Multi cursor](https://github.com/mg979/vim-visual-multi)
-If you are already good with mutli cursor, take that skill with you to nvim, if you don't consider to use macros instead.
+If you are already good with multi cursor, take that skill with you to nvim, if you don't consider to use macros instead.
 
 ### [Terminal in nvim](https://github.com/akinsho/toggleterm.nvim)
 Enables an integrated terminal inside nvim.
 
 ### [pasta](https://github.com/hrsh7th/nvim-pasta)
-Fix's the issues with vanila paste of nvim.
+Fix's the issues with vanilla paste of nvim.
 
 ## Extras
 

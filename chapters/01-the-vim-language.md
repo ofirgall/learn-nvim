@@ -21,7 +21,7 @@ To execute this bind you need to press:
 * `shift+g` - end the copy from the cursor to the end of the file
 
 ### Keybinds naming
-You don't need to remember keybinds the key is standfor the action.
+You don't need to remember keybinds the key is stand for the action.
 * `y` - yank
 * `p` - paste
 
@@ -48,8 +48,8 @@ Because vim maps almost all the keyboard by defualt, it used to bind plugins and
 There is an help page for everything start use it as a beginner its like `man` just better and for `vim`.
 
 ## Modes
-There are alot of modes in vim I'll cover the important ones. \
-To exit from each mode back to normal press `Escape` I recommend to remap it to capslock, you gonna press it alot and it will be much easier to use the pinky without moving your hands
+There are a lot of modes in vim I'll cover the important ones. \
+To exit from each mode back to normal press `Escape` I recommend to remap it to capslock, you gonna press it a lot and it will be much easier to use the pinky without moving your hands
 
 * Normal - This is where you will be usually, you can move in the code in this mode, you can copy in this mode, and much more
 * Insert (i) - Insert text to the buffer, you want to be in this mode **only** when you actually inserting text, you don't want to move in this mode

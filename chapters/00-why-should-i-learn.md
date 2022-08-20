@@ -1,5 +1,5 @@
 # Why should I learn nvim?
-As a professional you going to spend alot of time around your computer especially editing code, you want to do it in the most fun and efficient way, nvim is fun, fun to learn, fun to write with, fun to improve at and most important is very very efficient.
+As a professional you going to spend a lot of time around your computer especially editing code, you want to do it in the most fun and efficient way, nvim is fun, fun to learn, fun to write with, fun to improve at and most important is very very efficient.
 
 #### You can use vim with any keyboard
 vim give you the option to use only the basic keyboard keys, the alphabetical keys, ctrl, alt, shift, escape, enter, you don't need to find where is pageup/down, home, end each time you switch keyboard/laptop.

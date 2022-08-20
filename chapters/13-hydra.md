@@ -1,11 +1,11 @@
 # [Hydra](https://github.com/anuvyklack/hydra.nvim)
-Hydra is a framework to create a submodes inside nvim, a submode is called `Hydra`.
+Hydra is a framework to create a submode inside nvim, a submode is called `Hydra`.
 
 It allows to enter a `body` with a key bind or a lua command and from there it creates a custom keymapping "ontop" of your exist keys to allow you to do various actions. \
 You can create custom ones very easily too.
 
 Hydras for example:
-* [Windows and buffers management](https://github.com/anuvyklack/hydra.nvim/wiki/Windows-and-buffers-management), I think its a must, much more convinent from the vanila method.
+* [Windows and buffers management](https://github.com/anuvyklack/hydra.nvim/wiki/Windows-and-buffers-management), I think its a must, much more convenient from the vanilla method.
 * [Git](https://github.com/anuvyklack/hydra.nvim/wiki/Git) another tool for git management from inside nvim
 * [You can find all the community hydra's here](https://github.com/anuvyklack/hydra.nvim/wiki)
 

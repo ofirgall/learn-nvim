@@ -79,8 +79,8 @@ opt.softtabstop = 4 -- Tab equals 4 spaces
 opt.cursorline = true -- Enables cursor line
 opt.ignorecase = true -- Ignore case when searching
 opt.splitright = true -- Split to the right on vertical
-opt.splitbelow = true -- Spplit below when horziontal
-opt.swapfile = false -- Dont use swap files (I use AutoSave.nvim instead)
+opt.splitbelow = true -- Split below when horizontal
+opt.swapfile = false -- Don't use swap files (I use AutoSave.nvim instead)
 opt.updatetime = 100 -- mainly for trld.nvim which utilize CursorHold autocmd
 opt.formatoptions:append('cro') -- continue comments when going down a line, hit C-u to remove the added comment prefix
 

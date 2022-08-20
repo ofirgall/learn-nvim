@@ -10,7 +10,7 @@ I recommend to start with the recommended setup and configure it more further.
 Part of the configuration you pass `sources` this is where the complete menu get its entries from, you can extend the `sources` of your completions with other plugins.
 
 The default ones are presented at the readme of [nvim-cmp](https://github.com/hrsh7th/nvim-cmp). \
-One of the sources you want to have is the complete engine source, i'll elaborate about that later.
+One of the sources you want to have is the complete engine source, I'll elaborate about that later.
 
 Extra cool sources:
 * [cmp-git](https://github.com/petertriho/cmp-git) which provides a source for all the commit hashes and integrates to github and gitlab
