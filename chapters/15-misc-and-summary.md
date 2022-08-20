@@ -64,6 +64,15 @@ Write/read to/from files that requires sudo without executing nvim as sudo.
 ### [impatient.nvim](https://github.com/lewis6991/impatient.nvim)
 Improves startup time
 
+### Man pager
+Consider make nvim your man pager, its so awesome to control man pages as you control your editor. \
+Add this to your .shellrc:
+```bashrc
+# nvim as man viewer
+export MANPAGER='nvim +Man! .'
+export MANWIDTH=999
+```
+
 ---
 
 # Summary
