@@ -16,7 +16,7 @@ vim is actions are mostly built from 2 types, a operator and an movement.
 #### Arrows
 * `h` - left
 * `j` - down
-* `h` - up
+* `k` - up
 * `l` - right
 
 It get some time to get used to it but it worth it, I recommend to disable the arrow keys for movement and try the game `hjkl` in [vim-be-good](https://github.com/ThePrimeagen/vim-be-good).
