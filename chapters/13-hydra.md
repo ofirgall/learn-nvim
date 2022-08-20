@@ -27,7 +27,6 @@ local curr = Hydra({
 	},
 	mode = {'n', 'x'},
 	heads = {
-		-- Size
 		{ 'j', function ()
 			ts_move.goto_next_start('@function.outer')
 			center_screen()
@@ -44,7 +43,6 @@ local curr = Hydra({
 			ts_move.goto_previous_end('@function.outer')
 			center_screen()
 		end },
-		--
 		{ '<Esc>', nil,  { exit = true }}
 	}
 })
