@@ -20,6 +20,8 @@ To execute this bind you'll need to press:
 * `y` - start a copy
 * `shift+g` - end the copy from the cursor to the end of the file
 
+In vim you don't hold the keys in order to complete a key sequence you type them, you can configure the `timeoutlen` to make vim wait more/less.
+
 ### Keybinds naming
 You don't need to memorize keybinds as the letter stands for its action.
 * `y` - yank

@@ -8,6 +8,9 @@ nvim doesn't provide all the expected functionalities of an IDE, plugins are her
 I use [vim-session](https://github.com/xolox/vim-session), I don't remember why I like this one especially but it works for me.
 [Other Session Manager's](https://github.com/rockerBOO/awesome-neovim#session)
 
+### [Comment](https://github.com/numToStr/Comment.nvim)
+Adds comment action
+
 ### [Last Place](https://github.com/ethanholz/nvim-lastplace)
 Remembers the last place you edited a buffer.
 
@@ -46,14 +49,15 @@ Add pair mappings (`][`) that fills natural.
 ### [vim-repeat](https://github.com/tpope/vim-repeat)
 Extends dot-repeat action.
 
-### [clever-f](https://github.com/rhysd/clever-f.vim)
-Extends the motions of `f/F/t/T`.
+### [Todo Comments](https://github.com/folke/todo-comments.nvim)
+Highlight `TODO` comments, populate quickfix list with all the todo comments in a workspace
 
 ### [Debug print](https://github.com/andrewferrier/debugprint.nvim)
 Add debug prints for variables quickly.
 
 ### [leap.nvim](https://github.com/ggandor/leap.nvim)
-Add leap motion to nvim, like vimium, EasyMotion, hop and such.
+Add leap motion to nvim, like vimium, EasyMotion, hop and such. \
+If you liked [clever-f](https://github.com/rhysd/clever-f.vim) you will love [flit.nvim](https://github.com/ggandor/flit.nvim)
 
 ### [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
 Make pane switching from/to nvim seamless, if you are using tmux its a must!
@@ -72,6 +76,9 @@ Add this to your .shellrc:
 export MANPAGER='nvim +Man! .'
 export MANWIDTH=999
 ```
+
+### More
+There are many many more plugins for neovim, you can check out [awesome-neovim](https://github.com/rockerBOO/awesome-neovim), and you can checkout my list [packer.lua](https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/packer.lua)
 
 ---
 

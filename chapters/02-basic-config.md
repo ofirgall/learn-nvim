@@ -5,6 +5,24 @@ Setup your editor in a way that'll be nice for you to look at and it won't be fi
 I recommend to create your own configuration but it takes time and effort. \
 We will talk about the advantages at the [advanced configuration chapter](https://github.com/ofirgall/learn-nvim/blob/master/chapters/08-advanced-config.md) but I recommend to use preconfigured configuration for now, unless you are a config nerd like me.
 
+---
+
+## Terminal Emulator Setup
+nvim can be run with a GUI frontend or how it was intended, inside a terminal emulator. \
+I recommend to use one of the modern cross-platform terminal emulators:
+
+* [Alacritty](https://github.com/alacritty/alacritty) - recommended to use [tmux](https://github.com/tmux/tmux)/[i3](https://github.com/i3/i3) for splits and session's (The one I use)
+* [Kitty](https://github.com/kovidgoyal/kitty) - I never used it but people say it's nice
+* [Wezterm](https://github.com/wez/wezterm) - Lua configured terminal, I don't like the design especially how the cursor works in it, but it seems the community love it.
+
+### Nerdfont
+Its highly recommended to install [nerdfont](https://www.nerdfonts.com/) to support icons in your terminal, many plugins utilize it. \
+I use [CascadiaCode](https://www.programmingfonts.org/#cascadia-code), [JetBrainsMono](https://www.programmingfonts.org/#jetbrainsmono) is nice too.
+
+### Keybinds limitations
+Because of `ascii` terminals by default doesn't support Ctrl+Shift+X keys, [great comment that explains that](https://github.com/tmux/tmux/issues/674#issuecomment-263157843). \
+Some terminals allow to make a workaround for this, it isn't a must I don't use Ctrl+Shift+X binds.
+
 --- 
 
 ## How to Install nvim
@@ -23,7 +41,6 @@ The servers run locally on your PC and are optimized to run fast. \
 nvim implements the fastest lsp client.
 
 [Server list by language](https://microsoft.github.io/language-server-protocol/implementors/servers/) \
-Make sure you install the LSP server for your language.
 
 ### [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 > Tree-sitter is a parser generator tool and an incremental parsing library. It can build a concrete syntax tree for a source file and efficiently update the syntax tree as the source file is edited. Tree-sitter aims to be:
@@ -36,10 +53,7 @@ Basically it provides a fast unified syntax query for different languages, this 
 
 E.g: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) which allows to do an action on a code context such as `copy` the `function/class/argument/loop` and more, we will elaborate on that later.
 
-Make sure you install the tree-sitter parser for your language.
-
 ---
-
 
 ## [Preconfigured Configurations](https://github.com/rockerBOO/awesome-neovim#preconfigured-configuration)
 There are several preconfigured configurations, these are the popular ones:
@@ -52,17 +66,23 @@ Personally I skipped using a preconfigured configuration, but I highly sugggest 
 
 These are the basic links to get you going:
 1. [Install](https://nvchad.github.io/quickstart/install)
-1. [Folder structure](https://nvchad.com/config/Walkthrough#structure)
 1. [Key Mappings](https://nvchad.github.io/config/Mappings), [core/mappings.lua](https://github.com/NvChad/NvChad/blob/main/lua/core/mappings.lua)
-1. [Custom Config](https://nvchad.github.io/config/Custom%20config)
-1. [Setup LSP with Mason](https://nvchad.github.io/config/Lsp%20stuff)
+1. [Setup LSP with Mason](https://nvchad.github.io/config/Lsp%20stuff) (Skip to mason chapter, it doesn't let it happen with the anchor)
 1. [Setup Treesitter](https://nvchad.github.io/quickstart/post-install#install-treesitter-parsers)
+1. [Custom Config Folder structure](https://nvchad.github.io/config/Walkthrough#structure)
+1. [Custom Plugins](https://nvchad.github.io/config/plugins)
 
 I recommend to learn more about NvChad later if you decide to stick with preconfigured config.
 
 _**Learn**_ how to install plugins, I'll recommend several plugins along the way, make sure you are not lazy to install them.
 
 I recommend to start backing up your config with some kind of dotfiles, I use [dotbot](https://github.com/anishathalye/dotbot).
+
+---
+
+## Recommended Plugins to Start With
+* [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) great plugin for tmux users.
+* [auto-save.nvim](https://github.com/Pocco81/auto-save.nvim) auto save your changes.
 
 ---
 

@@ -15,6 +15,12 @@ vim is designed to be used with [type touching](https://www.ratatype.com/static/
 The important binds are on/next to the keys your hands should always be on: `asdf jkl;`. \
 It isn't a must to touch type (I don't touch type 100%) but I recommend trying to switch anyways.
 
+##### Disclaimer
+You can use a mouse. \
+I configured a mouse to allow, "guests" to show me stuff in my workstation. \
+I use mouse to **read** code, I feel it more convenient. \
+I use mouse when showing someone in my workstation to allow him to follow what I doing.
+
 #### The right way to program
 It's a strong saying but I'm convinced that `nvim` is the right way to program. 
 
@@ -47,6 +53,17 @@ nvim doesn't miss on any IDE feature that other IDEs have to offer. \
 nvim plugins are the first to "evolve" when a new tech is coming to the IDE world, the nvim community is the first to adapt it, e.g: ripgrep
 
 You can take a look at the [awesome nvim plugin list](https://github.com/rockerBOO/awesome-neovim). I recommend to "watch" to get updates about new plugins.
+
+---
+
+# How should I start use nvim?
+nvim has a steep learning curve it takes time and patience to learn, you will find that you need to invest time to **start** using nvim as your daily driver.
+
+If you are a professional programmer I recommend to start use it in your personal projects and integrate it slowly to your professional work, I did it by having my previous editor (Sublime Text) open while nvim was open too.
+
+It started by trying to do simple stuff with nvim and moving to sublime when I need to do complicated stuff I struggled with nvim, after I got comfortable with the simple stuff I tried to do complicated stuff with nvim, sometimes I succeed sometimes I failed and went to sublime, after a while I felt more comfortable with nvim and sticked with it all day long.
+
+The bottom line is it will take time and effort but eventually it will be worth it, for me it sparked the old feeling of learn how to edit your code, and for now it still on everyday.
 
 ---
 

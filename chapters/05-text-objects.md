@@ -17,6 +17,26 @@ For example:
 You can do this actions for almost every character you think about, `(`/`{`/`'`/`"`. \
 You can read more about this at `:help text-objects`.
 
+---
+
+One of my favorite text object is the `paragraph` one it makes editing code feels so natural.
+
+If you want to change the order of `boo` and `goo` you can you delete the `goo` paragraph with `dap` go back a paragraph with `[p` and paste the deleted paragraph `p`.
+```python
+def foo():
+	result = boo()
+	if result is not None:
+		return result
+	
+	result = goo() # <--- cursor here
+	if result is not None:
+		return result
+	
+	return None
+```
+
+---
+
 ## Treesitter Text Objects
 [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) is an awesome/must plugin that creates text-objects from the treesitter query, which means text-objects for actual part of your code!
 
