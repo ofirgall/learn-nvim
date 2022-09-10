@@ -1,10 +1,10 @@
 # Copy, Paste and Visual Mode
-The default behavior of vim isn't to copy to your OS clipboard, instead it copies to a `register`, which can be the OS clipboard.
+The default behavior of vim doesn't copy to your OS clipboard, but instead copies to a `register`, which can also be the OS clipboard.
 
 ## Copy and paste with specifying registers
-To yank (copy) a text you can copy the text from `NORMAL` mode with the `y` operator combined with a `movement` or you can enter `visual` mode with `v` and yank the text with `y`.
+To yank (copy) a text, you can copy the text from `NORMAL` mode with the `y` operator combined with a `movement` ,or you can enter `visual` mode with `v` and yank the text with `y`.
 
-A text is being copied to the registers when you `change` and `delete` text too.
+A text is copied to the registers when you `change` and `delete` text too.
 
 To paste the yanked result you can use:
 * `p` - paste after the cursor
@@ -17,24 +17,24 @@ To paste the yanked result you can use:
 
 ## Registers
 To specify a destination for the copy use `"`. \
-For example to copy to register `a` I'll hit those keys: `"ay<movement>"`.
+For example to copy to register `a` I'll hit these keys: `"ay<movement>"`.
 
-To paste its the same: `"ap`.
+Same for pasting: `"ap`.
 
-Use `_` - The `black hole` register, when you want to delete a text without being transfer to a register.
+Use `_` - as the `black hole` register, when you want to delete a text without transferring it to a register.
 
-There are many things you can do with registers I suggest to briefly read `:help registers`.
+There are many things you can do with registers, I suggest to briefly read `:help registers`.
 
 ## Using the OS clipboard
-`+` is the OS clipboard register, you can paste from it, you can yank to it.
+`+` is the OS clipboard register, you can yank to it and you can paste from it.
 
-I use those binds to use the OS clipboard without too many key presses:
+I use these binds to use the OS clipboard without too many key presses:
 ```lua
-map('', '<M-y>', '"+y') -- Start copy to os clipboard E.g: M-yy will copy current line to os
-map('', '<M-Y>', '"+y$') -- Copy rest of the line to os clipboard like "Y" but for os clipboard
+map('', '<M-y>', '"+y') -- Start copying to OS clipboard, e.g: `M-yy` will copy current line to OS 
+map('', '<M-Y>', '"+y$') -- Copy the rest of the line to OS clipboard like `Y` but for OS clipboard
 
-map('n', '<M-v>', '"+p') -- paste from os clipboard
-map('n', '<M-V>', '"+P') -- paste from os clipboard
+map('n', '<M-v>', '"+p') -- paste after cursor from OS clipboard
+map('n', '<M-V>', '"+P') -- paste before cursor from OS clipboard
 ```
 
 ## Plugins
