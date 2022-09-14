@@ -11,7 +11,6 @@ vim is built on actions that are mostly built on 2 types, an operator and a move
 * `u` - **U**ndo, check out [undotree](https://github.com/mbbill/undotree)
 * `r` - **R**edo
 
-
 ## Basic movements
 #### Arrows
 * `h` - left
@@ -26,12 +25,12 @@ You can multiply every movement by entering a number before the movement. \
 For example: `3j` will jump 3 lines down
 
 #### Words
-Capital will change the behavior from `word` to `WORD`, read the `help` page for both of them to understand better.
-
-* `w` - jump word **F**orward
+* `w` - jump **W**ord forward
 * `b` - jump word **B**ackwards
 * `e` - jump forward to the **E**nd of the word
 * `ge` - jump backwards to the **E**nd of the word
+
+Capital will change the behavior from `word` to `WORD`, read `:help word` and `:help WORD` to understand the differences
 
 #### Generics
 * `0` - go to the beginning of the line
@@ -94,6 +93,9 @@ The main ones
 * `c` - **C**hange, delete the text and enters insert mode
 * `<` - remove indentation (left)
 * `>` - add indentation (right)
+
+Capital (shift) will apply the operation starting from the cursor to the end of the line, e.g: `D` deletes the line from the cursor to the end of the line. \
+Repeating the operator key will apply the operation for the entire line, e.g: `yy` yanks the entire current line.
 
 ---
 

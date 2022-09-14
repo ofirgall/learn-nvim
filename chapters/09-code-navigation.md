@@ -25,9 +25,10 @@ Your preconfigured configuration probably has it installed and binded to keys al
 * [LSP Saga](https://github.com/glepnir/lspsaga.nvim) UI for LSP "hover" and rename and code actions (hints).
 * [vim-illuminate](https://github.com/RRethy/vim-illuminate) highlight the symbol your cursor is on and let you jump to next/previous reference, highly useful to know what "happened" to a variable.
 * [LSP Signature](https://github.com/ray-x/lsp_signature.nvim) shows a the signature while filling a function.
-* [fidget.nvim](https://github.com/j-hui/fidget.nvim) shows the lsp server progress in the bottom right corner
+* [fidget.nvim](https://github.com/j-hui/fidget.nvim) shows the lsp server progress in the bottom right corner.
+* [lsp_lines.nvim](https://git.sr.ht/~whynothugo/lsp_lines.nvim) shows the diagnostics in an intuitive way.
 * [trld.nvim](https://github.com/Mofiqul/trld.nvim) shows the current line diagnostic in the top right corner of the buffer.
-* [nvim-navic](https://github.com/SmiteshP/nvim-navic) shows the current context in the status/winbar line
+* [nvim-navic](https://github.com/SmiteshP/nvim-navic) shows the current context in the status/winbar line.
 * [More plugins that integrate with LSP](https://github.com/rockerBOO/awesome-neovim#lsp)
 
 ---
