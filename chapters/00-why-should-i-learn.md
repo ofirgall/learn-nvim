@@ -17,9 +17,9 @@ It isn't a must to touch type (I don't touch type 100%) but I recommend trying t
 
 ##### Disclaimer
 You can use a mouse. \
-I configured a mouse to allow, "guests" to show me stuff in my workstation. \
-I use mouse to **read** code, I feel it more convenient. \
-I use mouse when showing someone in my workstation to allow him to follow what I doing.
+I configured a mouse to allow "guests" to show me stuff in my workstation. \
+I use a mouse to **read** code, personally I find it more convenient. \
+I use a mouse when showing someone in my workstation so they can follow along.
 
 #### The right way to program
 It's a strong saying but I'm convinced that `nvim` is the right way to program. 
@@ -57,13 +57,13 @@ You can take a look at the [awesome nvim plugin list](https://github.com/rockerB
 ---
 
 # How should I start use nvim?
-nvim has a steep learning curve it takes time and patience to learn, you will find that you need to invest time to **start** using nvim as your daily driver.
+nvim has a steep learning curve - it takes time and patience to master, you will find that you need to invest time so you can **start** using nvim as your daily driver.
 
-If you are a professional programmer I recommend to start use it in your personal projects and integrate it slowly to your professional work, I did it by having my previous editor (Sublime Text) open while nvim was open too.
+If you are a professional programmer I recommend to start using it in your personal projects and integrate it slowly to your professional workflow. I did it by having my previous editor (Sublime Text) open while nvim was open too.
 
-It started by trying to do simple stuff with nvim and moving to sublime when I need to do complicated stuff I struggled with nvim, after I got comfortable with the simple stuff I tried to do complicated stuff with nvim, sometimes I succeed sometimes I failed and went to sublime, after a while I felt more comfortable with nvim and sticked with it all day long.
+I started by trying to do simple actions with nvim and moving to sublime when I needed to do complicated stuff that I struggled to do with nvim. After I got comfortable with basic functionality, I started trying to do more complex actions with nvim, sometimes I managed to yet sometimes I also failed and went back to sublime. Eventually I felt more comfortable with nvim and stuck with it all day long.
 
-The bottom line is it will take time and effort but eventually it will be worth it, for me it sparked the old feeling of learn how to edit your code, and for now it still on everyday.
+The bottom line is that it'll take time and effort but eventually it will be worth it, for me it sparked the old feeling of learning how to edit your code, and I still feel it every day.
 
 ---
 

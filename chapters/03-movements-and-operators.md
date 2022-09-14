@@ -94,8 +94,8 @@ The main ones
 * `<` - remove indentation (left)
 * `>` - add indentation (right)
 
-Capital (shift) will make the operation from the cursor to the end of the line, e.g: `D` deletes the line from the cursor to the end of the line. \
-Repeating the same operator key will make the operation on the entire line, e.g: `yy` yanks the entire current line.
+Capital (shift) will apply the operation starting from the cursor to the end of the line, e.g: `D` deletes the line from the cursor to the end of the line. \
+Repeating the operator key will apply the operation for the entire line, e.g: `yy` yanks the entire current line.
 
 ---
 

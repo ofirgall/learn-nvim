@@ -9,7 +9,7 @@ I use [vim-session](https://github.com/xolox/vim-session), I don't remember why 
 [Other Session Manager's](https://github.com/rockerBOO/awesome-neovim#session)
 
 ### [Comment](https://github.com/numToStr/Comment.nvim)
-Adds comment action
+Adds a comment operation
 
 ### [Last Place](https://github.com/ethanholz/nvim-lastplace)
 Remembers the last place you edited a buffer.
@@ -78,7 +78,7 @@ export MANWIDTH=999
 ```
 
 ### More
-There are many many more plugins for neovim, you can check out [awesome-neovim](https://github.com/rockerBOO/awesome-neovim), and you can checkout my list [packer.lua](https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/packer.lua)
+There are many many more plugins for neovim, you can check out [awesome-neovim](https://github.com/rockerBOO/awesome-neovim), and you can also my list - [packer.lua](https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/packer.lua)
 
 ---
 

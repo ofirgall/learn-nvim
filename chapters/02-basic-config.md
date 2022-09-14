@@ -8,20 +8,20 @@ We will talk about the advantages at the [advanced configuration chapter](https:
 ---
 
 ## Terminal Emulator Setup
-nvim can be run with a GUI frontend or how it was intended, inside a terminal emulator. \
+nvim can be run with a GUI frontend or how it was intended to, in a terminal emulator. \
 I recommend to use one of the modern cross-platform terminal emulators:
 
-* [Alacritty](https://github.com/alacritty/alacritty) - recommended to use [tmux](https://github.com/tmux/tmux)/[i3](https://github.com/i3/i3) for splits and session's (The one I use)
+* [Alacritty](https://github.com/alacritty/alacritty) - recommended with [tmux](https://github.com/tmux/tmux)/[i3](https://github.com/i3/i3) for splits and sessions (I use Alacritty + tmux)
 * [Kitty](https://github.com/kovidgoyal/kitty) - I never used it but people say it's nice
-* [Wezterm](https://github.com/wez/wezterm) - Lua configured terminal, I don't like the design especially how the cursor works in it, but it seems the community love it.
+* [Wezterm](https://github.com/wez/wezterm) - Lua configured terminal, I don't like the design, especially the way cursor behaves in it, but it seems the community love it.
 
 ### Nerdfont
-Its highly recommended to install [nerdfont](https://www.nerdfonts.com/) to support icons in your terminal, many plugins utilize it. \
+It's highly recommended to install a [nerdfont](https://www.nerdfonts.com/) to support icons in your terminal, many plugins utilize it. \
 I use [CascadiaCode](https://www.programmingfonts.org/#cascadia-code), [JetBrainsMono](https://www.programmingfonts.org/#jetbrainsmono) is nice too.
 
 ### Keybinds limitations
-Because of `ascii` terminals by default doesn't support Ctrl+Shift+X keys, [great comment that explains that](https://github.com/tmux/tmux/issues/674#issuecomment-263157843). \
-Some terminals allow to make a workaround for this, it isn't a must I don't use Ctrl+Shift+X binds.
+Because of `ascii` terminals don't support `Ctrl+Shift+X` keybindings, [here's a great comment that explains why](https://github.com/tmux/tmux/issues/674#issuecomment-263157843). \
+Some terminals allow to use a workaround, but it's not a must (I don't use Ctrl+Shift+X binds).
 
 --- 
 
@@ -67,7 +67,7 @@ Personally I skipped using a preconfigured configuration, but I highly sugggest 
 These are the basic links to get you going:
 1. [Install](https://nvchad.github.io/quickstart/install)
 1. [Key Mappings](https://nvchad.github.io/config/Mappings), [core/mappings.lua](https://github.com/NvChad/NvChad/blob/main/lua/core/mappings.lua)
-1. [Setup LSP with Mason](https://nvchad.github.io/config/Lsp%20stuff) (Skip to mason chapter, it doesn't let it happen with the anchor)
+1. [Setup LSP with Mason](https://nvchad.github.io/config/Lsp%20stuff)
 1. [Setup Treesitter](https://nvchad.github.io/quickstart/post-install#install-treesitter-parsers)
 1. [Custom Config Folder structure](https://nvchad.github.io/config/Walkthrough#structure)
 1. [Custom Plugins](https://nvchad.github.io/config/plugins)

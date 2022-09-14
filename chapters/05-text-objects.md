@@ -19,9 +19,9 @@ You can read more about this at `:help text-objects`.
 
 ---
 
-One of my favorite text object is the `paragraph` one it makes editing code feels so natural.
+One of my favorite text object is the `paragraph`, it makes editing code feel so natural.
 
-If you want to change the order of `boo` and `goo` you can you delete the `goo` paragraph with `dap` go back a paragraph with `[p` and paste the deleted paragraph `p`.
+If you want to change the order of `boo` and `goo`, you can you delete the `goo` paragraph with `dap`, go back a paragraph with `[p` and paste the deleted paragraph with `p`.
 ```python
 def foo():
 	result = boo()
