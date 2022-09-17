@@ -7,7 +7,7 @@ _**Note**_: Some parts of the next chapters will be irrelevant to a preconfigure
 ---
 
 ## How to create a config
-Fortunately for me there is already a really good [guide for lua configuration](https://github.com/nanotee/nvim-lua-guide).
+Fortunately for me there is already a really good [guide for lua configuration](https://github.com/nanotee/nvim-lua-guide) you don't have to read the guide fully, just know it exists and use it as a reference.
 I recommend to take a look at [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) which is a basic config you can start from.
 
 ## How to utilize a program language in your config file
@@ -46,4 +46,4 @@ end) -- Go to Definition
 
 ---
 
-[Previous Chapter](./07-vim-goodies.md) | [Next Chapter](./09-code-navigation.md)
+[Previous Chapter](./07-vim-goodies.md) | [Next Chapter](./09-ui.md)

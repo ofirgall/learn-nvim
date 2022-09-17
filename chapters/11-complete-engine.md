@@ -39,4 +39,4 @@ The snippet engine requires a snippets source too, I use a personal fork of [vim
 
 ---
 
-[Previous Chapter](./09-code-navigation.md) | [Next Chapter](./11-git.md)
+[Previous Chapter](./09-ui.md) | [Next Chapter](./12-git.md)

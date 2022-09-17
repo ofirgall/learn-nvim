@@ -53,4 +53,4 @@ I use [diffconflicts](https://github.com/whiteinge/diffconflicts) to solve my gi
 
 ---
 
-[Previous Chapter](./10-complete-engine.md) | [Next Chapter](./12-debug.md)
+[Previous Chapter](./11-complete-engine.md) | [Next Chapter](./13-debug.md)

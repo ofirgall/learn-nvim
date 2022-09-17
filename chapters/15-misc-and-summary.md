@@ -94,4 +94,4 @@ To keep up with new plugins and updates I recommend to:
 
 ---
 
-[Previous Chapter](./14-ui.md)
+[Previous Chapter](./14-hydra.md)
