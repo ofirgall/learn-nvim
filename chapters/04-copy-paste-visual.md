@@ -30,11 +30,11 @@ There are many things you can do with registers, I suggest to briefly read `:hel
 
 I use these binds to use the OS clipboard without too many key presses:
 ```lua
-map('', '<M-y>', '"+y') -- Start copying to OS clipboard, e.g: `M-yy` will copy current line to OS 
-map('', '<M-Y>', '"+y$') -- Copy the rest of the line to OS clipboard like `Y` but for OS clipboard
+map('', '<leader>y', '"+y') -- Start copy to os clipboard E.g: <leader>yy will copy current line to os
+map('', '<leader>Y', '"+y$') -- Copy rest of the line to os clipboard like "Y" but for os clipboard
 
-map('n', '<M-v>', '"+p') -- paste after cursor from OS clipboard
-map('n', '<M-V>', '"+P') -- paste before cursor from OS clipboard
+map('n', '<leader>v', '"+p') -- paste from os clipboard
+map('n', '<leader>V', '"+P') -- paste from os clipboard
 ```
 
 ## Plugins

@@ -23,6 +23,11 @@ I use [CascadiaCode](https://www.programmingfonts.org/#cascadia-code), [JetBrain
 Because of `ascii` terminals don't support `Ctrl+Shift+X` keybindings, [here's a great comment that explains why](https://github.com/tmux/tmux/issues/674#issuecomment-263157843). \
 Some terminals allow to use a workaround, but it's not a must (I don't use Ctrl+Shift+X binds).
 
+#### Options as Alt in macOS
+To be able to use Alt binds in your terminal you need to configure your terminal emulator to do so.
+* [For Kitty](https://sw.kovidgoyal.net/kitty/conf/#opt-kitty.macos_option_as_alt)
+* [For Alacritty](https://github.com/alacritty/alacritty/issues/62)
+
 --- 
 
 ## How to Install nvim
@@ -31,7 +36,136 @@ You can install [nightly](https://github.com/neovim/neovim/releases/tag/nightly)
 
 ---
 
+## [Preconfigured Configurations](https://github.com/rockerBOO/awesome-neovim#preconfigured-configuration)
+There are several preconfigured configurations, these are the popular ones:
+* [LunarVim](https://github.com/LunarVim/LunarVim)
+* [AstroNvim](https://github.com/AstroNvim/AstroNvim)
+* [NvChad](https://github.com/NvChad/NvChad)
+
+#### LunarVim
+Personally I skipped using a preconfigured configuration, but I highly suggest to use it as a starting point. [LunarVim](https://github.com/LunarVim/LunarVim) is the easiest to start with, [Installation link](https://www.lunarvim.org/01-installing.html).
+
+Make sure you read and edit the default configuration to your taste.
+
+---
+
+## How to Install Plugins
+I'll recommend several plugins along the way, make sure you are not lazy to install them.
+
+#### How to download a plugin
+nvim plugins are git repositories, a package manager download and updates them, [packer](https://github.com/wbthomason/packer.nvim) is the standard one and it's already installed in LunarVim.
+
+In LunarVim you will find:
+```lua
+Additional Plugins
+lvim.plugins = {
+    {"folke/tokyonight.nvim"},
+    {
+      "folke/trouble.nvim",
+      cmd = "TroubleToggle",
+    },
+}
+```
+
+`lvim.plugins` is passed to [packer](https://github.com/wbthomason/packer.nvim), `folke/tokyonight.nvim` is a short for [github.com/folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim).
+
+Useful Packer Commands:
+* `:PackerInstall`
+* `:PackerStatus`
+* `:PackerUpdate`
+
+_**Note**_: LunarVim runs packer commands for you.
+
+#### How to configure a plugin
+Usually a plugin will provide a `setup` function which configures the plugin's behavior, most plugin's wont activate if the setup function isn't called.
+
+Usually the `setup` function receives a `table`, most plugins use the override standard, the keys in the table you pass will be override the default, other keys stays with the default value. \
+The defaults are usually in the plugin `README` and in the `:help <plugin>`
+
+_**Note**_: I recommend to start backing up your config with some kind of dotfiles, I use [dotbot](https://github.com/anishathalye/dotbot).
+
+#### Recommended Plugins to Start With
+* Make sure you peek a [colorscheme](https://github.com/rockerBOO/awesome-neovim#colorscheme) you like.
+* [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) - great plugin for tmux users.
+* [auto-save.nvim](https://github.com/Pocco81/auto-save.nvim) - auto save your changes when text changed (not while typing).
+* [Comment.nvim](https://github.com/numToStr/Comment.nvim) - Adds comment operation (LunarVim installs it already).
+
+---
+
+## Options
+Options control the behavior of nvim, options can be `boolean`, `number` or a `string`. \
+To set an option type `:set <option>`, to see the current value of an option `:set <option>?`. \
+boolean options are set on/off by setting them and setting them as `no<option>`. \
+E.g: `:set relativenumber` turns on `relativenumber` to turn off `:set norelativenumber`.
+
+Every option as a help tag for it, for example `:h relativenumber` \
+The options are listed in `:h option-list`.
+
+In nvim you can access the options by `vim.opt`
+
+### Sensible Options
+```lua
+local opt = vim.opt
+
+opt.number = true -- Enables line numbers
+opt.relativenumber = true -- Enables relative line numbers
+opt.autoindent = true -- Indent automatically
+opt.cursorline = true -- Enables cursor line
+opt.ignorecase = true -- Ignore case when searching
+opt.splitright = true -- Split to the right on vertical
+opt.splitbelow = true -- Split below when horizontal
+opt.swapfile = false -- Don't use swap files (I use auto-save.nvim instead)
+opt.updatetime = 100 -- mainly for trld.nvim which utilize CursorHold autocmd
+opt.formatoptions:append('cro') -- continue comments when going down a line, hit C-u to remove the added comment prefix
+```
+
+---
+
+## Key mapping
+Key map can be set to a specific modes. \
+The important ones:
+* `n` - Normal mode
+* `i` - Insert mode
+* `x` - Visual & Select mode
+* `v` - Visual mode
+* `:h map-commands` for the full mode list
+
+To set a keymap you should use `vim.keymap.set` or even better a `map` function with default value for `opts`.
+```lua
+local function map(mode, lhs, rhs, opts)
+	opts = opts or { silent = true }
+	vim.keymap.set(mode, lhs, rhs, opts)
+end
+```
+* `mode` - the mode the keymap is added to, can be a single mode `'n'`, table of modes `{'n', 'x'}`, or empty `''` for all modes.
+* `lhs` - The key you need to press to activate the key map
+* `rhs` - Can be a lua function to call or a string to let vim "type", for example `nzz` executes `n` and then `zz` which are binded to `next` and `recenter`.
+* `opts` - Table of options for the keymap, read more at `:h map-arguments`
+
+---
+
+## Autocommands
+> An autocommand is a command that is executed automatically in response to some
+event, such as a file being read or written or a buffer change.
+
+For example a good autocommand to highlight the text that has yanked.
+```lua
+-- Highlight on yank
+vim.api.nvim_create_autocmd('TextYankPost', {
+	pattern = '*',
+	callback = function() vim.highlight.on_yank({timeout=350, higroup='Visual'}) end
+})
+```
+
+Plugins can add custom autocommands too! \
+For all the builtin autocmds see `:h autocmd-list`.
+
+Read `:h nvim_create_autocmd` for full explanation.
+
+---
+
 ## Plugin Tools
+The preconfigured configuration handles the installation of LSP and Treesitter, you don't need to worry about handling it, but its recommended to understand both of this tools to understand how other plugins utilize it.
 
 ### [LSP](https://microsoft.github.io/language-server-protocol/)
 > The idea behind the Language Server Protocol (LSP) is to standardize the protocol for how such servers and development tools communicate. This way, a single Language Server can be re-used in multiple development tools, which in turn can support multiple languages with minimal effort.
@@ -40,7 +174,7 @@ Which means nvim/sublime/vscode get the same Intellisense. \
 The servers run locally on your PC and are optimized to run fast. \
 nvim implements the fastest lsp client.
 
-[Server list by language](https://microsoft.github.io/language-server-protocol/implementors/servers/) \
+[Server list by language](https://microsoft.github.io/language-server-protocol/implementors/servers/)
 
 ### [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 > Tree-sitter is a parser generator tool and an incremental parsing library. It can build a concrete syntax tree for a source file and efficiently update the syntax tree as the source file is edited. Tree-sitter aims to be:
@@ -52,65 +186,6 @@ nvim implements the fastest lsp client.
 Basically it provides a fast unified syntax query for different languages, this allows to build plugins that utilize the unified syntax query.
 
 E.g: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) which allows to do an action on a code context such as `copy` the `function/class/argument/loop` and more, we will elaborate on that later.
-
----
-
-## [Preconfigured Configurations](https://github.com/rockerBOO/awesome-neovim#preconfigured-configuration)
-There are several preconfigured configurations, these are the popular ones:
-* [NvChad](https://github.com/NvChad/NvChad)
-* [AstroNvim](https://github.com/AstroNvim/AstroNvim)
-* [LunarVim](https://github.com/LunarVim/LunarVim)
-
-#### NvChad
-Personally I skipped using a preconfigured configuration, but I highly sugggest to use it as a starting point. I didn't really try any of them but by briefly looking at the docs I strongly recommend [NvChad](https://github.com/NvChad/NvChad).
-
-These are the basic links to get you going:
-1. [Install](https://nvchad.github.io/quickstart/install)
-1. [Key Mappings](https://nvchad.github.io/config/Mappings), [core/mappings.lua](https://github.com/NvChad/NvChad/blob/main/lua/core/mappings.lua)
-1. [Setup LSP with Mason](https://nvchad.github.io/config/Lsp%20stuff)
-1. [Setup Treesitter](https://nvchad.github.io/quickstart/post-install#install-treesitter-parsers)
-1. [Custom Config Folder structure](https://nvchad.github.io/config/Walkthrough#structure)
-1. [Custom Plugins](https://nvchad.github.io/config/plugins)
-
-I recommend to learn more about NvChad later if you decide to stick with preconfigured config.
-
-_**Learn**_ how to install plugins, I'll recommend several plugins along the way, make sure you are not lazy to install them.
-
-I recommend to start backing up your config with some kind of dotfiles, I use [dotbot](https://github.com/anishathalye/dotbot).
-
----
-
-## Recommended Plugins to Start With
-* [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) great plugin for tmux users.
-* [auto-save.nvim](https://github.com/Pocco81/auto-save.nvim) auto save your changes.
-
----
-
-## Sensible Settings
-```lua
-local opt = vim.opt
-
-opt.number = true -- Enables line numbers
-opt.relativenumber = true -- Enables relative line numbers
-opt.autoindent = true -- Indent automatically
-opt.tabstop = 4 -- Tab equals 4 spaces
-opt.shiftwidth = 4 -- Tab equals 4 spaces
-opt.smarttab = true -- Tab equals 4 spaces
-opt.softtabstop = 4 -- Tab equals 4 spaces
-opt.cursorline = true -- Enables cursor line
-opt.ignorecase = true -- Ignore case when searching
-opt.splitright = true -- Split to the right on vertical
-opt.splitbelow = true -- Split below when horizontal
-opt.swapfile = false -- Don't use swap files (I use AutoSave.nvim instead)
-opt.updatetime = 100 -- mainly for trld.nvim which utilize CursorHold autocmd
-opt.formatoptions:append('cro') -- continue comments when going down a line, hit C-u to remove the added comment prefix
-
--- Highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-	pattern = '*',
-	callback = function() vim.highlight.on_yank({timeout=350, higroup='Visual'}) end
-})
-```
 
 ---
 
