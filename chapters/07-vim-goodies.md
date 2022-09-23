@@ -27,6 +27,40 @@ Few examples:
 * `:%s/ofir/gal/` - will find the first occurrences in each line in in the buffer of `ofir` and will replace them with `gal`
 * `:%s/ofir/gal/g` - The same as above but for all occurrences
 
+#### Plugins
+With [text-case.nvim](https://github.com/johmsalas/text-case.nvim) you can replace text and preserve the casing of the text.
+
+When executing `:Subs/ofir gal/amit tamari` on this text:
+```
+OfirGal
+ofirGal
+```
+It results this text:
+```
+AmitTamari
+amitTamari
+```
+
+Also it provides lua API to change case, I created those user command to change cases fast.
+```lua
+local api = vim.api
+local textcase = require('textcase')
+textcase.setup {
+}
+
+api.nvim_create_user_command('UpperCase', function() textcase.current_word('to_upper_case') end, {})
+api.nvim_create_user_command('LowerCase', function() textcase.current_word('to_lower_case') end, {})
+api.nvim_create_user_command('SnakeCase', function() textcase.current_word('to_snake_case') end, {})
+api.nvim_create_user_command('ConstantCase', function() textcase.current_word('to_dash_case') end, {})
+api.nvim_create_user_command('DashCase', function() textcase.current_word('to_constant_case') end, {})
+api.nvim_create_user_command('DotCase', function() textcase.current_word('to_dot_case') end, {})
+api.nvim_create_user_command('CamelCase', function() textcase.current_word('to_camel_case') end, {})
+api.nvim_create_user_command('PascalCase', function() textcase.current_word('to_pascal_case') end, {})
+api.nvim_create_user_command('TitleCase', function() textcase.current_word('to_title_case') end, {})
+api.nvim_create_user_command('PathCase', function() textcase.current_word('to_path_case') end, {})
+api.nvim_create_user_command('PhraseCase', function() textcase.current_word('to_phrase_case') end, {})
+```
+
 ## Global command
 The `g` command is used to apply a "vim" command across the buffer by filtering lines with pattern.
 

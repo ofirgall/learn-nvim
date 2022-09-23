@@ -85,10 +85,29 @@ The defaults are usually in the plugin `README` and in the `:help <plugin>`
 _**Note**_: I recommend to start backing up your config with some kind of dotfiles, I use [dotbot](https://github.com/anishathalye/dotbot).
 
 #### Recommended Plugins to Start With
-* Make sure you peek a [colorscheme](https://github.com/rockerBOO/awesome-neovim#colorscheme) you like.
+* Make sure you peek a [colorscheme](https://github.com/rockerBOO/awesome-neovim#colorscheme) you like or create your own like I [did](https://github.com/ofirgall/ofirkai.nvim).
+* [auto-session](https://github.com/rmagatti/auto-session) - Auto save your session, you can jump back to your session after exiting/restarting nvim.
 * [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) - great plugin for tmux users.
-* [auto-save.nvim](https://github.com/Pocco81/auto-save.nvim) - auto save your changes when text changed (not while typing).
 * [Comment.nvim](https://github.com/numToStr/Comment.nvim) - Adds comment operation (LunarVim installs it already).
+* [lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim) - Show function signature when you type.
+
+##### [auto-save.nvim](https://github.com/Pocco81/auto-save.nvim) 
+I hated using autosave in other text editors, but because vim has modes it knows exactly when a text changed. \
+On `InsertLeave` which triggered when you leave Insert mode, and on `TextChanged` which triggered when text changed in normal mode.
+
+Autosave + autoformat = annoying behavior. Make sure you disable auto format, I wrote a [simple plugin](https://github.com/ofirgall/format-on-leave.nvim) to format when I switch buffers.
+
+ How to disable autoformat in LunarVim:
+```lua
+TODO: fill
+```
+
+Autosave + live config refresh = annoying behavior. Make sure you disable autosave in your config if you like live config refresh.\
+An example for how to do it in LunarVim:
+
+```lua
+TODO: fill example
+```
 
 ---
 
@@ -161,6 +180,14 @@ Plugins can add custom autocommands too! \
 For all the builtin autocmds see `:h autocmd-list`.
 
 Read `:h nvim_create_autocmd` for full explanation.
+
+---
+
+## Shell Setup
+Dont forget to set nvim as your default terminal editor like so:
+```
+export EDITOR='nvim'
+```
 
 ---
 
