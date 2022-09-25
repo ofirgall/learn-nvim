@@ -54,6 +54,12 @@ nvim plugins are the first to "evolve" when a new tech is coming to the IDE worl
 
 You can take a look at the [awesome nvim plugin list](https://github.com/rockerBOO/awesome-neovim). I recommend to "watch" to get updates about new plugins.
 
+#### Be comfortable
+nvim is basically a framework for an editor, without plugins it can't do much but it gives the user the ability to configure it's editor in a way he is most comfortable with.
+
+Imaging sitting on a chair you built exactly to your size. The back rest covers your whole back, the head rest is exactly in the right height and has the perfect shape to support your head and neck. The arm rests are exactly in the height of your desk, the chair is in the perfect height for your legs. \
+This is how I feel when I code in nvim, I sit in a chair I build exactly for my needs, and I can keep improve the way I code because I can improve the way my editor works.
+
 ---
 
 # How should I start use nvim?
