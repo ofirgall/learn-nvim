@@ -7,10 +7,11 @@ The default and the most used ones are `inner`/`a` + `X`.
 
 Modifiers:
 * `i` - as **I**nner.
-* `a` - as **A** or as I like to pronounce it "**A**outer".
+* `a` - as **A**.
 
 For example:
-* `yiw` - `yank inner word`, will yank the current word you are at
+* `yiw` - `yank inner word`, will yank the current word.
+* `caw` - `change a word`, will change the current word.
 * `ci'` - `change inner '`, will change the inner text inside the next/current pair of `'` aka a string.
 * `ca'` - `delete a '`, will delete the text inside and the `'` of the next/current pair of `'`.
 
@@ -21,7 +22,7 @@ You can read more about this at `:help text-objects`.
 
 One of my favorite text objects is the `paragraph`, it makes editing code feel so natural.
 
-If you want to change the order of `boo` and `goo`, you can you delete the `goo` paragraph with `dap`, go back a paragraph with `[p` and paste the deleted paragraph with `p`.
+If you want to change the order of `boo` and `goo`, you can you delete the `goo` paragraph with `dap`, go back a paragraph with `{` and paste the deleted paragraph with `p`.
 ```python
 def foo():
 	result = boo()

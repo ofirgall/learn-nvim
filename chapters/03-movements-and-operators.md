@@ -10,6 +10,7 @@ vim is built on actions that are mostly built on 2 types, an operator and a move
 * `O` - insert new line above
 * `u` - **U**ndo, check out [undotree](https://github.com/mbbill/undotree)
 * `r` - **R**edo
+* `zz` - Recenter the screen, there are more binds for screen actions but this is the most important one
 
 ## Basic movements
 #### Arrows
@@ -19,6 +20,14 @@ vim is built on actions that are mostly built on 2 types, an operator and a move
 * `l` - right
 
 It takes some time getting used to it but it's worth it, I recommend disabling the arrow keys for movement and try the game `hjkl` in [vim-be-good](https://github.com/ThePrimeagen/vim-be-good).
+
+```lua
+-- Disable arrows movement
+map('', '<Up>', '<Nop>')
+map('', '<Down>', '<Nop>')
+map('', '<Left>', '<Nop>')
+map('', '<Right>', '<Nop>')
+```
 
 ### Multiply Movement
 You can multiply every movement by entering a number before the movement. \
@@ -66,7 +75,6 @@ These are **not** movements!
 
 I recommend to remap `n` and `N` to `nzz` and `Nzz`, `zz` centers the screen by the line you are on, these binds will go to the next/prev occurrence and center the screen.
 ```lua
-local map = vim.keymap.set
 map('n', 'n', 'nzz') -- Auto recenter after n
 map('n', 'N', 'Nzz') -- Auto recenter after N
 ```
@@ -93,6 +101,8 @@ The main ones
 * `c` - **C**hange, delete the text and enters insert mode
 * `<` - remove indentation (left)
 * `>` - add indentation (right)
+* `=` - auto indent
+* `gc` - Comment/Uncomment, done with [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 
 Capital (shift) will apply the operation starting from the cursor to the end of the line, e.g: `D` deletes the line from the cursor to the end of the line. \
 Repeating the operator key will apply the operation for the entire line, e.g: `yy` yanks the entire current line.

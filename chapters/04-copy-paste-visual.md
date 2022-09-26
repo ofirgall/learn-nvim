@@ -15,6 +15,8 @@ To paste the yanked result you can use:
 * `V` - Visual Line mode, selects text by lines
 * `<C-v>` - Visual Block mode, selects text by block
 
+You can replace text by pasting new text after selecting the text to replace with visual, this action copies the replaced text to a register too.
+
 ## Registers
 To specify a destination for the copy use `"`. \
 For example to copy to register `a` I'll hit these keys: `"ay<movement>"`.
@@ -25,20 +27,32 @@ Use `_` - as the `black hole` register, when you want to delete a text without t
 
 There are many things you can do with registers, I suggest to briefly read `:help registers`.
 
+### Binds to delete/change/replace without yanking.
+```lua
+map('x', '<leader>p', '"_dP') -- replace text without changing the copy register
+
+map('n', '<leader>d', '"_d') -- delete without yanking, e.g <leader>dd deletes the current line without yanking it
+map('n', '<leader>D', '"_D') -- delete without yanking
+
+map('n', '<leader>c', '"_c') -- change without yanking
+map('n', '<leader>C', '"_C') -- change without yanking
+```
+
 ## Using the OS clipboard
 `+` is the OS clipboard register, you can yank to it and you can paste from it.
 
 I use these binds to use the OS clipboard without too many key presses:
 ```lua
-map('', '<M-y>', '"+y') -- Start copying to OS clipboard, e.g: `M-yy` will copy current line to OS 
-map('', '<M-Y>', '"+y$') -- Copy the rest of the line to OS clipboard like `Y` but for OS clipboard
+map('', '<leader>y', '"+y') -- Start copy to os clipboard E.g: <leader>yy will copy current line to os
+map('', '<leader>Y', '"+y$') -- Copy rest of the line to os clipboard like "Y" but for os clipboard
 
-map('n', '<M-v>', '"+p') -- paste after cursor from OS clipboard
-map('n', '<M-V>', '"+P') -- paste before cursor from OS clipboard
+map('n', '<leader>v', '"+p') -- paste from os clipboard
+map('n', '<leader>V', '"+P') -- paste from os clipboard
 ```
 
 ## Plugins
 * [nvim-pasta](https://github.com/hrsh7th/nvim-pasta) to cycle fast in my copy history after pasting instead of using the `registers`.
+* [peekup](https://github.com/gennaro-tedesco/nvim-peekup) - dynamically interact with vim registers.
 * [registers.nvim](https://github.com/tversteeg/registers.nvim) to see the registers before yanking from/to them.
 
 ---
