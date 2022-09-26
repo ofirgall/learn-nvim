@@ -1,7 +1,7 @@
 # Splits and Actual Tabs
 
 ## Splits aka Windows
-We already covered what are splits at [Chapter 1](01-the-vim-language.md), but we didn't coverd how we control them.
+We already covered what splits are at [Chapter 1](01-the-vim-language.md), but we didn't cover how to control them.
 
 * `:vsplit`/`:vs` - Creates a vertical split.
 * `:split` - Creates a horizontal split.
@@ -32,7 +32,7 @@ map('n', '<M-o>', '<cmd>split<cr>', default_opts)
 map('n', '<M-q>', '<cmd>q<cr>', default_opts)
 ```
 
-The default direction of splits in vim are out of today standards to fix it add this to your config:
+The default direction of splits in vim are out of today's standards, to fix it add this to your config:
 ```lua
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -44,11 +44,11 @@ If you are using tmux I highly recommend to use [vim-tmux-navigator](https://git
 ---
 
 ## Actual Tabs
-To acheive actual tabs (like in any other IDE) you need to use a `bufferline`/`tabline` plugin.
+To achieve actual tabs (like in any other IDE) you need to use a `bufferline`/`tabline` plugin.
 
-Your preconfigured configuration probably already has one but you can see the list [here](https://github.com/rockerBOO/awesome-neovim#tabline), I use [bufferline.nvim](https://github.com/akinsho/bufferline.nvim).
+Your preconfigured configuration probably has one already but you can see the list [here](https://github.com/rockerBOO/awesome-neovim#tabline), I use [bufferline.nvim](https://github.com/akinsho/bufferline.nvim).
 
-Make sure to map keys to go fast to a tab, to cycle between tabs and close tabs.
+Make sure to map keys to quickly switch, cycle and close tabs.
 
 My config:
 ```lua
