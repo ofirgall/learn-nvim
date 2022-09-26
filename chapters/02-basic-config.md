@@ -53,7 +53,7 @@ Make sure you read and edit the default configuration to your taste.
 I'll recommend several plugins along the way, make sure you are not lazy to install them.
 
 #### How to download a plugin
-nvim plugins are git repositories, a package manager download and updates them, [packer](https://github.com/wbthomason/packer.nvim) is the standard one and it's already installed in LunarVim.
+nvim plugins are git repositories, a package manager downloads and updates them, [packer](https://github.com/wbthomason/packer.nvim) is the standard one and it's already installed in LunarVim.
 
 In LunarVim you will find:
 ```lua
@@ -77,47 +77,65 @@ Useful Packer Commands:
 _**Note**_: LunarVim runs packer commands for you.
 
 #### How to configure a plugin
-Usually a plugin will provide a `setup` function which configures the plugin's behavior, most plugin's wont activate if the setup function isn't called.
+Usually a plugin will provide a `setup` function which configures the plugin's behavior, most plugins won't activate if the setup function isn't called.
 
-Usually the `setup` function receives a `table`, most plugins use the override standard, the keys in the table you pass will be override the default, other keys stays with the default value. \
+Usually the `setup` function receives a `table`, most plugins use the override standard - the keys in the table you pass will override the default, other keys keep their default value. \
 The defaults are usually in the plugin `README` and in the `:help <plugin>`
 
 _**Note**_: I recommend to start backing up your config with some kind of dotfiles, I use [dotbot](https://github.com/anishathalye/dotbot).
 
 #### Recommended Plugins to Start With
-* Make sure you peek a [colorscheme](https://github.com/rockerBOO/awesome-neovim#colorscheme) you like or create your own like I [did](https://github.com/ofirgall/ofirkai.nvim).
-* [auto-session](https://github.com/rmagatti/auto-session) - Auto save your session, you can jump back to your session after exiting/restarting nvim.
+* Make sure you pick a [colorscheme](https://github.com/rockerBOO/awesome-neovim#colorscheme) you like or create your own like I [did](https://github.com/ofirgall/ofirkai.nvim).
+* [auto-session](https://github.com/rmagatti/auto-session) - Auto save your session, so you can jump back to your session after exiting/restarting nvim.
 * [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) - great plugin for tmux users.
-* [Comment.nvim](https://github.com/numToStr/Comment.nvim) - Adds comment operation (LunarVim installs it already).
+* [Comment.nvim](https://github.com/numToStr/Comment.nvim) - Adds comment operation (included in LunarVim's [core plugins](https://www.lunarvim.org/plugins/01-core-plugins-list.html)).
 * [lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim) - Show function signature when you type.
 
 ##### [auto-save.nvim](https://github.com/Pocco81/auto-save.nvim) 
-I hated using autosave in other text editors, but because vim has modes it knows exactly when a text changed. \
-On `InsertLeave` which triggered when you leave Insert mode, and on `TextChanged` which triggered when text changed in normal mode.
+I hated using autosave in other text editors, but because vim has modes it knows exactly when a text was changed. \
+On `InsertLeave` which is triggered when you leave Insert mode, and on `TextChanged` which is triggered when text was changed in normal mode.
 
 Autosave + autoformat = annoying behavior. Make sure you disable auto format, I wrote a [simple plugin](https://github.com/ofirgall/format-on-leave.nvim) to format when I switch buffers.
 
  How to disable autoformat in LunarVim:
 ```lua
-TODO: fill
+lvim.format_on_save = false
 ```
 
 Autosave + live config refresh = annoying behavior. Make sure you disable autosave in your config if you like live config refresh.\
 An example for how to do it in LunarVim:
 
 ```lua
-TODO: fill example
+local user_config_file = require("lvim.config"):get_user_config_path()
+require("auto-save").setup {
+  enabled = true,
+
+  condition = function(buf)
+    local fn = vim.fn
+    local utils = require("auto-save.utils.data")
+
+    if vim.api.nvim_buf_get_name(buf) == user_config_file then
+      return false
+    end
+
+    if fn.getbufvar(buf, "&modifiable") == 1 and
+        utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
+      return true -- met condition(s), can save
+    end
+    return false -- can't save
+  end,
+}
 ```
 
 ---
 
 ## Options
-Options control the behavior of nvim, options can be `boolean`, `number` or a `string`. \
-To set an option type `:set <option>`, to see the current value of an option `:set <option>?`. \
-boolean options are set on/off by setting them and setting them as `no<option>`. \
-E.g: `:set relativenumber` turns on `relativenumber` to turn off `:set norelativenumber`.
+Options control the behavior of nvim, they can be set to `boolean`, `number` or `string`. \
+To set an option type `:set <option>`, to see the current value of an option use `:set <option>?`. \
+boolean options are enabled by `:set <option>` and disabled by `:set no<option>`. \
+E.g: `:set relativenumber` enables `relativenumber` and `:set norelativenumber` disables it.
 
-Every option as a help tag for it, for example `:h relativenumber` \
+Every option has a help tag for it, for example `:h relativenumber` \
 The options are listed in `:h option-list`.
 
 In nvim you can access the options by `vim.opt`
@@ -141,7 +159,7 @@ opt.formatoptions:append('cro') -- continue comments when going down a line, hit
 ---
 
 ## Key mapping
-Key map can be set to a specific modes. \
+Key map can be set to specific modes. \
 The important ones:
 * `n` - Normal mode
 * `i` - Insert mode
@@ -156,7 +174,7 @@ local function map(mode, lhs, rhs, opts)
 	vim.keymap.set(mode, lhs, rhs, opts)
 end
 ```
-* `mode` - the mode the keymap is added to, can be a single mode `'n'`, table of modes `{'n', 'x'}`, or empty `''` for all modes.
+* `mode` - mode for which the keymap is added to, can be a single mode `'n'`, table of modes `{'n', 'x'}`, or empty `''` for all modes.
 * `lhs` - The key you need to press to activate the key map
 * `rhs` - Can be a lua function to call or a string to let vim "type", for example `nzz` executes `n` and then `zz` which are binded to `next` and `recenter`.
 * `opts` - Table of options for the keymap, read more at `:h map-arguments`
@@ -167,7 +185,7 @@ end
 > An autocommand is a command that is executed automatically in response to some
 event, such as a file being read or written or a buffer change.
 
-For example a good autocommand to highlight the text that has yanked.
+For example a good autocommand to highlight the text that was yanked.
 ```lua
 -- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -184,7 +202,7 @@ Read `:h nvim_create_autocmd` for full explanation.
 ---
 
 ## Shell Setup
-Dont forget to set nvim as your default terminal editor like so:
+Don't forget to set nvim as your default terminal editor like so:
 ```
 export EDITOR='nvim'
 ```
@@ -192,7 +210,7 @@ export EDITOR='nvim'
 ---
 
 ## Plugin Tools
-The preconfigured configuration handles the installation of LSP and Treesitter, you don't need to worry about handling it, but its recommended to understand both of this tools to understand how other plugins utilize it.
+The preconfigured configuration handles the installation of LSP and Treesitter, so you don't need to worry about handling it, but it's recommended to familiarize yourself with both of these tools to understand how other plugins utilize them.
 
 ### [LSP](https://microsoft.github.io/language-server-protocol/)
 > The idea behind the Language Server Protocol (LSP) is to standardize the protocol for how such servers and development tools communicate. This way, a single Language Server can be re-used in multiple development tools, which in turn can support multiple languages with minimal effort.

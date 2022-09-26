@@ -10,7 +10,7 @@ vim is built on actions that are mostly built on 2 types, an operator and a move
 * `O` - insert new line above
 * `u` - **U**ndo, check out [undotree](https://github.com/mbbill/undotree)
 * `r` - **R**edo
-* `zz` - Recenter the screen, there are more binds for screen actions but this it the most important one
+* `zz` - Recenter the screen, there are more binds for screen actions but this is the most important one
 
 ## Basic movements
 #### Arrows

@@ -10,8 +10,8 @@ Modifiers:
 * `a` - as **A**.
 
 For example:
-* `yiw` - `yank inner word`, will yank the current word you are at.
-* `caw` - `change a word`, will change the current word you are at.
+* `yiw` - `yank inner word`, will yank the current word.
+* `caw` - `change a word`, will change the current word.
 * `ci'` - `change inner '`, will change the inner text inside the next/current pair of `'` aka a string.
 * `ca'` - `delete a '`, will delete the text inside and the `'` of the next/current pair of `'`.
 

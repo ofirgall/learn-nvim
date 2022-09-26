@@ -31,7 +31,7 @@ There are many things you can do with registers, I suggest to briefly read `:hel
 ```lua
 map('x', '<leader>p', '"_dP') -- replace text without changing the copy register
 
-map('n', '<leader>d', '"_d') -- delete without yanking, e.g <leader>dd delets the current line without yanking it
+map('n', '<leader>d', '"_d') -- delete without yanking, e.g <leader>dd deletes the current line without yanking it
 map('n', '<leader>D', '"_D') -- delete without yanking
 
 map('n', '<leader>c', '"_c') -- change without yanking

@@ -41,7 +41,7 @@ AmitTamari
 amitTamari
 ```
 
-Also it provides lua API to change case, I created those user command to change cases fast.
+Also it provides lua API to change case, I created these user commands to change casing fast.
 ```lua
 local api = vim.api
 local textcase = require('textcase')

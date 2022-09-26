@@ -84,7 +84,7 @@ There are many many more plugins for neovim, you can check out [awesome-neovim](
 
 # Summary
 Thanks for reading! I hope this guide helped you learn Neovim. \
-This guide doesn't cover everything, make sure you keep learn about your text editor and keep improve your skill.
+This guide doesn't cover everything, make sure you keep learning about your text editor and keep improving your skill.
 
 If you found mistakes make sure to leave feedback at the [issues section](https://github.com/ofirgall/learn-nvim/issues) \
 If you liked the guide consider to leave a `star`.
