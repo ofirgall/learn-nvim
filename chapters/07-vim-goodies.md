@@ -5,7 +5,7 @@ This chapter will briefly cover few of many other vim features.
 The quickfix list is a list that has entries of `file`, `location(row, col)` and `text`. \
 There are many ways to populate the quickfix list, personally I populate it with `:help make` and `telescope.nvim` which we will cover later.
 
-It used mainly to store search results and compilation errors.
+It's mainly used to store search results and compilation errors.
 
 ### Commands
 * `:copen` - open the quickfix list.
@@ -16,16 +16,16 @@ It used mainly to store search results and compilation errors.
 I recommend to install [vim-unimpaired](https://github.com/tpope/vim-unimpaired) that adds `]q` and `[q` to jump to the next/prev entry.
 
 ## Substitute Command
-The `s` command is used for search & replace in current buffer you are editing. \
+The `s` command is used for search & replace in the current buffer you are editing. \
 The syntax resembles the `sed` cli tool.
 
-The command is very powerful, you can learn more about it in `:help :substitute` or just google search it.
+The command is very powerful, you can learn more about it in `:help :substitute` or just google it.
 
 Few examples:
-* `:s/ofir/gal/` - will the first occurrence the current line of `ofir` and will replace them with `gal`
-* `:s/ofir/gal/g` - will the occurrences in current line of `ofir` and will replace them with `gal`
-* `:%s/ofir/gal/` - will find the first occurrences in each line in in the buffer of `ofir` and will replace them with `gal`
-* `:%s/ofir/gal/g` - The same as above but for all occurrences
+* `:s/ofir/gal/` - find the first occurrence of `ofir` in the current line and replace it with `gal`
+* `:s/ofir/gal/g` - find all occurrences of `ofir` in the current line and replace them with `gal`
+* `:%s/ofir/gal/` - find the first occurrence of `ofir` in each line of the current buffer and replace them with `gal`
+* `:%s/ofir/gal/g` - same as above but for all occurrences
 
 #### Plugins
 With [text-case.nvim](https://github.com/johmsalas/text-case.nvim) you can replace text and preserve the casing of the text.
@@ -78,7 +78,7 @@ To replay the macro press `@{a-z}`.
 Record the macro once and use it multiple times on multiple lines.
 
 #### Usage Example
-I have a list of days of the week that I need to store inside a list, all the days need to lowercase. \
+I have a list of days of the week that I need to store inside a list, all the days need to be in lowercase. \
 I have a code with enum of days but I need to migrate it to python
 ```c
 enum Days {
@@ -104,10 +104,10 @@ days = [
 ]
 ```
 
-First I'll all the days from inside the enum to my python file, but I need to make it a list with only the day names. \
-I can record a macro that changing the case of the first letter, deletes the number and add `'` to make the day string.
+First I'll grab all days from inside the enum to my python file, but I need to make it a list with only the day names. \
+I can record a macro that changes the casing of the first letter, deletes the number and adds `'` to make the day string.
 
-We going to change the first day manually while recording the macro.
+We are going to change the first day manually while recording the macro.
 
 The macro: `qa^guui'<Esc>ea'<Esc>ldt,jq`. \
 Breakdown:
@@ -118,9 +118,9 @@ Breakdown:
 1. `e` - go the the end of word
 1. `a'<Esc>` - enter insert mode after the word, add `'` and escape from insert mode
 1. `l` - move right from the `'` we just added
-1. `dt,` - delete the content untill `,` (the `= <num>`)
+1. `dt,` - delete the content until `,` (the `= <num>`)
 1. j - go down a line so we can repeat the macro
-1. q finish record the macro.
+1. q finish recording the macro.
 
 After we recorded the macro on top of the first day we have 6 days left, we can press `6@a` and that will repeat the macro 6 times and will change all the days.
 
