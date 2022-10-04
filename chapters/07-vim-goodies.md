@@ -27,6 +27,13 @@ Few examples:
 * `:%s/ofir/gal/` - find the first occurrence of `ofir` in each line of the current buffer and replace them with `gal`
 * `:%s/ofir/gal/g` - same as above but for all occurrences
 
+Recommend keymap to rename the word under the cursor
+```lua
+-- My <F2> is binded to lsp rename
+map('n', '<leader><F2>', '*:%s///g<left><left>') -- Rename current word with <leader>F2
+map('x', '<F2>', '"hy:%s/<C-r>h//g<left><left>') -- Rename selected text in visual
+```
+
 #### Plugins
 With [text-case.nvim](https://github.com/johmsalas/text-case.nvim) you can replace text and preserve the casing of the text.
 
