@@ -5,7 +5,7 @@ In this chapter I'll mention some misc plugins that I recommend to adapt.
 nvim doesn't provide all the expected functionalities of an IDE, plugins are here to close that gap.
 
 ### Session Manager
-I use [vim-session](https://github.com/xolox/vim-session), I don't remember why I like this one especially but it works for me.
+I use [auto-session](https://github.com/rmagatti/auto-session).
 [Other Session Manager's](https://github.com/rockerBOO/awesome-neovim#session)
 
 ### [Comment](https://github.com/numToStr/Comment.nvim)

@@ -53,6 +53,7 @@ To understand how `module` and `package` works you have to know what is a `table
 
 ##### Lua table
 > Tables are the main (in fact, the only) data structuring mechanism in Lua, and a powerful one. We use tables to represent ordinary arrays, symbol tables, sets, records, queues, and other data structures, in a simple, uniform, and efficient way.
+As far as I know this is the reason Lua is so fast.
 
 <details><summary>Table usage examples (click to expand)</summary>
 
@@ -133,7 +134,7 @@ return M -- Return the exported functions table
 ```
 
 Usage example:
-```
+```lua
 require('module').public_func("ofir")
 
 local mod = require('module')
@@ -174,7 +175,7 @@ return M
 ```
 
 Usage example:
-```
+```lua
 require('package_example').boo()
 require('package_example').goo("amit tamari")
 require('package_example.anothermodule').goo("direct call to submodule")
@@ -223,10 +224,10 @@ This is my personal opinion for how to manage nvim config, feel free to scan thr
 └── 📂 lua
    ├── 🌑 autocmds.lua    # Generic autocmds
    ├── 🌑 keymaps.lua     # Keymaps
-   ├── 🌑 plugin_list.lua # Setup `packer` (plugin list)
-   ├── 🌑 settings.lua    # nvim settings, vim.opt
-   ├── 🌑 ui.lua          # UI plugins setup
-   ├── 🌑 utils.lua       # Utils functions, can be a package too.
+   ├── 🌑 plugin_list.lua # Setup `packer`   (plugin list)
+   ├── 🌑 settings.lua    # nvim settings    (vim.opt)
+   ├── 🌑 ui.lua          # UI plugins setup (loaded before other plugins)
+   ├── 🌑 utils.lua       # Utils functions  (can be a package too)
    └── 📂 plugins
       ├── 🌑 init.lua         # Loads all the submodules (plugins setup)
       ├── 🌑 autocomplete.lua # Autocomplete engine setup
@@ -238,11 +239,37 @@ This is my personal opinion for how to manage nvim config, feel free to scan thr
       └── 🌑 treesitter.lua   # Treesitter + extensions setup
 ```
 
-##### Details
-* `init.lua` - Just requires all the lua modules and the `plugins` package.
-* `ui.lua` - Loaded before `plugins`, some plugins must be loaded after the `colorscheme`. In addition if something in my config is broken I prefer to edit it with my a working ui first.
-* `utils.lua` - Where all the global function I used in the keymaps and such.
-* [plugins/init.lua](https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/init.lua) - when `require('plugins').setup()` load all the submodules at `plugins` package.
+I suggest to re-create this folder structure and fill the files while getting through the guide.
+
+### Config Setup
+Lets start with `settings.lua`, transfer your vim options (`vim.opt.*`) to `settings.lua`. \
+Now setup `init.lua` to require `settings.lua` as so:
+```lua
+require('settings')
+```
+
+Restart your nvim and check that your vim options are set.
+
+After that I recommend to fill `keymaps.lua` and `autocmds.lua`.
+
+#### Installing the first plugin
+Lets start with fill `plugin_list.lua`, in this file you manage your installed plugins. \
+There are several package managers, the most famous one is [packer](https://github.com/wbthomason/packer.nvim). \
+TL;DR copy paste [this](https://github.com/wbthomason/packer.nvim#bootstrapping) into `plugin_list.lua` and add `use '{github user}/{repo}'` where `-- My plugins here` comment.
+
+If you reset your nvim `:Packer` commands won't exist, you must require it from `init.lua` as so:
+```lua
+require('plugin_list')
+```
+Make sure to execute `:PackerInstall` to install the added plugin.
+
+After you installed your first plugin successfully its the time to setup it.
+
+Create `plugins/init.lua` file and copy the code that requires all the submodules from [here](https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/init.lua) and add `require('plugins')` in `init.lua`.
+
+Now you can add your plugin setup to the corresponding file and restart nvim.
+
+---
 
 ### Lua usage in nvim & nvim lua api
 nvim has an api for almost everything in lua, each lua function generates a help doc, you can access it by `:help nvim_*`.
