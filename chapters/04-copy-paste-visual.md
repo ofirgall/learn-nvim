@@ -9,6 +9,7 @@ A text is copied to the registers when you `change` and `delete` text too.
 To paste the yanked result you can use:
 * `p` - paste after the cursor
 * `P` - paste before the cursor
+* `<M-p> (Alt+p)` - paste in insert mode
 
 ## Visual Modes
 * `v` - Normal Visual mode
