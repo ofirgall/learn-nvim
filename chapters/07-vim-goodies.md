@@ -152,6 +152,13 @@ You can do cool stuff with when combining `:help gn`
 ## External Command
 You can run external terminal commands from vim, for example: `!ls`
 
+## Folds
+vim supports folds, personally I never found this feature necessary, I set it to never fold automatically, but you can read more about folds [here](https://vim.fandom.com/wiki/Folding).
+
+```lua
+opt.foldlevelstart = 99 -- no auto folding
+```
+
 ---
 
 [Previous Chapter](./06-splits-and-actual-tabs.md) | [Next Chapter](./08-advanced-config.md)
