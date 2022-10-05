@@ -38,18 +38,15 @@ To see a big diff easily I use [diffview.nvim](https://github.com/sindrets/diffv
 I use it to see the history of a file too (`<leader>gh` in my `keymap.lua`).
 ![nvim Screenshot](../media/diffview_hist.png)
 
+I use it to solve conflicts too.
+![nvim Screenshot](../media/conflict.png)
+
 ---
 
 ## Hunk History
 How many times did you tried `git blame` to understand why this code exist only to see the last commit just `indent` the code or made a minor change. \
 [git-messenger.vim](https://github.com/rhysd/git-messenger.vim) is comes to solve this by providing `hunk history`.
 ![nvim Screenshot](../media/hunk_history.png)
-
----
-
-## Conflict Solver
-I use [diffconflicts](https://github.com/whiteinge/diffconflicts) to solve my git conflicts through nvim.
-![nvim Screenshot](../media/conflict.png)
 
 ---
 
