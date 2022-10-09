@@ -88,8 +88,10 @@ _**Note**_: I recommend to start backing up your config with some kind of dotfil
 * Make sure you pick a [colorscheme](https://github.com/rockerBOO/awesome-neovim#colorscheme) you like or create your own like I [did](https://github.com/ofirgall/ofirkai.nvim).
 * [auto-session](https://github.com/rmagatti/auto-session) - Auto save your session, so you can jump back to your session after exiting/restarting nvim.
 * [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) - great plugin for tmux users.
-* [Comment.nvim](https://github.com/numToStr/Comment.nvim) - Adds comment operation (included in LunarVim's [core plugins](https://www.lunarvim.org/plugins/01-core-plugins-list.html)).
+* [Comment.nvim](https://github.com/numToStr/Comment.nvim) - Adds comment operation (included in LunarVim's [core plugins](https://www.lunarvim.org/docs/plugins/core-plugins-list)).
 * [lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim) - Show function signature when you type.
+* [guess-indent.nvim](https://github.com/NMAC427/guess-indent.nvim) - Automatic indentation style detection.
+* [nvim-autopairs](https://github.com/windwp/nvim-autopairs) - Auto pair, when typing a pair, eg: `(`, add the closure and set the cursor in between. (Included in LunarVim)
 
 ##### [auto-save.nvim](https://github.com/Pocco81/auto-save.nvim) 
 I hated using autosave in other text editors, but because vim has modes it knows exactly when a text was changed. \
@@ -152,8 +154,11 @@ opt.ignorecase = true -- Ignore case when searching
 opt.splitright = true -- Split to the right on vertical
 opt.splitbelow = true -- Split below when horizontal
 opt.swapfile = false -- Don't use swap files (I use auto-save.nvim instead)
+opt.wrap = true -- Wrap lines
 opt.updatetime = 100 -- mainly for trld.nvim which utilize CursorHold autocmd
 opt.formatoptions:append('cro') -- continue comments when going down a line, hit C-u to remove the added comment prefix
+opt.sessionoptions:remove('options') -- don't save keymaps and local options
+opt.foldlevelstart = 99 -- no auto folding
 ```
 
 ---

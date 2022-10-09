@@ -11,11 +11,18 @@ Modifiers:
 
 For example:
 * `yiw` - `yank inner word`, will yank the current word.
-* `caw` - `change a word`, will change the current word.
+* `ciw` - `change inner word`, will change the current word.
+* `daw` - `delete a word`, will delete the current word and the space before it, removes a word from a sentence.
 * `ci'` - `change inner '`, will change the inner text inside the next/current pair of `'` aka a string.
-* `ca'` - `delete a '`, will delete the text inside and the `'` of the next/current pair of `'`.
+* `ca(` - `delete a (`, will delete the text inside and the `(` of the next/current pair of `(`.
 
-You can do these actions for almost every character you can think about, `(`/`{`/`'`/`"`. \
+You can do these actions for every pair, `(`/`{`/`'`/`"`. \
+You can do these actions for html tags(`t`), paragraphs(`p`), and more.
+
+You can repeat the action when entering a number before, e.g: `3daw` deletes the current word and the next 2.
+
+Feel free to enter visual mode and test how it works.
+
 You can read more about this at `:help text-objects`.
 
 ---
