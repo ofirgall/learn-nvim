@@ -1,27 +1,27 @@
 # Advanced Config
-You learned the basic of vim (and little bit about of nvim). From this chapter I'll mostly talk about what takes nvim from a good editor to a great editor, its plugins and configuration.
+You learned the basics of vim (and a little bit about nvim). From this chapter on I'll mostly talk about what takes nvim from being a good editor to a great editor, its plugin-rich ecosystem and configurability.
 
 ## Personal Config vs Preconfigured Configuration
 #### Preconfigured config
-Preconfigured configurations are great, they provide a fast way to get a good config which maintained by a community. But it adds a "layer" of abstraction in the config, when installing a new plugins that doesn't interacts everything works good but if the plugin has to interact with an builtin plugin it becomes tricky.
+Preconfigured configurations are great, they provide a fast way to get a good config which is maintained by a community. But they add a "layer" of abstraction in the config, when installing new plugins that don't interact with builtin plugins everything works, but if the plugin has to interact with a builtin plugin it can become tricky.
 You have to read how your preconfigured configurations expose those options which sometimes confusing and inconvenient.
 
-Its like trying to fix stuff in a rented house, you don't know exactly how everything works but you learn as you try, sometimes you just don't want to mess with that.
+It's like trying to fix stuff in a rented house, you don't know exactly how everything works but you learn as you try, sometimes you just don't want to mess with that.
 
 #### Personal config
-When you build your own config you build your own house, you know exactly how the electricity works, you know how the plumbing works, you know how everything is connected.
+When you build your own config, you build your own house, so you know exactly how the electricity works, how the plumbing works, and how everything is connected.
 
-Your config = your codebase, configs of nvim are written in Lua, when you write your own config you write a mini project. You know each file, you know the "flow" of the config, you manage your own codebase from scratch rather then "diving" in to an existing codebase of your preconfigured configuration.
+Your config = your codebase, configs of nvim are written in Lua, when you write your own config you write a mini project. You know each file, you know the "flow" of the config, you manage your own codebase from scratch rather than "diving" into the existing codebase of your preconfigured configuration.
 
 #### Conclusion
-I think maintaining a personal config is the better option, It takes time and effort sometimes at first but later it worth it. Not everyone should have their own config but I suggest you try.
+I think that maintaining a personal config is the better option, it takes time and effort at first but it's worthwhile. Not everyone should write their own config but I suggest you try it.
 
-_**Note**_: If you stick with your preconfigured configuration some parts of the next chapters are irrelevant to you, I will make sure to let you know you can skip them.
+_**Note**_: If you stick with a preconfigured configuration, some parts of the next chapters are irrelevant, I'll make sure to let you know you can skip them.
 
 ---
 
-## Why I need to config my editor within a program language?
-At first I didn't understand why I need to learn and use Lua to configure my editor but soon enough I understood its the right way to configure your editor. \
+## Why do I need to configure my editor using a programming language?
+At first I didn't understand why do I need to learn and use Lua to configure my editor but soon enough I understood it's the right way to configure your editor. \
 It gives the ability to utilize your coding knowledge to improve your own experience in the editor.
 
 A great basic example for that is my `go to definition` keybind.
@@ -37,19 +37,19 @@ goto_def = function()
 	end
 end
 ```
-Which provides me a goto in `man page`, `help page` or just a regular code, in the same bind! When I'm browsing man I feel like I browse code.
+Which provides me a goto in `man page`, `help page` or just a regular code block, all in the same bind! When I'm browsing man I feel like I browse code.
 
-On other editors it would be a `value` in a `.json` which a builtin/plugin function handles, to achieve this behavior in other editor I would have to write a plugin.
+In other editors it would be a `value` in a `.json` which a builtin/plugin function handles, so in order to achieve this kind of behavior I would have to write a plugin.
 
 ---
 
 ## Basic Lua
-Either you use a preconfigured or a personal config, you need to learn a bit of Lua, fortunately its pretty simple language, I suggest you to learn it the same you as you learn a new simple programming language (e.g python).
+Regardless of whether you use a preconfigured or a personal config, you need to learn a bit of Lua. Fortunately it's quite a simple language, I suggest you to learn it the same as you would with Python, for instance.
 
-You can find [Lua resources and the basic of Lua in nvim here](https://github.com/nanotee/nvim-lua-guide). It's a pretty long guide, I used it as a reference document to start with, later I switched to the `:help nvim_*` method, which I cover later.
+You can find [Lua resources and the basic of Lua in nvim here](https://github.com/nanotee/nvim-lua-guide). It's a long guide, I used it as a reference document to start with, afterwards I switched to the `:help nvim_*` method, which I'll cover later.
 
 #### Lua modules, packages and tables
-To understand how `module` and `package` works you have to know what is a `table` in Lua.
+To understand how `module` and `package` work, you have to understand what's a `table` in Lua.
 
 ##### Lua table
 > Tables are the main (in fact, the only) data structuring mechanism in Lua, and a powerful one. We use tables to represent ordinary arrays, symbol tables, sets, records, queues, and other data structures, in a simple, uniform, and efficient way.
@@ -145,7 +145,7 @@ mod.public_func("ofir")
 </details>
 
 #### Lua package
-Lua package is folder which has `init.lua` which is a Lua module.
+Lua package is a folder which has an `init.lua` which is a Lua module.
 
 <details><summary>Package example (click to expand)</summary>
 
@@ -187,23 +187,23 @@ require('package_example/anothermodule').goo("another way to direct call to subm
 ---
 
 ## How to create a personal config
-### Launch nvim in a virtualenv
-The first thing you need to do is to start your config in a git repo, you can manage your config in a separate repo and using it as a git submodule in your dotfiles or creating as your part of your dotfiles repo.
+### Launch nvim in separate environments
+The first thing you'll want to do is to start your config in a git repo, you can manage your config in a separate repo and use it as a git submodule in your dotfiles or make it a part of your dotfiles repo.
 
-nvim loads by default the config from `~/.config/nvim` but we can set it to load the config from other dir.
+nvim loads its config from `~/.config/nvim` by default, but we can set it to load from a different dir:
 ```bash
 XDG_CONFIG_HOME=~/wip_config/ XDG_DATA_HOME=~/.local/share/wip_nvim XDG_STATE_HOME=~/.local/state/wip_nvim nvim
 ```
-This line launch nvim, loads the config from `~/wip_config/nvim`, saves the plugins in `~/.local/share/wip_nvim` and the state at `~/.local/state/wip_nvim`.
+This line launches nvim, loads the config from `~/wip_config/nvim`, saves the plugins in `~/.local/share/wip_nvim` and the state at `~/.local/state/wip_nvim`.
 
-It allows you to set a virtualenv for nvim. I recommend to set an alias to launch your `personal nvim` (for example `pnv`) until you stabilize your personal config.
+This creates a [virtualenv](https://virtualenv.pypa.io/en/latest/)-esque setup for nvim. I recommend to set an alias to launch your `personal nvim` (for example `pnv`) until your personal config is stable enough.
 ### Folder structure
-Your config is your codebase, you have to maintain order, one of the fundamentals of clean config is the folder structure.
+Your config is your codebase, so you have to maintain the order. One of the fundamentals for a clean config is the folder structure.
 
-Find a structure that allows you to maintain a clean config which doesn't adds an overhead when editing/adding plugins.
+Find a structure which allows you to maintain a clean config that doesn't add overhead when editing/adding plugins.
 
 #### Example of basic config folder structure
-To understand how the nvim loads the config I made a simple folder structure with notes:
+To understand how nvim loads the config I made a simple folder structure with notes:
 ```bash
 📂 ~/wip_config/nvim
 ├── 🌑 init.lua # <---- Entry point
@@ -239,42 +239,42 @@ This is my personal opinion for how to manage nvim config, feel free to scan thr
       └── 🌑 treesitter.lua   # Treesitter + extensions setup
 ```
 
-I suggest to re-create this folder structure and fill the files while getting through the guide.
+I suggest to recreate this folder structure and write the files while reading the guide.
 
 ### Config Setup
-Lets start with `settings.lua`, transfer your vim options (`vim.opt.*`) to `settings.lua`. \
-Now setup `init.lua` to require `settings.lua` as so:
+Let's start with `settings.lua`, transfer your vim options (`vim.opt.*`) to `settings.lua`. \
+Now setup `init.lua` to require `settings.lua` like so:
 ```lua
 require('settings')
 ```
 
 Restart your nvim and check that your vim options are set.
 
-After that I recommend to fill `keymaps.lua` and `autocmds.lua`.
+After that I recommend to write `keymaps.lua` and `autocmds.lua`.
 
 #### Installing the first plugin
-Lets start with fill `plugin_list.lua`, in this file you manage your installed plugins. \
-There are several package managers, the most famous one is [packer](https://github.com/wbthomason/packer.nvim). \
-TL;DR copy paste [this](https://github.com/wbthomason/packer.nvim#bootstrapping) into `plugin_list.lua` and add `use '{github user}/{repo}'` where `-- My plugins here` comment.
+Let's start with writing `plugin_list.lua`, in this file you manage your installed plugins. \
+There are several package managers, one that is well-known is [packer](https://github.com/wbthomason/packer.nvim). \
+TL;DR copy paste [this](https://github.com/wbthomason/packer.nvim#bootstrapping) into `plugin_list.lua` and add `use '{github user}/{repo}'` beneath the `-- My plugins here` comment.
 
-If you reset your nvim `:Packer` commands won't exist, you must require it from `init.lua` as so:
+If you reset your nvim `:Packer` commands won't exist, you must require it from `init.lua` like so:
 ```lua
 require('plugin_list')
 ```
 Make sure to execute `:PackerInstall` to install the added plugin.
 
-After you installed your first plugin successfully its the time to setup it.
+After you installed your first plugin successfully it's time to set it up.
 
-Create `plugins/init.lua` file and copy the code that requires all the submodules from [here](https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/init.lua) and add `require('plugins')` in `init.lua`.
+Create `plugins/init.lua` file and copy the code that requires all submodules from [here](https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/init.lua) and add `require('plugins')` in `init.lua`.
 
-Now you can add your plugin setup to the corresponding file and restart nvim.
+Now you can add each plugin setup to its corresponding file and restart nvim.
 
 ---
 
 ### Lua usage in nvim & nvim lua api
-nvim has an api for almost everything in lua, each lua function generates a help doc, you can access it by `:help nvim_*`.
+nvim has an api for almost everything in lua, each lua function generates a help doc, which you can access by `:help nvim_*`.
 
-For example the docs for `vim.api.nvim_buf_get_name` can be accessed by `:h nvim_buf_get_name`
+For example, the docs for `vim.api.nvim_buf_get_name` can be accessed using `:h nvim_buf_get_name`
 
 You can run lua from the command line, `:lua print(vim.api.nvim_buf_get_name(0))`
 
