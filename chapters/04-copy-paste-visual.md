@@ -47,8 +47,8 @@ I use these binds to use the OS clipboard without too many key presses:
 map('', '<leader>y', '"+y') -- Start copy to os clipboard E.g: <leader>yy will copy current line to os
 map('', '<leader>Y', '"+y$') -- Copy rest of the line to os clipboard like "Y" but for os clipboard
 
-map('n', '<leader>p', '"+p') -- paste from os clipboard
-map('n', '<leader>P', '"+P') -- paste from os clipboard
+map('n', '<leader>p', '"+p') -- paste after cursor from os clipboard
+map('n', '<leader>P', '"+P') -- paste before cursor from os clipboard
 ```
 
 ## Plugins
