@@ -10,7 +10,7 @@ Because of the lua integration nvim amazing community created an amazing [plugin
 
 ## I already know vim I just want to learn nvim
 Great you can skip half of the guide :) \
-Read [Chapter 2](chapters/02-basic-config.md) and then skip to [Chapter 8](chapters/08-code-navigation.md)
+Read [Chapter 8 - Personal Config vs Preconfigured Configuration](./chapters/08-advanced-config.md) go back to [Chapter 2](./chapters/02-basic-config.md) and then skip to [Chapter 8](./chapters/08-advanced-config.md)
 
 # Why I wrote this guide?
 I started to use nvim at start of 2022, after using sublime for about 6 years, I felt sublime has been left behind pluginwise and its not really competing with the features vscode had to offer, I tried to use vscode and after a week I understood it isn't for me, it forced me to use my mouse so much time. I decided to give nvim a try, it was the best decision I took.

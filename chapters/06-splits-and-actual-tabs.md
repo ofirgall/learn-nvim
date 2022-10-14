@@ -18,18 +18,15 @@ I recommend to map a quick way to move, create and close splits. (If you are usi
 
 My mappings:
 ```lua
-local map = vim.keymap.set
-local default_opts = { silent = true }
+map({'n', 't'}, '<C-h>', '<C-w>h')
+map({'n', 't'}, '<C-j>', '<C-w>j')
+map({'n', 't'}, '<C-k>', '<C-w>k')
+map({'n', 't'}, '<C-l>', '<C-w>l')
 
-map({'n', 't'}, '<C-h>', '<C-w>h', default_opts)
-map({'n', 't'}, '<C-j>', '<C-w>j', default_opts)
-map({'n', 't'}, '<C-k>', '<C-w>k', default_opts)
-map({'n', 't'}, '<C-l>', '<C-w>l', default_opts)
+map('n', '<M-e>', '<cmd>vsplit<cr>')
+map('n', '<M-o>', '<cmd>split<cr>')
 
-map('n', '<M-e>', '<cmd>vsplit<cr>', default_opts)
-map('n', '<M-o>', '<cmd>split<cr>', default_opts)
-
-map('n', '<M-q>', '<cmd>q<cr>', default_opts)
+map('n', '<M-q>', '<cmd>q<cr>')
 ```
 
 The default direction of splits in vim are out of today's standards, to fix it add this to your config:
@@ -52,25 +49,22 @@ Make sure to map keys to quickly switch, cycle and close tabs.
 
 My config:
 ```lua
-local map = vim.keymap.set
-local default_opts = { silent = true }
-
 -- Tabline binds
-map('n', 'Q', function() require('bufdelete').bufdelete(0, true) end, default_opts) -- shift+Quit to close current tab
-map('n', 'g1', function() require('bufferline').go_to_buffer(1, true) end, default_opts)
-map('n', 'g2', function() require('bufferline').go_to_buffer(2, true) end, default_opts)
-map('n', 'g3', function() require('bufferline').go_to_buffer(3, true) end, default_opts)
-map('n', 'g4', function() require('bufferline').go_to_buffer(4, true) end, default_opts)
-map('n', 'g5', function() require('bufferline').go_to_buffer(5, true) end, default_opts)
-map('n', 'g6', function() require('bufferline').go_to_buffer(6, true) end, default_opts)
-map('n', 'g7', function() require('bufferline').go_to_buffer(7, true) end, default_opts)
-map('n', 'g8', function() require('bufferline').go_to_buffer(8, true) end, default_opts)
-map('n', 'g9', function() require('bufferline').go_to_buffer(9, true) end, default_opts)
-map('n', 'g0', function() require('bufferline').go_to_buffer(10, true) end, default_opts)
-map('n', '<M-j>', '<cmd>BufferLineCyclePrev<CR>', default_opts) -- Alt+j to move to left
-map('n', '<M-k>', '<cmd>BufferLineCycleNext<CR>', default_opts) -- Alt+k to move to right
-map('n', '<M-J>', '<cmd>BufferLineMovePrev<CR>', default_opts) -- Alt+Shift+j grab to with you to left
-map('n', '<M-K>', '<cmd>BufferLineMoveNext<CR>', default_opts) -- Alt+Shift+k grab to with you to right
+map('n', 'Q', function() require('bufdelete').bufdelete(0, true) end) -- shift+Quit to close current tab
+map('n', 'g1', function() require('bufferline').go_to_buffer(1, true) end)
+map('n', 'g2', function() require('bufferline').go_to_buffer(2, true) end)
+map('n', 'g3', function() require('bufferline').go_to_buffer(3, true) end)
+map('n', 'g4', function() require('bufferline').go_to_buffer(4, true) end)
+map('n', 'g5', function() require('bufferline').go_to_buffer(5, true) end)
+map('n', 'g6', function() require('bufferline').go_to_buffer(6, true) end)
+map('n', 'g7', function() require('bufferline').go_to_buffer(7, true) end)
+map('n', 'g8', function() require('bufferline').go_to_buffer(8, true) end)
+map('n', 'g9', function() require('bufferline').go_to_buffer(9, true) end)
+map('n', 'g0', function() require('bufferline').go_to_buffer(10, true) end)
+map('n', '<M-j>', '<cmd>BufferLineCyclePrev<CR>') -- Alt+j to move to left
+map('n', '<M-k>', '<cmd>BufferLineCycleNext<CR>') -- Alt+k to move to right
+map('n', '<M-J>', '<cmd>BufferLineMovePrev<CR>') -- Alt+Shift+j grab to with you to left
+map('n', '<M-K>', '<cmd>BufferLineMoveNext<CR>') -- Alt+Shift+k grab to with you to right
 ```
 
 ---

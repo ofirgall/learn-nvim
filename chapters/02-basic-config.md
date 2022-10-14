@@ -70,9 +70,11 @@ lvim.plugins = {
 `lvim.plugins` is passed to [packer](https://github.com/wbthomason/packer.nvim), `folke/tokyonight.nvim` is a short for [github.com/folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim).
 
 Useful Packer Commands:
-* `:PackerInstall`
-* `:PackerStatus`
-* `:PackerUpdate`
+* `:PackerInstall` - Install new added plugins.
+* `:PackerStatus` - List all installed pluigns.
+* `:PackerSnapshot` - Take snapshot of your current plugins versions (useful before updating).
+* `:PackerUpdate` - Update all plugins.
+* `:PackerClean` - Removed unused plugins.
 
 _**Note**_: LunarVim runs packer commands for you.
 
@@ -92,6 +94,15 @@ _**Note**_: I recommend to start backing up your config with some kind of dotfil
 * [lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim) - Show function signature when you type.
 * [guess-indent.nvim](https://github.com/NMAC427/guess-indent.nvim) - Automatic indentation style detection.
 * [nvim-autopairs](https://github.com/windwp/nvim-autopairs) - Auto pair, when typing a pair, eg: `(`, add the closure and set the cursor in between. (Included in LunarVim)
+
+##### Programming languages support
+Some languages has plugins to support them specific, usually the plugin setup the LSP server (read below), make sure you don't setup the LSP more than once. I recommend to skip the LSP setup of the plugin and set it by yourself/mason.
+
+* [rust-tools](https://github.com/simrat39/rust-tools.nvim)
+* [flutter-tools](https://github.com/akinsho/flutter-tools.nvim)
+* [go.nvim](https://github.com/ray-x/go.nvim)
+* [neodev.nvim](https://github.com/folke/neodev.nvim) - Lua develop for nvim api (Already installed by LunarVim)
+* For other languages check out [awesome-neovim](https://github.com/rockerBOO/awesome-neovim#programming-languages-support)
 
 ##### [auto-save.nvim](https://github.com/Pocco81/auto-save.nvim) 
 I hated using autosave in other text editors, but because vim has modes it knows exactly when a text was changed. \
@@ -214,6 +225,11 @@ export EDITOR='nvim'
 
 ---
 
+## Other good tools with vim binds
+* [Vimium](https://github.com/philc/vimium) - Vim binds for your browser.
+
+---
+
 ## Plugin Tools
 The preconfigured configuration handles the installation of LSP and Treesitter, so you don't need to worry about handling it, but it's recommended to familiarize yourself with both of these tools to understand how other plugins utilize them.
 
@@ -236,6 +252,8 @@ nvim implements the fastest lsp client.
 Basically it provides a fast unified syntax query for different languages, this allows to build plugins that utilize the unified syntax query.
 
 E.g: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) which allows to do an action on a code context such as `copy` the `function/class/argument/loop` and more, we will elaborate on that later.
+
+_**Note:**_ make sure you to install treesitter parser for your language by adding it to the `ensure_installed` array or run `:TSUpdate {lang}`.
 
 ---
 

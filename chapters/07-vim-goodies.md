@@ -153,7 +153,7 @@ You can do cool stuff with when combining `:help gn`
 You can run external terminal commands from vim, for example: `!ls`
 
 ## Folds
-vim supports folds, personally I never found this feature necessary, I set it to never fold automatically, but you can read more about folds [here](https://vim.fandom.com/wiki/Folding).
+vim supports folds, personally I never found this feature necessary, I set it to never fold automatically, but you can read more about folds [here](https://vim.fandom.com/wiki/Folding) and make sure to check out [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo).
 
 ```lua
 opt.foldlevelstart = 99 -- no auto folding
