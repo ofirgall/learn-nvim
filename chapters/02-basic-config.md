@@ -72,9 +72,9 @@ lvim.plugins = {
 Useful Packer Commands:
 * `:PackerInstall` - Install new added plugins.
 * `:PackerStatus` - List all installed pluigns.
-* `:PackerSnapshot` - Take snapshot of your current plugins versions (useful before updating).
+* `:PackerSnapshot` - Take a snapshot of your current plugins versions (useful before updating).
 * `:PackerUpdate` - Update all plugins.
-* `:PackerClean` - Removed unused plugins.
+* `:PackerClean` - Remove unused plugins.
 
 _**Note**_: LunarVim runs packer commands for you.
 
@@ -96,7 +96,7 @@ _**Note**_: I recommend to start backing up your config with some kind of dotfil
 * [nvim-autopairs](https://github.com/windwp/nvim-autopairs) - Auto pair, when typing a pair, eg: `(`, add the closure and set the cursor in between. (Included in LunarVim)
 
 ##### Programming languages support
-Some languages has plugins to support them specific, usually the plugin setup the LSP server (read below), make sure you don't setup the LSP more than once. I recommend to skip the LSP setup of the plugin and set it by yourself/mason.
+Some languages have plugins to support them specifically, usually the plugin takes care of the LSP setup (read below), so make sure you don't setup the LSP more than once. I recommend to skip the LSP setup of the plugin and set it up yourself or with mason.
 
 * [rust-tools](https://github.com/simrat39/rust-tools.nvim)
 * [flutter-tools](https://github.com/akinsho/flutter-tools.nvim)
@@ -253,7 +253,7 @@ Basically it provides a fast unified syntax query for different languages, this 
 
 E.g: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) which allows to do an action on a code context such as `copy` the `function/class/argument/loop` and more, we will elaborate on that later.
 
-_**Note:**_ make sure you to install treesitter parser for your language by adding it to the `ensure_installed` array or run `:TSUpdate {lang}`.
+_**Note:**_ make sure you to install treesitter parser for your language by adding it to the `ensure_installed` table or run `:TSUpdate {lang}`.
 
 ---
 
