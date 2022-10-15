@@ -135,9 +135,9 @@ return M -- Return the exported functions table
 
 Usage example:
 ```lua
-require('module').public_func("ofir")
+require('module_example').public_func("ofir")
 
-local mod = require('module')
+local mod = require('module_example')
 mod.public_func("ofir")
 ```
 
