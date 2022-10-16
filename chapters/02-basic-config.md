@@ -43,7 +43,7 @@ There are several preconfigured configurations, these are the popular ones:
 * [NvChad](https://github.com/NvChad/NvChad)
 
 #### LunarVim
-Personally I skipped using a preconfigured configuration, but I highly suggest to use it as a starting point. [LunarVim](https://github.com/LunarVim/LunarVim) is the easiest to start with, [Installation link](https://www.lunarvim.org/01-installing.html).
+Personally I skipped using a preconfigured configuration, but I highly suggest to use it as a starting point. [LunarVim](https://github.com/LunarVim/LunarVim) is the easiest to start with, [Installation link](https://www.lunarvim.org/docs/installation).
 
 Make sure you read and edit the default configuration to your taste.
 
