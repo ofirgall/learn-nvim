@@ -16,7 +16,7 @@ Extra cool sources:
 * [cmp-git](https://github.com/petertriho/cmp-git) which provides a source for all the commit hashes and integrates to github and gitlab
 * [cmp-jira](https://gitlab.com/msvechla/cmp-jira) provides source for tickets
 * [copilot-cmp](https://github.com/zbirenbaum/copilot-cmp) integrates github copilot to nvim through nvim-cmp.
-* [More can be found here](https://github.com/rockerBOO/awesome-neovim#completion)
+* [More can be found here](https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources)
 
 ### Formatting & Window
 You can control how the menu is presented
