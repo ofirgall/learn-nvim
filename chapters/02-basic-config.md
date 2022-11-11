@@ -85,6 +85,7 @@ Usually the `setup` function receives a `table`, most plugins use the override s
 The defaults are usually in the plugin `README` and in the `:help <plugin>`
 
 _**Note**_: I recommend to start backing up your config with some kind of dotfiles, I use [dotbot](https://github.com/anishathalye/dotbot).
+_**Note**_: I recommend adding the GitHub shorthand above the setup function as a comment, you can use [open.nvim](https://github.com/ofirgall/open.nvim) to access the plugin repo quickly.
 
 #### Recommended Plugins to Start With
 * Make sure you pick a [colorscheme](https://github.com/rockerBOO/awesome-neovim#colorscheme) you like or create your own like I [did](https://github.com/ofirgall/ofirkai.nvim).
@@ -94,6 +95,7 @@ _**Note**_: I recommend to start backing up your config with some kind of dotfil
 * [lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim) - Show function signature when you type.
 * [guess-indent.nvim](https://github.com/NMAC427/guess-indent.nvim) - Automatic indentation style detection.
 * [nvim-autopairs](https://github.com/windwp/nvim-autopairs) - Auto pair, when typing a pair, eg: `(`, add the closure and set the cursor in between. (Included in LunarVim)
+* [open.nvim](https://github.com/ofirgall/open.nvim) - Open GitHub shorthand and more straight from vim.
 
 ##### Programming languages support
 Some languages have plugins to support them specifically, usually the plugin takes care of the LSP setup (read below), so make sure you don't setup the LSP more than once. I recommend to skip the LSP setup of the plugin and set it up yourself or with mason.
