@@ -20,7 +20,7 @@ It's highly recommended to install a [nerdfont](https://www.nerdfonts.com/) to s
 I use [CascadiaCode](https://www.programmingfonts.org/#cascadia-code), [JetBrainsMono](https://www.programmingfonts.org/#jetbrainsmono) is nice too.
 
 ### Keybinds limitations
-Because of `ascii` terminals don't support `Ctrl+Shift+X` keybindings, [here's a great comment that explains why](https://github.com/tmux/tmux/issues/674#issuecomment-263157843). \
+Because of `ascii` terminals don't support `Ctrl+Shift+<X>` keybindings, [here's a great comment that explains why](https://github.com/tmux/tmux/issues/674#issuecomment-263157843). \
 Some terminals allow to use a workaround, but it's not a must (I don't use Ctrl+Shift+X binds).
 
 #### Options as Alt in macOS
@@ -45,7 +45,9 @@ There are several preconfigured configurations, these are the popular ones:
 #### LunarVim
 Personally I skipped using a preconfigured configuration, but I highly suggest to use it as a starting point. [LunarVim](https://github.com/LunarVim/LunarVim) is the easiest to start with, [Installation link](https://www.lunarvim.org/docs/installation).
 
-Make sure you read and edit the default configuration to your taste.
+Make sure you read and edit the default configuration to your taste. \
+To open the configuration press `Space`, `SHIFT+L`, `c`. \
+To see the keybinds press `Space`, `SHIFT+L`, `k`.
 
 ---
 
@@ -55,9 +57,9 @@ I'll recommend several plugins along the way, make sure you are not lazy to inst
 #### How to download a plugin
 nvim plugins are git repositories, a package manager downloads and updates them, [packer](https://github.com/wbthomason/packer.nvim) is the standard one and it's already installed in LunarVim.
 
-In LunarVim you will find:
+In LunarVim's configuration you will find:
 ```lua
-Additional Plugins
+-- Additional Plugins
 lvim.plugins = {
     {"folke/tokyonight.nvim"},
     {
@@ -67,7 +69,10 @@ lvim.plugins = {
 }
 ```
 
-`lvim.plugins` is passed to [packer](https://github.com/wbthomason/packer.nvim), `folke/tokyonight.nvim` is a short for [github.com/folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim).
+`lvim.plugins` is passed to [packer](https://github.com/wbthomason/packer.nvim), `folke/tokyonight.nvim` is a short for [github.com/folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim). \
+Which means when a plugin tell you to install it by `use { 'plugin_author/plugin_name', more_options }`, just copy `{ 'plugin_author/plugin_name', more_options }`.
+
+_**Note**_: LunarVim runs `:PackerInstall` for you when the config changes.
 
 Useful Packer Commands:
 * `:PackerInstall` - Install new added plugins.
@@ -75,8 +80,6 @@ Useful Packer Commands:
 * `:PackerSnapshot` - Take a snapshot of your current plugins versions (useful before updating).
 * `:PackerUpdate` - Update all plugins.
 * `:PackerClean` - Remove unused plugins.
-
-_**Note**_: LunarVim runs packer commands for you.
 
 #### How to configure a plugin
 Usually a plugin will provide a `setup` function which configures the plugin's behavior, most plugins won't activate if the setup function isn't called.
@@ -86,6 +89,19 @@ The defaults are usually in the plugin `README` and in the `:help <plugin>`
 
 _**Note**_: I recommend to start backing up your config with some kind of dotfiles, I use [dotbot](https://github.com/anishathalye/dotbot).
 _**Note**_: I recommend adding the GitHub shorthand above the setup function as a comment, you can use [open.nvim](https://github.com/ofirgall/open.nvim) to access the plugin repo quickly.
+
+#### How to install vim plugin
+nvim supports vim plugins, the install of them is similar to nvim but the configuration is done by vim variables rather than `setup` function.
+The documentation of the plugin usually would be written in VimScript format as so:
+```vim
+let g:cool_plugin_variable = 1
+```
+The equivalent of that line in Lua is:
+```lua
+vim.g.cool_plugin_variable = 1
+```
+
+You can read more about vim variables at `:help internal-variables`.
 
 #### Recommended Plugins to Start With
 * Make sure you pick a [colorscheme](https://github.com/rockerBOO/awesome-neovim#colorscheme) you like or create your own like I [did](https://github.com/ofirgall/ofirkai.nvim).
@@ -187,15 +203,19 @@ The important ones:
 
 To set a keymap you should use `vim.keymap.set` or even better a `map` function with default value for `opts`.
 ```lua
-local function map(mode, lhs, rhs, opts)
-	opts = opts or { silent = true }
+local function map(mode, lhs, rhs, desc, opts)
+	opts = opts or { slient = true }
+	opts.desc = desc
 	vim.keymap.set(mode, lhs, rhs, opts)
 end
 ```
 * `mode` - mode for which the keymap is added to, can be a single mode `'n'`, table of modes `{'n', 'x'}`, or empty `''` for all modes.
 * `lhs` - The key you need to press to activate the key map
 * `rhs` - Can be a lua function to call or a string to let vim "type", for example `nzz` executes `n` and then `zz` which are binded to `next` and `recenter`.
+* `desc` - Description for the keymap.
 * `opts` - Table of options for the keymap, read more at `:h map-arguments`
+
+__**Note:**__ LunarVim keymaps are set different make to sure to read [this](https://www.lunarvim.org/docs/configuration/keybindings) too
 
 ---
 
@@ -229,11 +249,17 @@ export EDITOR='nvim'
 
 ## Other good tools with vim binds
 * [Vimium](https://github.com/philc/vimium) - Vim binds for your browser.
+* [btop](https://github.com/aristocratos/btop) - Resource viewer that can be configured to use vim binds.
 
 ---
 
 ## Plugin Tools
 The preconfigured configuration handles the installation of LSP and Treesitter, so you don't need to worry about handling it, but it's recommended to familiarize yourself with both of these tools to understand how other plugins utilize them.
+
+### Backend Binaries
+Some plugins utilize external binaries to make nvim fast, I recommend to instal them.
+* [ripgrep aka rg](https://github.com/BurntSushi/ripgrep) - Better `grep`.
+* [fd](https://github.com/sharkdp/fd) - Better `find`.
 
 ### [LSP](https://microsoft.github.io/language-server-protocol/)
 > The idea behind the Language Server Protocol (LSP) is to standardize the protocol for how such servers and development tools communicate. This way, a single Language Server can be re-used in multiple development tools, which in turn can support multiple languages with minimal effort.

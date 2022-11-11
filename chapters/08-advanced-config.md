@@ -227,6 +227,7 @@ This is my personal opinion for how to manage nvim config, feel free to scan thr
    ├── 🌑 plugin_list.lua # Setup `packer`   (plugin list)
    ├── 🌑 settings.lua    # nvim settings    (vim.opt)
    ├── 🌑 ui.lua          # UI plugins setup (loaded before other plugins)
+   ├── 🌑 usercmds.lua    # Generic usercmds
    ├── 🌑 utils.lua       # Utils functions  (can be a package too)
    └── 📂 plugins
       ├── 🌑 init.lua         # Loads all the submodules (plugins setup)
@@ -234,6 +235,7 @@ This is my personal opinion for how to manage nvim config, feel free to scan thr
       ├── 🌑 debug.lua        # Debug related plugins
       ├── 🌑 git.lua          # Git related plugins
       ├── 🌑 hydra.lua        # Hydras
+      ├── 🌑 lsp.lua          # LSP configuration and related plugins
       ├── 🌑 misc.lua         # Miscellaneous plugins
       ├── 🌑 telescope.lua    # Telescope + extensions setup
       └── 🌑 treesitter.lua   # Treesitter + extensions setup
@@ -248,7 +250,8 @@ Now setup `init.lua` to require `settings.lua` like so:
 require('settings')
 ```
 
-Restart your nvim and check that your vim options are set.
+Restart your nvim and check that your vim options are set. \
+Remember you can use `print`
 
 After that I recommend to write `keymaps.lua` and `autocmds.lua`.
 
