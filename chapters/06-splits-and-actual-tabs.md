@@ -36,7 +36,7 @@ vim.opt.splitbelow = true
 ```
 
 #### Plugins
-If you are using tmux I highly recommend to use [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) to move in/out of vim to/from tmux panes seamlessly.
+If you are using tmux I highly recommend to use [Navigator.nvim](https://github.com/numToStr/Navigator.nvim) to move in/out of vim to/from tmux panes seamlessly.
 
 ---
 
@@ -50,7 +50,7 @@ Make sure to map keys to quickly switch, cycle and close tabs.
 My config:
 ```lua
 -- Tabline binds
-map('n', 'Q', function() require('bufdelete').bufdelete(0, true) end) -- shift+Quit to close current tab
+map('n', '<C-q>', function() require('bufdelete').bufdelete(0, true) end) -- shift+Quit to close current tab
 map('n', 'g1', function() require('bufferline').go_to_buffer(1, true) end)
 map('n', 'g2', function() require('bufferline').go_to_buffer(2, true) end)
 map('n', 'g3', function() require('bufferline').go_to_buffer(3, true) end)

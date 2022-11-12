@@ -37,7 +37,7 @@ For example: `3j` will jump 3 lines down
 * `w` - jump **W**ord forward
 * `b` - jump word **B**ackwards
 * `e` - jump forward to the **E**nd of the word
-* `ge` - jump backwards to the **E**nd of the word
+* `ge` - jump to the **E**nd of the previous word
 
 Capital will change the behavior from `word` to `WORD`, read `:help word` and `:help WORD` to understand the differences
 

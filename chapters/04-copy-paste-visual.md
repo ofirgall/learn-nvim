@@ -52,7 +52,8 @@ map('n', '<leader>P', '"+P') -- paste before cursor from os clipboard
 ```
 
 ## Plugins
-* [nvim-pasta](https://github.com/hrsh7th/nvim-pasta) to cycle fast in my copy history after pasting instead of using the `registers`.
+### Put/Yank Improvements
+* [yanky.nvim](https://github.com/gbprod/yanky.nvim) to cycle fast in my copy history after pasting instead of using the `registers`.
 * [peekup](https://github.com/gennaro-tedesco/nvim-peekup) - dynamically interact with vim registers.
 * [registers.nvim](https://github.com/tversteeg/registers.nvim) to see the registers before yanking from/to them.
 
