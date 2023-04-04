@@ -1,0 +1,328 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Movements and Operators - Learn Neovim</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapters/00-why-should-i-learn.html"><strong aria-hidden="true">1.</strong> Why Should I Learn?</a></li><li class="chapter-item expanded "><a href="../chapters/01-the-vim-language.html"><strong aria-hidden="true">2.</strong> The vim Language</a></li><li class="chapter-item expanded "><a href="../chapters/02-basic-config.html"><strong aria-hidden="true">3.</strong> Basic Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/03-movements-and-operators.html" class="active"><strong aria-hidden="true">4.</strong> Movements and Operators</a></li><li class="chapter-item expanded "><a href="../chapters/04-copy-paste-visual.html"><strong aria-hidden="true">5.</strong> Copy, Paste and Visual Mode</a></li><li class="chapter-item expanded "><a href="../chapters/05-text-objects.html"><strong aria-hidden="true">6.</strong> Text objects</a></li><li class="chapter-item expanded "><a href="../chapters/06-splits-and-actual-tabs.html"><strong aria-hidden="true">7.</strong> Splits and Actual Tabs</a></li><li class="chapter-item expanded "><a href="../chapters/07-vim-goodies.html"><strong aria-hidden="true">8.</strong> Vim Goodies</a></li><li class="chapter-item expanded "><a href="../chapters/08-advanced-config.html"><strong aria-hidden="true">9.</strong> Advanced Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/09-ui.html"><strong aria-hidden="true">10.</strong> UI</a></li><li class="chapter-item expanded "><a href="../chapters/10-code-navigation.html"><strong aria-hidden="true">11.</strong> Code Navigation</a></li><li class="chapter-item expanded "><a href="../chapters/11-complete-engine.html"><strong aria-hidden="true">12.</strong> Complete and Snippets Engines</a></li><li class="chapter-item expanded "><a href="../chapters/12-git.html"><strong aria-hidden="true">13.</strong> Git</a></li><li class="chapter-item expanded "><a href="../chapters/13-debug.html"><strong aria-hidden="true">14.</strong> Debug</a></li><li class="chapter-item expanded "><a href="../chapters/14-hydra.html"><strong aria-hidden="true">15.</strong> Hydra</a></li><li class="chapter-item expanded "><a href="../chapters/15-misc-and-summary.html"><strong aria-hidden="true">16.</strong> Misc Plugins and Summary</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Learn Neovim</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="movements-and-operators"><a class="header" href="#movements-and-operators">Movements and Operators</a></h1>
+<p>vim is built on actions that are mostly built on 2 types, an operator and a movement.</p>
+<h2 id="basic-binds"><a class="header" href="#basic-binds">Basic binds</a></h2>
+<ul>
+<li><code>i</code> - enter <strong>I</strong>nsert mode</li>
+<li><code>a</code> - enter insert mode <strong>A</strong>fter the cursor</li>
+<li><code>I</code> - enter <strong>I</strong>nsert mode at the beginning of the line</li>
+<li><code>A</code> - enter insert mode at the end of the line (same as <code>a</code> but for the entire line)</li>
+<li><code>o</code> - insert new line below</li>
+<li><code>O</code> - insert new line above</li>
+<li><code>u</code> - <strong>U</strong>ndo, check out <a href="https://github.com/mbbill/undotree">undotree</a></li>
+<li><code>Ctrl-r</code> - <strong>R</strong>edo</li>
+<li><code>zz</code> - Recenter the screen, there are more binds for screen actions but this is the most important one</li>
+</ul>
+<h2 id="basic-movements"><a class="header" href="#basic-movements">Basic movements</a></h2>
+<h4 id="arrows"><a class="header" href="#arrows">Arrows</a></h4>
+<ul>
+<li><code>h</code> - left</li>
+<li><code>j</code> - down</li>
+<li><code>k</code> - up</li>
+<li><code>l</code> - right</li>
+</ul>
+<p>It takes some time getting used to it but it's worth it, I recommend disabling the arrow keys for movement and try the game <code>hjkl</code> in <a href="https://github.com/ThePrimeagen/vim-be-good">vim-be-good</a>.</p>
+<pre><code class="language-lua">-- Disable arrows movement
+map('', '&lt;Up&gt;', '&lt;Nop&gt;')
+map('', '&lt;Down&gt;', '&lt;Nop&gt;')
+map('', '&lt;Left&gt;', '&lt;Nop&gt;')
+map('', '&lt;Right&gt;', '&lt;Nop&gt;')
+</code></pre>
+<h3 id="multiply-movement"><a class="header" href="#multiply-movement">Multiply Movement</a></h3>
+<p>You can multiply every movement by entering a number before the movement. <br />
+For example: <code>3j</code> will jump 3 lines down</p>
+<h4 id="words"><a class="header" href="#words">Words</a></h4>
+<ul>
+<li><code>w</code> - jump <strong>W</strong>ord forward</li>
+<li><code>b</code> - jump word <strong>B</strong>ackwards</li>
+<li><code>e</code> - jump forward to the <strong>E</strong>nd of the word</li>
+<li><code>ge</code> - jump to the <strong>E</strong>nd of the previous word</li>
+</ul>
+<p>Capital will change the behavior from <code>word</code> to <code>WORD</code>, read <code>:help word</code> and <code>:help WORD</code> to understand the differences</p>
+<h4 id="generics"><a class="header" href="#generics">Generics</a></h4>
+<ul>
+<li><code>0</code> - go to the beginning of the line</li>
+<li><code>$</code> - go to the end of the line</li>
+<li><code>&lt;C-u&gt;</code> - go <strong>U</strong>p half a page</li>
+<li><code>&lt;C-d&gt;</code> - go <strong>D</strong>own half a page</li>
+<li><code>%</code> - jump to the pair of the bracket/quote/ifdef your cursor on</li>
+<li><code>&lt;C-o&gt;</code> - jump to the previous position you jumped from (you can do it multiple times)</li>
+<li><code>&lt;C-i&gt;</code> - jump to the next position you jumped to (you can do it multiple times)</li>
+</ul>
+<h4 id="pair-movments"><a class="header" href="#pair-movments">Pair Movments</a></h4>
+<p>The standard way to jump forward to something is <code>]</code> and backward is <code>[</code>.</p>
+<p>Some examples</p>
+<ul>
+<li><code>]m</code> / <code>[m</code> - Jump to <strong>M</strong>ethod</li>
+<li><code>]]</code> / <code>[[</code> - Jump to section</li>
+<li><code>}</code> / <code>{</code> - Jump to paragraph</li>
+<li><code>]c</code> / <code>[c</code> - Jump to diff (<strong>C</strong>hange)</li>
+</ul>
+<p>I suggest to install <a href="https://github.com/tpope/vim-unimpaired">vim-unimpaired</a> which adds more pair movements.</p>
+<hr />
+<h2 id="searching"><a class="header" href="#searching">Searching</a></h2>
+<h3 id="search-across-the-file"><a class="header" href="#search-across-the-file">Search across the file</a></h3>
+<p>These are <strong>not</strong> movements!</p>
+<ul>
+<li><code>/</code> - to start a forward search</li>
+<li><code>?</code> - to start a backward search</li>
+<li><code>n</code> - go to the <strong>N</strong>ext occurrence</li>
+<li><code>N</code> - go to the previous occurrence</li>
+<li><code>*</code> - forward search the current word under cursor</li>
+<li><code>#</code> - backward search the current word under cursor</li>
+</ul>
+<p>I recommend to remap <code>n</code> and <code>N</code> to <code>nzz</code> and <code>Nzz</code>, <code>zz</code> centers the screen by the line you are on, these binds will go to the next/prev occurrence and center the screen.</p>
+<pre><code class="language-lua">map('n', 'n', 'nzz') -- Auto recenter after n
+map('n', 'N', 'Nzz') -- Auto recenter after N
+</code></pre>
+<p>If you enabled <code>opt.ignorecase</code> you can add <code>\C</code> at the end of your search to re-enable case.</p>
+<h3 id="quick-search"><a class="header" href="#quick-search">Quick search</a></h3>
+<p>These are movements! You will need to enter a <code>char</code> after the quick search key.</p>
+<ul>
+<li><code>f</code> - jump to the next <code>char</code>, I remember it as <strong>F</strong>ind</li>
+<li><code>F</code> - jump to the previous <code>char</code>, I remember it as <strong>F</strong>ind</li>
+<li><code>t</code> - jump <strong>T</strong>ill the next <code>char</code> (1 char before the occurrence)</li>
+<li><code>T</code> - jump <strong>T</strong>ill the prev <code>char</code> (1 char after the occurrence)</li>
+</ul>
+<p>These movements are very useful to manipulate text in the same line. This is the reason I enable <code>opt.wrap</code> in vim.</p>
+<p>I highly recommend installing <a href="https://github.com/rhysd/clever-f.vim">clever-f.vim</a> it will help you get used to these awesome movements fast.</p>
+<hr />
+<h2 id="operators"><a class="header" href="#operators">Operators</a></h2>
+<p>The main ones</p>
+<ul>
+<li><code>y</code> - <strong>Y</strong>ank (copy)</li>
+<li><code>d</code> - <strong>D</strong>elete</li>
+<li><code>c</code> - <strong>C</strong>hange, delete the text and enters insert mode</li>
+<li><code>&lt;</code> - remove indentation (left)</li>
+<li><code>&gt;</code> - add indentation (right)</li>
+<li><code>=</code> - auto indent</li>
+<li><code>gc</code> - Comment/Uncomment, done with <a href="https://github.com/numToStr/Comment.nvim">Comment.nvim</a></li>
+</ul>
+<p>Capital (shift) will apply the operation starting from the cursor to the end of the line, e.g: <code>D</code> deletes the line from the cursor to the end of the line. <br />
+Repeating the operator key will apply the operation for the entire line, e.g: <code>yy</code> yanks the entire current line.</p>
+<hr />
+<h2 id="action"><a class="header" href="#action">Action</a></h2>
+<p>Action is an <code>operator + movement</code> <br />
+For example: </p>
+<ul>
+<li><code>y3k</code> - yank 2 lines above the cursor, including the current line.</li>
+<li><code>ct,</code> - change the text until <code>,</code>, very useful to change function arguments and more.</li>
+</ul>
+<p>This is why you <strong>must</strong> have <code>relativenumber</code> on, it will make your life much easier.</p>
+<h3 id="special-actions"><a class="header" href="#special-actions">&quot;Special&quot; actions</a></h3>
+<ul>
+<li>Hit the operator twice to activate it on the current line. <code>yy</code> will yank the entire line you are on.</li>
+<li><code>Shift+operator</code> to activate the operator from the cursor the end of the line. <code>C</code> will change the line from the cursor to the end.</li>
+</ul>
+<h3 id="one-char-actions"><a class="header" href="#one-char-actions">One char actions</a></h3>
+<p>Actions without movement</p>
+<ul>
+<li><code>x</code> - delete the char you are on.</li>
+<li><code>X</code> - delete 1 char before the cursor.</li>
+<li><code>r</code> - <strong>R</strong>eplace 1 char</li>
+</ul>
+<hr />
+<h2 id="how-should-i-remember-all-those-binds"><a class="header" href="#how-should-i-remember-all-those-binds">How should I remember all those binds?</a></h2>
+<p>Think of a key sequence as an English sentence.</p>
+<p>For example: when I'm using <code>y3j</code>/<code>y3&lt;Enter&gt;</code> I'll think of it as <code>yank 3 down</code>, in my mind I &quot;speak&quot; with the editor rather than remembering which keys to press.</p>
+<hr />
+<p>There are many more movements and operators but these are the ones I feel is the most important, it takes some time getting used to work with this method, but once you understand it, it'll stick well.</p>
+<hr />
+<p><a href="./02-basic-config.html">Previous Chapter</a> | <a href="./04-copy-paste-visual.html">Next Chapter</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapters/02-basic-config.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../chapters/04-copy-paste-visual.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapters/02-basic-config.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../chapters/04-copy-paste-visual.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Misc Plugins and Summary - Learn Neovim</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapters/00-why-should-i-learn.html"><strong aria-hidden="true">1.</strong> Why Should I Learn?</a></li><li class="chapter-item expanded "><a href="../chapters/01-the-vim-language.html"><strong aria-hidden="true">2.</strong> The vim Language</a></li><li class="chapter-item expanded "><a href="../chapters/02-basic-config.html"><strong aria-hidden="true">3.</strong> Basic Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/03-movements-and-operators.html"><strong aria-hidden="true">4.</strong> Movements and Operators</a></li><li class="chapter-item expanded "><a href="../chapters/04-copy-paste-visual.html"><strong aria-hidden="true">5.</strong> Copy, Paste and Visual Mode</a></li><li class="chapter-item expanded "><a href="../chapters/05-text-objects.html"><strong aria-hidden="true">6.</strong> Text objects</a></li><li class="chapter-item expanded "><a href="../chapters/06-splits-and-actual-tabs.html"><strong aria-hidden="true">7.</strong> Splits and Actual Tabs</a></li><li class="chapter-item expanded "><a href="../chapters/07-vim-goodies.html"><strong aria-hidden="true">8.</strong> Vim Goodies</a></li><li class="chapter-item expanded "><a href="../chapters/08-advanced-config.html"><strong aria-hidden="true">9.</strong> Advanced Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/09-ui.html"><strong aria-hidden="true">10.</strong> UI</a></li><li class="chapter-item expanded "><a href="../chapters/10-code-navigation.html"><strong aria-hidden="true">11.</strong> Code Navigation</a></li><li class="chapter-item expanded "><a href="../chapters/11-complete-engine.html"><strong aria-hidden="true">12.</strong> Complete and Snippets Engines</a></li><li class="chapter-item expanded "><a href="../chapters/12-git.html"><strong aria-hidden="true">13.</strong> Git</a></li><li class="chapter-item expanded "><a href="../chapters/13-debug.html"><strong aria-hidden="true">14.</strong> Debug</a></li><li class="chapter-item expanded "><a href="../chapters/14-hydra.html"><strong aria-hidden="true">15.</strong> Hydra</a></li><li class="chapter-item expanded "><a href="../chapters/15-misc-and-summary.html" class="active"><strong aria-hidden="true">16.</strong> Misc Plugins and Summary</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Learn Neovim</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="misc"><a class="header" href="#misc">Misc</a></h1>
+<p>In this chapter I'll mention some misc plugins that I recommend to adapt.</p>
+<h2 id="basic-ide-functionalities"><a class="header" href="#basic-ide-functionalities">Basic IDE Functionalities</a></h2>
+<p>nvim doesn't provide all the expected functionalities of an IDE, plugins are here to close that gap.</p>
+<h3 id="session-manager"><a class="header" href="#session-manager">Session Manager</a></h3>
+<p>I use <a href="https://github.com/rmagatti/auto-session">auto-session</a>.
+<a href="https://github.com/rockerBOO/awesome-neovim#session">Other Session Manager's</a></p>
+<h3 id="comment"><a class="header" href="#comment"><a href="https://github.com/numToStr/Comment.nvim">Comment</a></a></h3>
+<p>Adds a comment operation</p>
+<h3 id="last-place"><a class="header" href="#last-place"><a href="https://github.com/ethanholz/nvim-lastplace">Last Place</a></a></h3>
+<p>Remembers the last place you edited a buffer.</p>
+<h3 id="guess-indent"><a class="header" href="#guess-indent"><a href="https://github.com/NMAC427/guess-indent.nvim">Guess Indent</a></a></h3>
+<p>Guess the indent of the file and override the indent settings.</p>
+<h3 id="auto-pairs"><a class="header" href="#auto-pairs"><a href="https://github.com/windwp/nvim-autopairs">Auto Pairs</a></a></h3>
+<p>Adds closures for your pairs, for example when you type <code>(</code> it make it <code>()</code> and put the cursor in the middle.</p>
+<h3 id="auto-save"><a class="header" href="#auto-save"><a href="https://github.com/Pocco81/auto-save.nvim">Auto Save</a></a></h3>
+<p>Auto saves the file when a text has been edited, don't worry about losing your data.</p>
+<h3 id="trailing-whitespace"><a class="header" href="#trailing-whitespace"><a href="https://github.com/ntpeters/vim-better-whitespace">Trailing whitespace</a></a></h3>
+<p>Be a good programmer and don't leave junk for git.</p>
+<h3 id="multi-cursor"><a class="header" href="#multi-cursor"><a href="https://github.com/mg979/vim-visual-multi">Multi cursor</a></a></h3>
+<p>If you are already good with multi cursor, take that skill with you to nvim, if you don't consider to use macros instead.</p>
+<h3 id="terminal-in-nvim"><a class="header" href="#terminal-in-nvim"><a href="https://github.com/akinsho/toggleterm.nvim">Terminal in nvim</a></a></h3>
+<p>Enables an integrated terminal inside nvim.</p>
+<h3 id="pasta"><a class="header" href="#pasta"><a href="https://github.com/hrsh7th/nvim-pasta">pasta</a></a></h3>
+<p>Fix's the issues with vanilla paste of nvim.</p>
+<h2 id="extras"><a class="header" href="#extras">Extras</a></h2>
+<h3 id="surround"><a class="header" href="#surround"><a href="https://github.com/kylechui/nvim-surround">Surround</a></a></h3>
+<p>Surround parts of your code with <code>[]</code>/<code>()</code>/<code>{}</code>, quickly</p>
+<h3 id="undotree"><a class="header" href="#undotree"><a href="https://github.com/mbbill/undotree">Undotree</a></a></h3>
+<p>Visualize your undo branches, never lose and redo/undo history again!</p>
+<h3 id="unimpaired"><a class="header" href="#unimpaired"><a href="https://github.com/tpope/vim-unimpaired">Unimpaired</a></a></h3>
+<p>Add pair mappings (<code>][</code>) that fills natural.</p>
+<h3 id="vim-repeat"><a class="header" href="#vim-repeat"><a href="https://github.com/tpope/vim-repeat">vim-repeat</a></a></h3>
+<p>Extends dot-repeat action.</p>
+<h3 id="todo-comments"><a class="header" href="#todo-comments"><a href="https://github.com/folke/todo-comments.nvim">Todo Comments</a></a></h3>
+<p>Highlight <code>TODO</code> comments, populate quickfix list with all the todo comments in a workspace</p>
+<h3 id="debug-print"><a class="header" href="#debug-print"><a href="https://github.com/andrewferrier/debugprint.nvim">Debug print</a></a></h3>
+<p>Add debug prints for variables quickly.</p>
+<h3 id="leapnvim"><a class="header" href="#leapnvim"><a href="https://github.com/ggandor/leap.nvim">leap.nvim</a></a></h3>
+<p>Add leap motion to nvim, like vimium, EasyMotion, hop and such. <br />
+If you liked <a href="https://github.com/rhysd/clever-f.vim">clever-f</a> you will love <a href="https://github.com/ggandor/flit.nvim">flit.nvim</a></p>
+<h3 id="vim-tmux-navigator"><a class="header" href="#vim-tmux-navigator"><a href="https://github.com/christoomey/vim-tmux-navigator">vim-tmux-navigator</a></a></h3>
+<p>Make pane switching from/to nvim seamless, if you are using tmux its a must!</p>
+<h3 id="sudavim"><a class="header" href="#sudavim"><a href="https://github.com/lambdalisue/suda.vim">suda.vim</a></a></h3>
+<p>Write/read to/from files that requires sudo without executing nvim as sudo.</p>
+<h3 id="impatientnvim"><a class="header" href="#impatientnvim"><a href="https://github.com/lewis6991/impatient.nvim">impatient.nvim</a></a></h3>
+<p>Improves startup time</p>
+<h3 id="man-pager"><a class="header" href="#man-pager">Man pager</a></h3>
+<p>Consider make nvim your man pager, its so awesome to control man pages as you control your editor. <br />
+Add this to your .shellrc:</p>
+<pre><code class="language-bashrc"># nvim as man viewer
+export MANPAGER='nvim +Man! .'
+export MANWIDTH=999
+</code></pre>
+<h3 id="more"><a class="header" href="#more">More</a></h3>
+<p>There are many many more plugins for neovim, you can check out <a href="https://github.com/rockerBOO/awesome-neovim">awesome-neovim</a>, and you can also my list - <a href="https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/packer.lua">packer.lua</a></p>
+<hr />
+<h1 id="summary"><a class="header" href="#summary">Summary</a></h1>
+<p>Thanks for reading! I hope this guide helped you learn Neovim. <br />
+This guide doesn't cover everything, make sure you keep learning about your text editor and keep improving your skill.</p>
+<p>If you found mistakes make sure to leave feedback at the <a href="https://github.com/ofirgall/learn-nvim/issues">issues section</a> <br />
+If you liked the guide consider to leave a <code>star</code>.</p>
+<p>To keep up with new plugins and updates I recommend to:</p>
+<ul>
+<li>Watch <a href="https://github.com/rockerBOO/awesome-neovim">awesome-neovim</a> to get notified for new PR's (plugins)</li>
+<li>Subscribe to <a href="https://www.reddit.com/r/neovim/">/r/neovim</a></li>
+<li>Keep an eye on <a href="https://this-week-in-neovim.org/">This week in Neovim</a></li>
+</ul>
+<hr />
+<p><a href="./14-hydra.html">Previous Chapter</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapters/14-hydra.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapters/14-hydra.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

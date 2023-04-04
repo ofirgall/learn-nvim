@@ -1,0 +1,1621 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Learn Neovim</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapters/00-why-should-i-learn.html"><strong aria-hidden="true">1.</strong> Why Should I Learn?</a></li><li class="chapter-item expanded "><a href="chapters/01-the-vim-language.html"><strong aria-hidden="true">2.</strong> The vim Language</a></li><li class="chapter-item expanded "><a href="chapters/02-basic-config.html"><strong aria-hidden="true">3.</strong> Basic Configuration</a></li><li class="chapter-item expanded "><a href="chapters/03-movements-and-operators.html"><strong aria-hidden="true">4.</strong> Movements and Operators</a></li><li class="chapter-item expanded "><a href="chapters/04-copy-paste-visual.html"><strong aria-hidden="true">5.</strong> Copy, Paste and Visual Mode</a></li><li class="chapter-item expanded "><a href="chapters/05-text-objects.html"><strong aria-hidden="true">6.</strong> Text objects</a></li><li class="chapter-item expanded "><a href="chapters/06-splits-and-actual-tabs.html"><strong aria-hidden="true">7.</strong> Splits and Actual Tabs</a></li><li class="chapter-item expanded "><a href="chapters/07-vim-goodies.html"><strong aria-hidden="true">8.</strong> Vim Goodies</a></li><li class="chapter-item expanded "><a href="chapters/08-advanced-config.html"><strong aria-hidden="true">9.</strong> Advanced Configuration</a></li><li class="chapter-item expanded "><a href="chapters/09-ui.html"><strong aria-hidden="true">10.</strong> UI</a></li><li class="chapter-item expanded "><a href="chapters/10-code-navigation.html"><strong aria-hidden="true">11.</strong> Code Navigation</a></li><li class="chapter-item expanded "><a href="chapters/11-complete-engine.html"><strong aria-hidden="true">12.</strong> Complete and Snippets Engines</a></li><li class="chapter-item expanded "><a href="chapters/12-git.html"><strong aria-hidden="true">13.</strong> Git</a></li><li class="chapter-item expanded "><a href="chapters/13-debug.html"><strong aria-hidden="true">14.</strong> Debug</a></li><li class="chapter-item expanded "><a href="chapters/14-hydra.html"><strong aria-hidden="true">15.</strong> Hydra</a></li><li class="chapter-item expanded "><a href="chapters/15-misc-and-summary.html"><strong aria-hidden="true">16.</strong> Misc Plugins and Summary</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Learn Neovim</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="why-should-i-learn-nvim"><a class="header" href="#why-should-i-learn-nvim">Why should I learn nvim?</a></h1>
+<p>As a professional, you are going to spend a lot of time on your computer, especially editing code. You want do it in the most fun and efficient way.
+nvim is fun: fun to learn, fun to write with, fun to improve at and most importantly - it is very very efficient.</p>
+<h4 id="you-can-use-vim-with-any-keyboard"><a class="header" href="#you-can-use-vim-with-any-keyboard">You can use vim with any keyboard</a></h4>
+<p>vim gives you the option to use only the basic keyboard keys: the alphabetical keys, ctrl, alt, shift, escape, enter. <br />
+You don't need to find where is end, pageup/down and home each time you switch a keyboard/laptop.</p>
+<p>If you can type on a keyboard, you can use vim the way you're used to.</p>
+<h4 id="keep-your-hands-on-the-keyboard"><a class="header" href="#keep-your-hands-on-the-keyboard">Keep your hands on the keyboard</a></h4>
+<p>vim can be used without a mouse at all, and it's even recommended to use it this way, as it will &quot;force&quot; you to stay in the &quot;flow&quot; while programming without needing to move your hand over to the mouse and back to the keyboard.</p>
+<p>vim is designed to be used with <a href="https://www.ratatype.com/static/i/learn/keyboard/en/keyboard.webp">type touching</a>.<br />
+The important binds are on/next to the keys your hands should always be on: <code>asdf jkl;</code>. <br />
+It isn't a must to touch type (I don't touch type 100%) but I recommend trying to switch anyways.</p>
+<h5 id="disclaimer"><a class="header" href="#disclaimer">Disclaimer</a></h5>
+<p>You can use a mouse. <br />
+I configured a mouse to allow &quot;guests&quot; to show me stuff in my workstation. <br />
+I use a mouse to <strong>read</strong> code, personally I find it more convenient. <br />
+I use a mouse when showing someone in my workstation so they can follow along.</p>
+<h4 id="the-right-way-to-program"><a class="header" href="#the-right-way-to-program">The right way to program</a></h4>
+<p>It's a strong saying but I'm convinced that <code>nvim</code> is the right way to program. </p>
+<p>When you're using vim, you &quot;talk&quot; to the editor rather than &quot;move&quot; it. <br />
+Imagine, instead of asking your friend to pour you a glass of water, you would give instructions to your friend on how to pour you a glass of water, which would look like something like this:</p>
+<ol>
+<li>Open the bottle</li>
+<li>Grab the glass</li>
+<li>Grab the bottle</li>
+<li>Make an angle with the bottle towards the glass</li>
+<li>Put down the bottle</li>
+<li>Close the bottle</li>
+</ol>
+<p>Wouldn't it be easier to just say &quot;Hey, can you pour me glass of water?&quot;
+Well, that how it feels to use other editors after you're using vim, vim lets you &quot;talk&quot; to the editor.</p>
+<h4 id="feel-at-home-everywhere"><a class="header" href="#feel-at-home-everywhere">Feel &quot;at home&quot; everywhere</a></h4>
+<p>Most TUIs programs support <code>vim</code> binds which will make you feel fast in any program that you usually use, <code>less</code>, <code>man</code>, <code>tmux</code> and many more.</p>
+<p>You can feel &quot;at home&quot; in browsers too, with the <a href="https://addons.mozilla.org/he/firefox/addon/vimium-ff/">vimium extension</a></p>
+<p>Edit files through <code>ssh</code> with ease</p>
+<h4 id="lightweight-and-native"><a class="header" href="#lightweight-and-native">Lightweight and Native</a></h4>
+<p>nvim is lightweight, starts up fast, renders fast and a lot of the plugins tend to use a strong native binary to run the heavyweight tasks. <br />
+For example, to search for text across the project <a href="https://github.com/nvim-telescope/telescope.nvim">telescope.nvim</a> runs <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>.</p>
+<h4 id="rich-plugin-ecosystem"><a class="header" href="#rich-plugin-ecosystem">Rich plugin ecosystem</a></h4>
+<p>nvim has a huge community that develops plugins for everything you can and can't imagine. <br />
+nvim doesn't miss on any IDE feature that other IDEs have to offer. <br />
+nvim plugins are the first to &quot;evolve&quot; when a new tech is coming to the IDE world, the nvim community is the first to adapt it, e.g: ripgrep</p>
+<p>You can take a look at the <a href="https://github.com/rockerBOO/awesome-neovim">awesome nvim plugin list</a>. I recommend to &quot;watch&quot; to get updates about new plugins.</p>
+<h4 id="be-comfortable"><a class="header" href="#be-comfortable">Be comfortable</a></h4>
+<p>nvim is basically a framework for an editor, it can't do much without plugins but it gives the user the ability to configure the editor in a way they're most comfortable with.</p>
+<p>Imagine sitting on a chair you built exactly to your size. The back rest covers all of your back, the head rest is exactly in the right height and has the perfect shape to support your head and neck. The arm rests match exactly the height of your desk, and the chair is at the perfect height for your legs. <br />
+This is how I feel when I code in nvim, I sit in a chair I build exactly for my needs, and I can keep improve the way I code because I can improve the way my editor works.</p>
+<hr />
+<h1 id="how-should-i-start-use-nvim"><a class="header" href="#how-should-i-start-use-nvim">How should I start use nvim?</a></h1>
+<p>nvim has a steep learning curve - it takes time and patience to master, you will find that you need to invest time so you can <strong>start</strong> using nvim as your daily driver.</p>
+<p>If you are a professional programmer I recommend to start using it in your personal projects and integrate it slowly to your professional workflow. I did it by having my previous editor (Sublime Text) open while nvim was open too.</p>
+<p>I started by trying to do simple actions with nvim and moving to sublime when I needed to do complicated stuff that I struggled to do with nvim. After I got comfortable with basic functionality, I started trying to do more complex actions with nvim, sometimes I managed to yet sometimes I also failed and went back to sublime. Eventually I felt more comfortable with nvim and stuck with it all day long.</p>
+<p>The bottom line is that it'll take time and effort but eventually it will be worth it, for me it sparked the old feeling of learning how to edit your code, and I still feel it every day.</p>
+<hr />
+<p><a href="chapters/01-the-vim-language.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-vim-language"><a class="header" href="#the-vim-language">The vim Language</a></h1>
+<h2 id="buffers-splitswindows-and-tabs"><a class="header" href="#buffers-splitswindows-and-tabs">Buffers, Splits/Windows and Tabs</a></h2>
+<ul>
+<li><strong>Buffers</strong> - <code>buffer</code> is an open file, which can be edited from multiple <code>splits</code></li>
+<li><strong>Splits/Windows</strong> - <code>splits</code> aka <code>windows</code> are the panes which you can move through</li>
+<li><strong>Tabs</strong> - <code>tab</code> is a set of <code>splits</code>, like a <code>tab</code> in a <code>terminal</code>, people don't use it very often.</li>
+</ul>
+<h5 id="binds"><a class="header" href="#binds">Binds</a></h5>
+<ul>
+<li><code>:e &lt;file&gt;</code> - will open a new file (buffer) </li>
+<li><code>:b &lt;buffer&gt;</code> - will switch to an already opened file (buffer)</li>
+<li><code>:vsplit</code> - will open a vertical split</li>
+<li><code>:split</code> - will open a horizontal split</li>
+<li>use <code>:help tab-page</code> to read more about tabs (they're not very necessary)</li>
+</ul>
+<h2 id="keybinds"><a class="header" href="#keybinds">Keybinds</a></h2>
+<p>Often you'll see a keybind described as something like that: <code>ggyG</code> - which copies the entire <code>buffer</code>. <br />
+All the signs in the keybind are meant to be pressed as you <code>type</code> them. <br />
+To execute this bind you'll need to press:</p>
+<ul>
+<li><code>gg</code> - move to the top of the file</li>
+<li><code>y</code> - start a copy</li>
+<li><code>shift+g</code> - end the copy from the cursor to the end of the file</li>
+</ul>
+<p>In vim you don't hold the keys in order to complete a key sequence as you type them, and you can configure the <code>timeoutlen</code> to make vim wait more/less between keystrokes.</p>
+<h3 id="keybinds-naming"><a class="header" href="#keybinds-naming">Keybinds naming</a></h3>
+<p>You don't need to memorize keybinds as the letter stands for its action.</p>
+<ul>
+<li><code>y</code> - yank</li>
+<li><code>p</code> - paste</li>
+</ul>
+<p>Each time where I introduce an action in this guide, I'll mark the letter I use to remember the bind.</p>
+<h4 id="special-keys"><a class="header" href="#special-keys">Special Keys</a></h4>
+<ul>
+<li><code>&lt;cmd&gt;</code> - is <code>:</code> which starts a cmd</li>
+<li><code>&lt;cr&gt;</code> - is <code>enter</code></li>
+<li><code>&lt;Esc&gt;</code> - is <code>Escape</code></li>
+<li><code>&lt;C-x&gt;</code> - is Ctrl+x</li>
+<li><code>&lt;M-x&gt;</code> - is alt+x</li>
+<li><code>&lt;M-X&gt;</code> - is alt+shift+x</li>
+<li><code>&lt;A-x&gt;</code> - is alt+x</li>
+<li><code>&lt;A-X&gt;</code> - is alt+shift+x</li>
+<li><code>&lt;leader&gt;</code> - is the leader key</li>
+</ul>
+<p>You can type <code>:help &lt;key&gt;</code> to open a <code>help</code> <code>split</code> for that key, the key can be anything, it can be <code>G</code> and it can be <code>&lt;cr&gt;</code></p>
+<h6 id="leader"><a class="header" href="#leader">Leader</a></h6>
+<p>vim maps most of the keyboard by default, <code>&lt;leader&gt;</code> acts as a prefix for custom user binds. <br />
+Leader is remappable, the default mapping is <code>,</code> most vim users change it to <code>&lt;Space&gt;</code></p>
+<h2 id="help"><a class="header" href="#help">Help</a></h2>
+<p>There's a help page for everything, start using it as soon as possible, it's like <code>man</code> just better and for <code>vim</code>.</p>
+<h2 id="modes"><a class="header" href="#modes">Modes</a></h2>
+<p>There are a lot of modes in vim, I'll cover the important ones. <br />
+To exit from each mode back to normal press <code>Escape</code>. I recommend remapping it to <code>capslock</code>, you're going to press it a lot and it will be much easier to use the pinky without moving your hands.</p>
+<ul>
+<li>Normal - This is where you will be usually, you can move, copy in this mode, and much more</li>
+<li>Insert (<code>i</code>) - Insert text to the buffer, you want to be in this mode <strong>only</strong> when you're actually inserting text, you don't want to move in this mode</li>
+<li>Visual (<code>v</code>) - Select and copy/replace text</li>
+<li>Visual Line (<code>V</code>) - Select and copy/replace text by lines</li>
+<li>Command (<code>:</code>,<code>/</code>) - Inserting a command</li>
+</ul>
+<h3 id="how-to-map-capslock-to-escape"><a class="header" href="#how-to-map-capslock-to-escape">How to map Capslock to Escape</a></h3>
+<ul>
+<li>GNOME (Ubuntu) - Install <code>gnome-tweak-tool</code>, start <code>Tweaks</code> then <code>Keyboard &amp; Mouse -&gt; Additional Layout Options -&gt; Caps Lock behavior</code>.</li>
+<li><a href="https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS">macOS</a></li>
+<li>Windows - Install <a href="https://www.autohotkey.com/">AutoHotKey</a> and add <code>Capslock::Esc</code> to an <code>ahk</code> script.</li>
+</ul>
+<hr />
+<p><a href="chapters/00-why-should-i-learn.html">Previous Chapter</a> | <a href="chapters/./02-basic-config.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="basic-configuration"><a class="header" href="#basic-configuration">Basic Configuration</a></h1>
+<p>One of nvim's strengths is that it's highly configurable, you can customize everything. <br />
+Setup your editor in a way that'll be nice for you to look at and it won't be filled with useless buttons/stuff.</p>
+<p>I recommend to create your own configuration but it takes time and effort. <br />
+We will talk about the advantages at the <a href="https://github.com/ofirgall/learn-nvim/blob/master/chapters/08-advanced-config.md">advanced configuration chapter</a> but I recommend to use preconfigured configuration for now, unless you are a config nerd like me.</p>
+<hr />
+<h2 id="terminal-emulator-setup"><a class="header" href="#terminal-emulator-setup">Terminal Emulator Setup</a></h2>
+<p>nvim can be run with a GUI frontend or how it was intended to, in a terminal emulator. <br />
+I recommend to use one of the modern cross-platform terminal emulators:</p>
+<ul>
+<li><a href="https://github.com/alacritty/alacritty">Alacritty</a> - recommended with <a href="https://github.com/tmux/tmux">tmux</a>/<a href="https://github.com/i3/i3">i3</a> for splits and sessions (I use Alacritty + tmux)</li>
+<li><a href="https://github.com/kovidgoyal/kitty">Kitty</a> - I never used it but people say it's nice</li>
+<li><a href="https://github.com/wez/wezterm">Wezterm</a> - Lua configured terminal, I don't like the design, especially the way cursor behaves in it, but it seems the community love it.</li>
+</ul>
+<h3 id="nerdfont"><a class="header" href="#nerdfont">Nerdfont</a></h3>
+<p>It's highly recommended to install a <a href="https://www.nerdfonts.com/">nerdfont</a> to support icons in your terminal, many plugins utilize it. <br />
+I use <a href="https://www.programmingfonts.org/#cascadia-code">CascadiaCode</a>, <a href="https://www.programmingfonts.org/#jetbrainsmono">JetBrainsMono</a> is nice too.</p>
+<h3 id="keybinds-limitations"><a class="header" href="#keybinds-limitations">Keybinds limitations</a></h3>
+<p>Because of <code>ascii</code> terminals don't support <code>Ctrl+Shift+&lt;X&gt;</code> keybindings, <a href="https://github.com/tmux/tmux/issues/674#issuecomment-263157843">here's a great comment that explains why</a>. <br />
+Some terminals allow to use a workaround, but it's not a must (I don't use Ctrl+Shift+X binds).</p>
+<h4 id="options-as-alt-in-macos"><a class="header" href="#options-as-alt-in-macos">Options as Alt in macOS</a></h4>
+<p>To be able to use Alt binds in your terminal you need to configure your terminal emulator to do so.</p>
+<ul>
+<li><a href="https://sw.kovidgoyal.net/kitty/conf/#opt-kitty.macos_option_as_alt">For Kitty</a></li>
+<li><a href="https://github.com/alacritty/alacritty/issues/62">For Alacritty</a></li>
+</ul>
+<hr />
+<h2 id="how-to-install-nvim"><a class="header" href="#how-to-install-nvim">How to Install nvim</a></h2>
+<p>I recommend to install the <a href="https://github.com/neovim/neovim/releases">latest release</a>, <code>Nvim development</code> is the nightly. <br />
+You can install <a href="https://github.com/neovim/neovim/releases/tag/nightly">nightly</a> which is pretty stable and doesn't break often but you don't want to bother yourself with bugs as a beginner.</p>
+<hr />
+<h2 id="preconfigured-configurations"><a class="header" href="#preconfigured-configurations"><a href="https://github.com/rockerBOO/awesome-neovim#preconfigured-configuration">Preconfigured Configurations</a></a></h2>
+<p>There are several preconfigured configurations, these are the popular ones:</p>
+<ul>
+<li><a href="https://github.com/LunarVim/LunarVim">LunarVim</a></li>
+<li><a href="https://github.com/AstroNvim/AstroNvim">AstroNvim</a></li>
+<li><a href="https://github.com/NvChad/NvChad">NvChad</a></li>
+</ul>
+<h4 id="lunarvim"><a class="header" href="#lunarvim">LunarVim</a></h4>
+<p>Personally I skipped using a preconfigured configuration, but I highly suggest to use it as a starting point. <a href="https://github.com/LunarVim/LunarVim">LunarVim</a> is the easiest to start with, <a href="https://www.lunarvim.org/docs/installation">Installation link</a>.</p>
+<p>Make sure you read and edit the default configuration to your taste. <br />
+To open the configuration press <code>Space</code>, <code>SHIFT+L</code>, <code>c</code>. <br />
+To see the keybinds press <code>Space</code>, <code>SHIFT+L</code>, <code>k</code>.</p>
+<hr />
+<h2 id="how-to-install-plugins"><a class="header" href="#how-to-install-plugins">How to Install Plugins</a></h2>
+<p>I'll recommend several plugins along the way, make sure you are not lazy to install them.</p>
+<h4 id="how-to-download-a-plugin"><a class="header" href="#how-to-download-a-plugin">How to download a plugin</a></h4>
+<p>nvim plugins are git repositories, a package manager downloads and updates them, <a href="https://github.com/wbthomason/packer.nvim">packer</a> is the standard one and it's already installed in LunarVim.</p>
+<p>In LunarVim's configuration you will find:</p>
+<pre><code class="language-lua">-- Additional Plugins
+lvim.plugins = {
+    {&quot;folke/tokyonight.nvim&quot;},
+    {
+      &quot;folke/trouble.nvim&quot;,
+      cmd = &quot;TroubleToggle&quot;,
+    },
+}
+</code></pre>
+<p><code>lvim.plugins</code> is passed to <a href="https://github.com/wbthomason/packer.nvim">packer</a>, <code>folke/tokyonight.nvim</code> is a short for <a href="https://github.com/folke/tokyonight.nvim">github.com/folke/tokyonight.nvim</a>. <br />
+Which means when a plugin tell you to install it by <code>use { 'plugin_author/plugin_name', more_options }</code>, just copy <code>{ 'plugin_author/plugin_name', more_options }</code>.</p>
+<p><em><strong>Note</strong></em>: LunarVim runs <code>:PackerInstall</code> for you when the config changes.</p>
+<p>Useful Packer Commands:</p>
+<ul>
+<li><code>:PackerInstall</code> - Install new added plugins.</li>
+<li><code>:PackerStatus</code> - List all installed pluigns.</li>
+<li><code>:PackerSnapshot</code> - Take a snapshot of your current plugins versions (useful before updating).</li>
+<li><code>:PackerUpdate</code> - Update all plugins.</li>
+<li><code>:PackerClean</code> - Remove unused plugins.</li>
+</ul>
+<h4 id="how-to-configure-a-plugin"><a class="header" href="#how-to-configure-a-plugin">How to configure a plugin</a></h4>
+<p>Usually a plugin will provide a <code>setup</code> function which configures the plugin's behavior, most plugins won't activate if the setup function isn't called.</p>
+<p>Usually the <code>setup</code> function receives a <code>table</code>, most plugins use the override standard - the keys in the table you pass will override the default, other keys keep their default value. <br />
+The defaults are usually in the plugin <code>README</code> and in the <code>:help &lt;plugin&gt;</code></p>
+<p><em><strong>Note</strong></em>: I recommend to start backing up your config with some kind of dotfiles, I use <a href="https://github.com/anishathalye/dotbot">dotbot</a>.
+<em><strong>Note</strong></em>: I recommend adding the GitHub shorthand above the setup function as a comment, you can use <a href="https://github.com/ofirgall/open.nvim">open.nvim</a> to access the plugin repo quickly.</p>
+<h4 id="how-to-install-vim-plugin"><a class="header" href="#how-to-install-vim-plugin">How to install vim plugin</a></h4>
+<p>nvim supports vim plugins, the install of them is similar to nvim but the configuration is done by vim variables rather than <code>setup</code> function.
+The documentation of the plugin usually would be written in VimScript format as so:</p>
+<pre><code class="language-vim">let g:cool_plugin_variable = 1
+</code></pre>
+<p>The equivalent of that line in Lua is:</p>
+<pre><code class="language-lua">vim.g.cool_plugin_variable = 1
+</code></pre>
+<p>You can read more about vim variables at <code>:help internal-variables</code>.</p>
+<h4 id="recommended-plugins-to-start-with"><a class="header" href="#recommended-plugins-to-start-with">Recommended Plugins to Start With</a></h4>
+<ul>
+<li>Make sure you pick a <a href="https://github.com/rockerBOO/awesome-neovim#colorscheme">colorscheme</a> you like or create your own like I <a href="https://github.com/ofirgall/ofirkai.nvim">did</a>.</li>
+<li><a href="https://github.com/rmagatti/auto-session">auto-session</a> - Auto save your session, so you can jump back to your session after exiting/restarting nvim.</li>
+<li><a href="https://github.com/christoomey/vim-tmux-navigator">vim-tmux-navigator</a> - great plugin for tmux users.</li>
+<li><a href="https://github.com/numToStr/Comment.nvim">Comment.nvim</a> - Adds comment operation (included in LunarVim's <a href="https://www.lunarvim.org/docs/plugins/core-plugins-list">core plugins</a>).</li>
+<li><a href="https://github.com/ray-x/lsp_signature.nvim">lsp_signature.nvim</a> - Show function signature when you type.</li>
+<li><a href="https://github.com/NMAC427/guess-indent.nvim">guess-indent.nvim</a> - Automatic indentation style detection.</li>
+<li><a href="https://github.com/windwp/nvim-autopairs">nvim-autopairs</a> - Auto pair, when typing a pair, eg: <code>(</code>, add the closure and set the cursor in between. (Included in LunarVim)</li>
+<li><a href="https://github.com/ofirgall/open.nvim">open.nvim</a> - Open GitHub shorthand and more straight from vim.</li>
+</ul>
+<h5 id="programming-languages-support"><a class="header" href="#programming-languages-support">Programming languages support</a></h5>
+<p>Some languages have plugins to support them specifically, usually the plugin takes care of the LSP setup (read below), so make sure you don't setup the LSP more than once. I recommend to skip the LSP setup of the plugin and set it up yourself or with mason.</p>
+<ul>
+<li><a href="https://github.com/simrat39/rust-tools.nvim">rust-tools</a></li>
+<li><a href="https://github.com/akinsho/flutter-tools.nvim">flutter-tools</a></li>
+<li><a href="https://github.com/ray-x/go.nvim">go.nvim</a></li>
+<li><a href="https://github.com/folke/neodev.nvim">neodev.nvim</a> - Lua develop for nvim api (Already installed by LunarVim)</li>
+<li>For other languages check out <a href="https://github.com/rockerBOO/awesome-neovim#programming-languages-support">awesome-neovim</a></li>
+</ul>
+<h5 id="auto-savenvim"><a class="header" href="#auto-savenvim"><a href="https://github.com/Pocco81/auto-save.nvim">auto-save.nvim</a></a></h5>
+<p>I hated using autosave in other text editors, but because vim has modes it knows exactly when a text was changed. <br />
+On <code>InsertLeave</code> which is triggered when you leave Insert mode, and on <code>TextChanged</code> which is triggered when text was changed in normal mode.</p>
+<p>Autosave + autoformat = annoying behavior. Make sure you disable auto format, I wrote a <a href="https://github.com/ofirgall/format-on-leave.nvim">simple plugin</a> to format when I switch buffers.</p>
+<p>How to disable autoformat in LunarVim:</p>
+<pre><code class="language-lua">lvim.format_on_save = false
+</code></pre>
+<p>Autosave + live config refresh = annoying behavior. Make sure you disable autosave in your config if you like live config refresh.<br />
+An example for how to do it in LunarVim:</p>
+<pre><code class="language-lua">local user_config_file = require(&quot;lvim.config&quot;):get_user_config_path()
+require(&quot;auto-save&quot;).setup {
+  enabled = true,
+
+  condition = function(buf)
+    local fn = vim.fn
+    local utils = require(&quot;auto-save.utils.data&quot;)
+
+    if vim.api.nvim_buf_get_name(buf) == user_config_file then
+      return false
+    end
+
+    if fn.getbufvar(buf, &quot;&amp;modifiable&quot;) == 1 and
+        utils.not_in(fn.getbufvar(buf, &quot;&amp;filetype&quot;), {}) then
+      return true -- met condition(s), can save
+    end
+    return false -- can't save
+  end,
+}
+</code></pre>
+<hr />
+<h2 id="options"><a class="header" href="#options">Options</a></h2>
+<p>Options control the behavior of nvim, they can be set to <code>boolean</code>, <code>number</code> or <code>string</code>. <br />
+To set an option type <code>:set &lt;option&gt;</code>, to see the current value of an option use <code>:set &lt;option&gt;?</code>. <br />
+boolean options are enabled by <code>:set &lt;option&gt;</code> and disabled by <code>:set no&lt;option&gt;</code>. <br />
+E.g: <code>:set relativenumber</code> enables <code>relativenumber</code> and <code>:set norelativenumber</code> disables it.</p>
+<p>Every option has a help tag for it, for example <code>:h relativenumber</code> <br />
+The options are listed in <code>:h option-list</code>.</p>
+<p>In nvim you can access the options by <code>vim.opt</code></p>
+<h3 id="sensible-options"><a class="header" href="#sensible-options">Sensible Options</a></h3>
+<pre><code class="language-lua">local opt = vim.opt
+
+opt.number = true -- Enables line numbers
+opt.relativenumber = true -- Enables relative line numbers
+opt.autoindent = true -- Indent automatically
+opt.cursorline = true -- Enables cursor line
+opt.ignorecase = true -- Ignore case when searching
+opt.splitright = true -- Split to the right on vertical
+opt.splitbelow = true -- Split below when horizontal
+opt.swapfile = false -- Don't use swap files (I use auto-save.nvim instead)
+opt.wrap = true -- Wrap lines
+opt.updatetime = 100 -- mainly for trld.nvim which utilize CursorHold autocmd
+opt.formatoptions:append('cro') -- continue comments when going down a line, hit C-u to remove the added comment prefix
+opt.sessionoptions:remove('options') -- don't save keymaps and local options
+opt.foldlevelstart = 99 -- no auto folding
+</code></pre>
+<hr />
+<h2 id="key-mapping"><a class="header" href="#key-mapping">Key mapping</a></h2>
+<p>Key map can be set to specific modes. <br />
+The important ones:</p>
+<ul>
+<li><code>n</code> - Normal mode</li>
+<li><code>i</code> - Insert mode</li>
+<li><code>x</code> - Visual &amp; Select mode</li>
+<li><code>v</code> - Visual mode</li>
+<li><code>:h map-commands</code> for the full mode list</li>
+</ul>
+<p>To set a keymap you should use <code>vim.keymap.set</code> or even better a <code>map</code> function with default value for <code>opts</code>.</p>
+<pre><code class="language-lua">local function map(mode, lhs, rhs, desc, opts)
+	opts = opts or { slient = true }
+	opts.desc = desc
+	vim.keymap.set(mode, lhs, rhs, opts)
+end
+</code></pre>
+<ul>
+<li><code>mode</code> - mode for which the keymap is added to, can be a single mode <code>'n'</code>, table of modes <code>{'n', 'x'}</code>, or empty <code>''</code> for all modes.</li>
+<li><code>lhs</code> - The key you need to press to activate the key map</li>
+<li><code>rhs</code> - Can be a lua function to call or a string to let vim &quot;type&quot;, for example <code>nzz</code> executes <code>n</code> and then <code>zz</code> which are binded to <code>next</code> and <code>recenter</code>.</li>
+<li><code>desc</code> - Description for the keymap.</li>
+<li><code>opts</code> - Table of options for the keymap, read more at <code>:h map-arguments</code></li>
+</ul>
+<p><strong><strong>Note:</strong></strong> LunarVim keymaps are set different make to sure to read <a href="https://www.lunarvim.org/docs/configuration/keybindings">this</a> too</p>
+<hr />
+<h2 id="autocommands"><a class="header" href="#autocommands">Autocommands</a></h2>
+<blockquote>
+<p>An autocommand is a command that is executed automatically in response to some
+event, such as a file being read or written or a buffer change.</p>
+</blockquote>
+<p>For example a good autocommand to highlight the text that was yanked.</p>
+<pre><code class="language-lua">-- Highlight on yank
+vim.api.nvim_create_autocmd('TextYankPost', {
+	pattern = '*',
+	callback = function() vim.highlight.on_yank({timeout=350, higroup='Visual'}) end
+})
+</code></pre>
+<p>Plugins can add custom autocommands too! <br />
+For all the builtin autocmds see <code>:h autocmd-list</code>.</p>
+<p>Read <code>:h nvim_create_autocmd</code> for full explanation.</p>
+<hr />
+<h2 id="shell-setup"><a class="header" href="#shell-setup">Shell Setup</a></h2>
+<p>Don't forget to set nvim as your default terminal editor like so:</p>
+<pre><code>export EDITOR='nvim'
+</code></pre>
+<hr />
+<h2 id="other-good-tools-with-vim-binds"><a class="header" href="#other-good-tools-with-vim-binds">Other good tools with vim binds</a></h2>
+<ul>
+<li><a href="https://github.com/philc/vimium">Vimium</a> - Vim binds for your browser.</li>
+<li><a href="https://github.com/aristocratos/btop">btop</a> - Resource viewer that can be configured to use vim binds.</li>
+</ul>
+<hr />
+<h2 id="plugin-tools"><a class="header" href="#plugin-tools">Plugin Tools</a></h2>
+<p>The preconfigured configuration handles the installation of LSP and Treesitter, so you don't need to worry about handling it, but it's recommended to familiarize yourself with both of these tools to understand how other plugins utilize them.</p>
+<h3 id="backend-binaries"><a class="header" href="#backend-binaries">Backend Binaries</a></h3>
+<p>Some plugins utilize external binaries to make nvim fast, I recommend to instal them.</p>
+<ul>
+<li><a href="https://github.com/BurntSushi/ripgrep">ripgrep aka rg</a> - Better <code>grep</code>.</li>
+<li><a href="https://github.com/sharkdp/fd">fd</a> - Better <code>find</code>.</li>
+</ul>
+<h3 id="lsp"><a class="header" href="#lsp"><a href="https://microsoft.github.io/language-server-protocol/">LSP</a></a></h3>
+<blockquote>
+<p>The idea behind the Language Server Protocol (LSP) is to standardize the protocol for how such servers and development tools communicate. This way, a single Language Server can be re-used in multiple development tools, which in turn can support multiple languages with minimal effort.</p>
+</blockquote>
+<p>Which means nvim/sublime/vscode get the same Intellisense. <br />
+The servers run locally on your PC and are optimized to run fast. <br />
+nvim implements the fastest lsp client.</p>
+<p><a href="https://microsoft.github.io/language-server-protocol/implementors/servers/">Server list by language</a></p>
+<h3 id="treesitter"><a class="header" href="#treesitter"><a href="https://github.com/nvim-treesitter/nvim-treesitter">Treesitter</a></a></h3>
+<blockquote>
+<p>Tree-sitter is a parser generator tool and an incremental parsing library. It can build a concrete syntax tree for a source file and efficiently update the syntax tree as the source file is edited. Tree-sitter aims to be:</p>
+<ul>
+<li><strong>General</strong> enough to parse any programming language</li>
+<li><strong>Fast</strong> enough to parse on every keystroke in a text editor</li>
+<li><strong>Robust</strong> enough to provide useful results even in the presence of syntax errors</li>
+<li><strong>Dependency-free</strong> so that the runtime library (which is written in pure C) can be embedded in any application</li>
+</ul>
+</blockquote>
+<p>Basically it provides a fast unified syntax query for different languages, this allows to build plugins that utilize the unified syntax query.</p>
+<p>E.g: <a href="https://github.com/nvim-treesitter/nvim-treesitter-textobjects">nvim-treesitter-textobjects</a> which allows to do an action on a code context such as <code>copy</code> the <code>function/class/argument/loop</code> and more, we will elaborate on that later.</p>
+<p><em><strong>Note:</strong></em> make sure you to install treesitter parser for your language by adding it to the <code>ensure_installed</code> table or run <code>:TSUpdate {lang}</code>.</p>
+<hr />
+<p><a href="chapters/./01-the-vim-language.html">Previous Chapter</a> | <a href="chapters/./03-movements-and-operators.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="movements-and-operators"><a class="header" href="#movements-and-operators">Movements and Operators</a></h1>
+<p>vim is built on actions that are mostly built on 2 types, an operator and a movement.</p>
+<h2 id="basic-binds"><a class="header" href="#basic-binds">Basic binds</a></h2>
+<ul>
+<li><code>i</code> - enter <strong>I</strong>nsert mode</li>
+<li><code>a</code> - enter insert mode <strong>A</strong>fter the cursor</li>
+<li><code>I</code> - enter <strong>I</strong>nsert mode at the beginning of the line</li>
+<li><code>A</code> - enter insert mode at the end of the line (same as <code>a</code> but for the entire line)</li>
+<li><code>o</code> - insert new line below</li>
+<li><code>O</code> - insert new line above</li>
+<li><code>u</code> - <strong>U</strong>ndo, check out <a href="https://github.com/mbbill/undotree">undotree</a></li>
+<li><code>Ctrl-r</code> - <strong>R</strong>edo</li>
+<li><code>zz</code> - Recenter the screen, there are more binds for screen actions but this is the most important one</li>
+</ul>
+<h2 id="basic-movements"><a class="header" href="#basic-movements">Basic movements</a></h2>
+<h4 id="arrows"><a class="header" href="#arrows">Arrows</a></h4>
+<ul>
+<li><code>h</code> - left</li>
+<li><code>j</code> - down</li>
+<li><code>k</code> - up</li>
+<li><code>l</code> - right</li>
+</ul>
+<p>It takes some time getting used to it but it's worth it, I recommend disabling the arrow keys for movement and try the game <code>hjkl</code> in <a href="https://github.com/ThePrimeagen/vim-be-good">vim-be-good</a>.</p>
+<pre><code class="language-lua">-- Disable arrows movement
+map('', '&lt;Up&gt;', '&lt;Nop&gt;')
+map('', '&lt;Down&gt;', '&lt;Nop&gt;')
+map('', '&lt;Left&gt;', '&lt;Nop&gt;')
+map('', '&lt;Right&gt;', '&lt;Nop&gt;')
+</code></pre>
+<h3 id="multiply-movement"><a class="header" href="#multiply-movement">Multiply Movement</a></h3>
+<p>You can multiply every movement by entering a number before the movement. <br />
+For example: <code>3j</code> will jump 3 lines down</p>
+<h4 id="words"><a class="header" href="#words">Words</a></h4>
+<ul>
+<li><code>w</code> - jump <strong>W</strong>ord forward</li>
+<li><code>b</code> - jump word <strong>B</strong>ackwards</li>
+<li><code>e</code> - jump forward to the <strong>E</strong>nd of the word</li>
+<li><code>ge</code> - jump to the <strong>E</strong>nd of the previous word</li>
+</ul>
+<p>Capital will change the behavior from <code>word</code> to <code>WORD</code>, read <code>:help word</code> and <code>:help WORD</code> to understand the differences</p>
+<h4 id="generics"><a class="header" href="#generics">Generics</a></h4>
+<ul>
+<li><code>0</code> - go to the beginning of the line</li>
+<li><code>$</code> - go to the end of the line</li>
+<li><code>&lt;C-u&gt;</code> - go <strong>U</strong>p half a page</li>
+<li><code>&lt;C-d&gt;</code> - go <strong>D</strong>own half a page</li>
+<li><code>%</code> - jump to the pair of the bracket/quote/ifdef your cursor on</li>
+<li><code>&lt;C-o&gt;</code> - jump to the previous position you jumped from (you can do it multiple times)</li>
+<li><code>&lt;C-i&gt;</code> - jump to the next position you jumped to (you can do it multiple times)</li>
+</ul>
+<h4 id="pair-movments"><a class="header" href="#pair-movments">Pair Movments</a></h4>
+<p>The standard way to jump forward to something is <code>]</code> and backward is <code>[</code>.</p>
+<p>Some examples</p>
+<ul>
+<li><code>]m</code> / <code>[m</code> - Jump to <strong>M</strong>ethod</li>
+<li><code>]]</code> / <code>[[</code> - Jump to section</li>
+<li><code>}</code> / <code>{</code> - Jump to paragraph</li>
+<li><code>]c</code> / <code>[c</code> - Jump to diff (<strong>C</strong>hange)</li>
+</ul>
+<p>I suggest to install <a href="https://github.com/tpope/vim-unimpaired">vim-unimpaired</a> which adds more pair movements.</p>
+<hr />
+<h2 id="searching"><a class="header" href="#searching">Searching</a></h2>
+<h3 id="search-across-the-file"><a class="header" href="#search-across-the-file">Search across the file</a></h3>
+<p>These are <strong>not</strong> movements!</p>
+<ul>
+<li><code>/</code> - to start a forward search</li>
+<li><code>?</code> - to start a backward search</li>
+<li><code>n</code> - go to the <strong>N</strong>ext occurrence</li>
+<li><code>N</code> - go to the previous occurrence</li>
+<li><code>*</code> - forward search the current word under cursor</li>
+<li><code>#</code> - backward search the current word under cursor</li>
+</ul>
+<p>I recommend to remap <code>n</code> and <code>N</code> to <code>nzz</code> and <code>Nzz</code>, <code>zz</code> centers the screen by the line you are on, these binds will go to the next/prev occurrence and center the screen.</p>
+<pre><code class="language-lua">map('n', 'n', 'nzz') -- Auto recenter after n
+map('n', 'N', 'Nzz') -- Auto recenter after N
+</code></pre>
+<p>If you enabled <code>opt.ignorecase</code> you can add <code>\C</code> at the end of your search to re-enable case.</p>
+<h3 id="quick-search"><a class="header" href="#quick-search">Quick search</a></h3>
+<p>These are movements! You will need to enter a <code>char</code> after the quick search key.</p>
+<ul>
+<li><code>f</code> - jump to the next <code>char</code>, I remember it as <strong>F</strong>ind</li>
+<li><code>F</code> - jump to the previous <code>char</code>, I remember it as <strong>F</strong>ind</li>
+<li><code>t</code> - jump <strong>T</strong>ill the next <code>char</code> (1 char before the occurrence)</li>
+<li><code>T</code> - jump <strong>T</strong>ill the prev <code>char</code> (1 char after the occurrence)</li>
+</ul>
+<p>These movements are very useful to manipulate text in the same line. This is the reason I enable <code>opt.wrap</code> in vim.</p>
+<p>I highly recommend installing <a href="https://github.com/rhysd/clever-f.vim">clever-f.vim</a> it will help you get used to these awesome movements fast.</p>
+<hr />
+<h2 id="operators"><a class="header" href="#operators">Operators</a></h2>
+<p>The main ones</p>
+<ul>
+<li><code>y</code> - <strong>Y</strong>ank (copy)</li>
+<li><code>d</code> - <strong>D</strong>elete</li>
+<li><code>c</code> - <strong>C</strong>hange, delete the text and enters insert mode</li>
+<li><code>&lt;</code> - remove indentation (left)</li>
+<li><code>&gt;</code> - add indentation (right)</li>
+<li><code>=</code> - auto indent</li>
+<li><code>gc</code> - Comment/Uncomment, done with <a href="https://github.com/numToStr/Comment.nvim">Comment.nvim</a></li>
+</ul>
+<p>Capital (shift) will apply the operation starting from the cursor to the end of the line, e.g: <code>D</code> deletes the line from the cursor to the end of the line. <br />
+Repeating the operator key will apply the operation for the entire line, e.g: <code>yy</code> yanks the entire current line.</p>
+<hr />
+<h2 id="action"><a class="header" href="#action">Action</a></h2>
+<p>Action is an <code>operator + movement</code> <br />
+For example: </p>
+<ul>
+<li><code>y3k</code> - yank 2 lines above the cursor, including the current line.</li>
+<li><code>ct,</code> - change the text until <code>,</code>, very useful to change function arguments and more.</li>
+</ul>
+<p>This is why you <strong>must</strong> have <code>relativenumber</code> on, it will make your life much easier.</p>
+<h3 id="special-actions"><a class="header" href="#special-actions">&quot;Special&quot; actions</a></h3>
+<ul>
+<li>Hit the operator twice to activate it on the current line. <code>yy</code> will yank the entire line you are on.</li>
+<li><code>Shift+operator</code> to activate the operator from the cursor the end of the line. <code>C</code> will change the line from the cursor to the end.</li>
+</ul>
+<h3 id="one-char-actions"><a class="header" href="#one-char-actions">One char actions</a></h3>
+<p>Actions without movement</p>
+<ul>
+<li><code>x</code> - delete the char you are on.</li>
+<li><code>X</code> - delete 1 char before the cursor.</li>
+<li><code>r</code> - <strong>R</strong>eplace 1 char</li>
+</ul>
+<hr />
+<h2 id="how-should-i-remember-all-those-binds"><a class="header" href="#how-should-i-remember-all-those-binds">How should I remember all those binds?</a></h2>
+<p>Think of a key sequence as an English sentence.</p>
+<p>For example: when I'm using <code>y3j</code>/<code>y3&lt;Enter&gt;</code> I'll think of it as <code>yank 3 down</code>, in my mind I &quot;speak&quot; with the editor rather than remembering which keys to press.</p>
+<hr />
+<p>There are many more movements and operators but these are the ones I feel is the most important, it takes some time getting used to work with this method, but once you understand it, it'll stick well.</p>
+<hr />
+<p><a href="chapters/./02-basic-config.html">Previous Chapter</a> | <a href="chapters/./04-copy-paste-visual.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="copy-paste-and-visual-mode"><a class="header" href="#copy-paste-and-visual-mode">Copy, Paste and Visual Mode</a></h1>
+<p>The default behavior of vim doesn't copy to your OS clipboard, but instead copies to a <code>register</code>, which can also be the OS clipboard.</p>
+<h2 id="copy-and-paste-with-specifying-registers"><a class="header" href="#copy-and-paste-with-specifying-registers">Copy and paste with specifying registers</a></h2>
+<p>To yank (copy) a text, you can copy the text from <code>NORMAL</code> mode with the <code>y</code> operator combined with a <code>movement</code> ,or you can enter <code>visual</code> mode with <code>v</code> and yank the text with <code>y</code>.</p>
+<p>A text is copied to the registers when you <code>change</code> and <code>delete</code> text too.</p>
+<p>To paste the yanked result you can use:</p>
+<ul>
+<li><code>p</code> - paste after the cursor</li>
+<li><code>P</code> - paste before the cursor</li>
+<li><code>&lt;M-p&gt; (Alt+p)</code> - paste in insert mode</li>
+</ul>
+<h2 id="visual-modes"><a class="header" href="#visual-modes">Visual Modes</a></h2>
+<ul>
+<li><code>v</code> - Normal Visual mode</li>
+<li><code>V</code> - Visual Line mode, selects text by lines</li>
+<li><code>&lt;C-v&gt;</code> - Visual Block mode, selects text by block</li>
+</ul>
+<p>You can replace text by pasting new text after selecting the text to replace with visual, this action copies the replaced text to a register too.</p>
+<h2 id="registers"><a class="header" href="#registers">Registers</a></h2>
+<p>To specify a destination for the copy use <code>&quot;</code>. <br />
+For example to copy to register <code>a</code> I'll hit these keys: <code>&quot;ay&lt;movement&gt;&quot;</code>.</p>
+<p>Same for pasting: <code>&quot;ap</code>.</p>
+<p>Use <code>_</code> - as the <code>black hole</code> register, when you want to delete a text without transferring it to a register.</p>
+<p>There are many things you can do with registers, I suggest to briefly read <code>:help registers</code>.</p>
+<h3 id="binds-to-deletechangereplace-without-yanking"><a class="header" href="#binds-to-deletechangereplace-without-yanking">Binds to delete/change/replace without yanking.</a></h3>
+<pre><code class="language-lua">map('x', '&lt;leader&gt;p', '&quot;_dP') -- replace text without changing the copy register
+
+map('n', '&lt;leader&gt;d', '&quot;_d') -- delete without yanking, e.g &lt;leader&gt;dd deletes the current line without yanking it
+map('n', '&lt;leader&gt;D', '&quot;_D') -- delete without yanking
+
+map('n', '&lt;leader&gt;c', '&quot;_c') -- change without yanking
+map('n', '&lt;leader&gt;C', '&quot;_C') -- change without yanking
+</code></pre>
+<h2 id="using-the-os-clipboard"><a class="header" href="#using-the-os-clipboard">Using the OS clipboard</a></h2>
+<p><code>+</code> is the OS clipboard register, you can yank to it and you can paste from it.</p>
+<p>I use these binds to use the OS clipboard without too many key presses:</p>
+<pre><code class="language-lua">map('', '&lt;leader&gt;y', '&quot;+y') -- Start copy to os clipboard E.g: &lt;leader&gt;yy will copy current line to os
+map('', '&lt;leader&gt;Y', '&quot;+y$') -- Copy rest of the line to os clipboard like &quot;Y&quot; but for os clipboard
+
+map('n', '&lt;leader&gt;p', '&quot;+p') -- paste after cursor from os clipboard
+map('n', '&lt;leader&gt;P', '&quot;+P') -- paste before cursor from os clipboard
+</code></pre>
+<h2 id="plugins"><a class="header" href="#plugins">Plugins</a></h2>
+<h3 id="putyank-improvements"><a class="header" href="#putyank-improvements">Put/Yank Improvements</a></h3>
+<ul>
+<li><a href="https://github.com/gbprod/yanky.nvim">yanky.nvim</a> to cycle fast in my copy history after pasting instead of using the <code>registers</code>.</li>
+<li><a href="https://github.com/gennaro-tedesco/nvim-peekup">peekup</a> - dynamically interact with vim registers.</li>
+<li><a href="https://github.com/tversteeg/registers.nvim">registers.nvim</a> to see the registers before yanking from/to them.</li>
+</ul>
+<hr />
+<p><a href="chapters/./03-movements-and-operators.html">Previous Chapter</a> | <a href="chapters/./05-text-objects.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="text-objects"><a class="header" href="#text-objects">Text Objects</a></h1>
+<p>Text objects are what made vim superior from other editors for me by any means.</p>
+<p>Text objects are &quot;movements&quot; that only work after an operator. <br />
+A text object consists of a start and an end. <br />
+The default and the most used ones are <code>inner</code>/<code>a</code> + <code>X</code>.</p>
+<p>Modifiers:</p>
+<ul>
+<li><code>i</code> - as <strong>I</strong>nner.</li>
+<li><code>a</code> - as <strong>A</strong>.</li>
+</ul>
+<p>For example:</p>
+<ul>
+<li><code>yiw</code> - <code>yank inner word</code>, will yank the current word.</li>
+<li><code>ciw</code> - <code>change inner word</code>, will change the current word.</li>
+<li><code>daw</code> - <code>delete a word</code>, will delete the current word and the space before it, removes a word from a sentence.</li>
+<li><code>ci'</code> - <code>change inner '</code>, will change the inner text inside the next/current pair of <code>'</code> aka a string.</li>
+<li><code>ca(</code> - <code>delete a (</code>, will delete the text inside and the <code>(</code> of the next/current pair of <code>(</code>.</li>
+</ul>
+<p>You can do these actions for every pair, <code>(</code>/<code>{</code>/<code>'</code>/<code>&quot;</code>. <br />
+You can do these actions for html tags(<code>t</code>), paragraphs(<code>p</code>), and more.</p>
+<p>You can repeat the action when entering a number before, e.g: <code>3daw</code> deletes the current word and the next 2.</p>
+<p>Feel free to enter visual mode and test how it works.</p>
+<p>You can read more about this at <code>:help text-objects</code>.</p>
+<hr />
+<p>One of my favorite text objects is the <code>paragraph</code>, it makes editing code feel so natural.</p>
+<p>If you want to change the order of <code>boo</code> and <code>goo</code>, you can you delete the <code>goo</code> paragraph with <code>dap</code>, go back a paragraph with <code>{</code> and paste the deleted paragraph with <code>p</code>.</p>
+<pre><code class="language-python">def foo():
+	result = boo()
+	if result is not None:
+		return result
+	
+	result = goo() # &lt;--- cursor here
+	if result is not None:
+		return result
+	
+	return None
+</code></pre>
+<hr />
+<h2 id="treesitter-text-objects"><a class="header" href="#treesitter-text-objects">Treesitter Text Objects</a></h2>
+<p><a href="https://github.com/nvim-treesitter/nvim-treesitter-textobjects">nvim-treesitter-textobjects</a> is an awesome/must have plugin that creates text-objects from the treesitter query, which means text-objects for an actual part of your code!</p>
+<p>For the config I use, <code>f</code> is a function, so if I want to change the current content of the function I am on, I hit <code>cif</code>, <code>change inner function</code>, and you can do this on other code objects.</p>
+<p>It changes the way you think about editing code, with code object movements rather than how to move the cursor and to where. <br />
+For example, change the 3rd argument in the next function.</p>
+<pre><code class="language-python">def foo(a: int, b: Any, c: Tuple[int, Optional[str]]):
+	pass # &lt;--- cursor here
+</code></pre>
+<p>You can use <code>[m</code> to move up to the function signature, then <code>]a</code> 3 times (unfortunately you can't do <code>3]a</code> to do it <a href="https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/231">yet</a>), then you can press <code>cia</code> to keep the <code>,</code> but change the content of the argument or you can press <code>cad</code> to delete the entire argument.</p>
+<p>In a standard editor you would need to go the signature manually or using reverse search, hold <code>ctrl</code> and hit the arrows until you reach <code>c</code>, hold <code>ctrl+shift</code> and hitting right arrow 9 times (depends on the editor, tested on sublime), that's tedious.</p>
+<p>It changed the way I think about editing code, it allows me to think with elements from the code, <code>go to next/prev function</code>, <code>yank inner function</code>, <code>delete a function</code>, <code>change inner argument</code>, rather thinking how to move the cursor which relates to the code elements.</p>
+<hr />
+<h3 id="config"><a class="header" href="#config">Config</a></h3>
+<p>My config (adds pair movement as well):</p>
+<pre><code class="language-lua">textobjects = {
+	move = {
+		enable = true,
+		set_jumps = true, -- whether to set jumps in the jumplist
+		goto_next_start = {
+			[&quot;]m&quot;] = &quot;@function.outer&quot;,
+			[&quot;gj&quot;] = &quot;@function.outer&quot;,
+			[&quot;]]&quot;] = &quot;@class.outer&quot;,
+			[&quot;]b&quot;] = &quot;@block.outer&quot;,
+			[&quot;]a&quot;] = &quot;@parameter.inner&quot;,
+		},
+		goto_next_end = {
+			[&quot;]M&quot;] = &quot;@function.outer&quot;,
+			[&quot;gJ&quot;] = &quot;@function.outer&quot;,
+			[&quot;][&quot;] = &quot;@class.outer&quot;,
+			[&quot;]B&quot;] = &quot;@block.outer&quot;,
+			[&quot;]A&quot;] = &quot;@parameter.inner&quot;,
+		},
+		goto_previous_start = {
+			[&quot;[m&quot;] = &quot;@function.outer&quot;,
+			[&quot;gk&quot;] = &quot;@function.outer&quot;,
+			[&quot;[[&quot;] = &quot;@class.outer&quot;,
+			[&quot;[b&quot;] = &quot;@block.outer&quot;,
+			[&quot;[a&quot;] = &quot;@parameter.inner&quot;,
+		},
+		goto_previous_end = {
+			[&quot;[M&quot;] = &quot;@function.outer&quot;,
+			[&quot;gK&quot;] = &quot;@function.outer&quot;,
+			[&quot;[]&quot;] = &quot;@class.outer&quot;,
+			[&quot;[B&quot;] = &quot;@block.outer&quot;,
+			[&quot;[A&quot;] = &quot;@parameter.inner&quot;,
+		},
+	},
+	select = {
+		enable = true,
+		lookahead = true,
+		keymaps = {
+			[&quot;af&quot;] = &quot;@function.outer&quot;,
+			[&quot;if&quot;] = &quot;@function.inner&quot;,
+			[&quot;ac&quot;] = &quot;@class.outer&quot;,
+			[&quot;ic&quot;] = &quot;@class.inner&quot;,
+			[&quot;ab&quot;] = &quot;@block.outer&quot;,
+			[&quot;ib&quot;] = &quot;@block.inner&quot;,
+			[&quot;al&quot;] = &quot;@loop.outer&quot;,
+			[&quot;il&quot;] = &quot;@loop.inner&quot;,
+			[&quot;a/&quot;] = &quot;@comment.outer&quot;,
+			[&quot;i/&quot;] = &quot;@comment.outer&quot;, -- no inner for comment
+			[&quot;aa&quot;] = &quot;@parameter.outer&quot;, -- parameter -&gt; argument
+			[&quot;ia&quot;] = &quot;@parameter.inner&quot;,
+		},
+	},
+},
+</code></pre>
+<p>For LunarVim:</p>
+<pre><code class="language-lua">lvim.builtin.treesitter.textobjects.select = {
+	enable = true,
+	lookahead = true,
+	keymaps = {
+		[&quot;af&quot;] = &quot;@function.outer&quot;,
+		[&quot;if&quot;] = &quot;@function.inner&quot;,
+		[&quot;ac&quot;] = &quot;@class.outer&quot;,
+		[&quot;ic&quot;] = &quot;@class.inner&quot;,
+		[&quot;ab&quot;] = &quot;@block.outer&quot;,
+		[&quot;ib&quot;] = &quot;@block.inner&quot;,
+		[&quot;al&quot;] = &quot;@loop.outer&quot;,
+		[&quot;il&quot;] = &quot;@loop.inner&quot;,
+		[&quot;a/&quot;] = &quot;@comment.outer&quot;,
+		[&quot;i/&quot;] = &quot;@comment.outer&quot;, -- no inner for comment
+		[&quot;aa&quot;] = &quot;@parameter.outer&quot;, -- parameter -&gt; argument
+		[&quot;ia&quot;] = &quot;@parameter.inner&quot;,
+	},
+}
+lvim.builtin.treesitter.textobjects.move = {
+	enable = true,
+	set_jumps = true, -- whether to set jumps in the jumplist
+	goto_next_start = {
+		[&quot;]m&quot;] = &quot;@function.outer&quot;,
+		[&quot;gj&quot;] = &quot;@function.outer&quot;,
+		[&quot;]]&quot;] = &quot;@class.outer&quot;,
+		[&quot;]b&quot;] = &quot;@block.outer&quot;,
+		[&quot;]a&quot;] = &quot;@parameter.inner&quot;,
+	},
+	goto_next_end = {
+		[&quot;]M&quot;] = &quot;@function.outer&quot;,
+		[&quot;gJ&quot;] = &quot;@function.outer&quot;,
+		[&quot;][&quot;] = &quot;@class.outer&quot;,
+		[&quot;]B&quot;] = &quot;@block.outer&quot;,
+		[&quot;]A&quot;] = &quot;@parameter.inner&quot;,
+	},
+	goto_previous_start = {
+		[&quot;[m&quot;] = &quot;@function.outer&quot;,
+		[&quot;gk&quot;] = &quot;@function.outer&quot;,
+		[&quot;[[&quot;] = &quot;@class.outer&quot;,
+		[&quot;[b&quot;] = &quot;@block.outer&quot;,
+		[&quot;[a&quot;] = &quot;@parameter.inner&quot;,
+	},
+	goto_previous_end = {
+		[&quot;[M&quot;] = &quot;@function.outer&quot;,
+		[&quot;gK&quot;] = &quot;@function.outer&quot;,
+		[&quot;[]&quot;] = &quot;@class.outer&quot;,
+		[&quot;[B&quot;] = &quot;@block.outer&quot;,
+		[&quot;[A&quot;] = &quot;@parameter.inner&quot;,
+	},
+}
+</code></pre>
+<hr />
+<p><a href="chapters/./04-copy-paste-visual.html">Previous Chapter</a> | <a href="chapters/./06-splits-and-actual-tabs.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="splits-and-actual-tabs"><a class="header" href="#splits-and-actual-tabs">Splits and Actual Tabs</a></h1>
+<h2 id="splits-aka-windows"><a class="header" href="#splits-aka-windows">Splits aka Windows</a></h2>
+<p>We already covered what splits are at <a href="chapters/01-the-vim-language.html">Chapter 1</a>, but we didn't cover how to control them.</p>
+<ul>
+<li><code>:vsplit</code>/<code>:vs</code> - Creates a vertical split.</li>
+<li><code>:split</code> - Creates a horizontal split.</li>
+<li><code>:q</code> - Close split.</li>
+<li><code>&lt;C-w&gt;</code> + <code>h</code>/<code>j</code>/<code>k</code>/<code>l</code> - Move split to the direction of the arrow.</li>
+<li><code>&lt;C-w&gt;=</code> - Equally resize all the splits.</li>
+<li><code>&lt;C-w&gt;&gt;</code> - Increase width.</li>
+<li><code>&lt;C-w&gt;&lt;</code> - Decrease width.</li>
+<li><code>&lt;C-w&gt;+</code> - Increase height.</li>
+<li><code>&lt;C-w&gt;-</code> - Decrease height.</li>
+</ul>
+<h3 id="configure"><a class="header" href="#configure">Configure</a></h3>
+<p>I recommend to map a quick way to move, create and close splits. (If you are using preconfigured configuration some binds might be set already)</p>
+<p>My mappings:</p>
+<pre><code class="language-lua">map({'n', 't'}, '&lt;C-h&gt;', '&lt;C-w&gt;h')
+map({'n', 't'}, '&lt;C-j&gt;', '&lt;C-w&gt;j')
+map({'n', 't'}, '&lt;C-k&gt;', '&lt;C-w&gt;k')
+map({'n', 't'}, '&lt;C-l&gt;', '&lt;C-w&gt;l')
+
+map('n', '&lt;M-e&gt;', '&lt;cmd&gt;vsplit&lt;cr&gt;')
+map('n', '&lt;M-o&gt;', '&lt;cmd&gt;split&lt;cr&gt;')
+
+map('n', '&lt;M-q&gt;', '&lt;cmd&gt;q&lt;cr&gt;')
+</code></pre>
+<p>The default direction of splits in vim are out of today's standards, to fix it add this to your config:</p>
+<pre><code class="language-lua">vim.opt.splitright = true
+vim.opt.splitbelow = true
+</code></pre>
+<h4 id="plugins-1"><a class="header" href="#plugins-1">Plugins</a></h4>
+<p>If you are using tmux I highly recommend to use <a href="https://github.com/numToStr/Navigator.nvim">Navigator.nvim</a> to move in/out of vim to/from tmux panes seamlessly.</p>
+<hr />
+<h2 id="actual-tabs"><a class="header" href="#actual-tabs">Actual Tabs</a></h2>
+<p>To achieve actual tabs (like in any other IDE) you need to use a <code>bufferline</code>/<code>tabline</code> plugin.</p>
+<p>Your preconfigured configuration probably has one already but you can see the list <a href="https://github.com/rockerBOO/awesome-neovim#tabline">here</a>, I use <a href="https://github.com/akinsho/bufferline.nvim">bufferline.nvim</a>.</p>
+<p>Make sure to map keys to quickly switch, cycle and close tabs.</p>
+<p>My config:</p>
+<pre><code class="language-lua">-- Tabline binds
+map('n', '&lt;C-q&gt;', function() require('bufdelete').bufdelete(0, true) end) -- shift+Quit to close current tab
+map('n', 'g1', function() require('bufferline').go_to_buffer(1, true) end)
+map('n', 'g2', function() require('bufferline').go_to_buffer(2, true) end)
+map('n', 'g3', function() require('bufferline').go_to_buffer(3, true) end)
+map('n', 'g4', function() require('bufferline').go_to_buffer(4, true) end)
+map('n', 'g5', function() require('bufferline').go_to_buffer(5, true) end)
+map('n', 'g6', function() require('bufferline').go_to_buffer(6, true) end)
+map('n', 'g7', function() require('bufferline').go_to_buffer(7, true) end)
+map('n', 'g8', function() require('bufferline').go_to_buffer(8, true) end)
+map('n', 'g9', function() require('bufferline').go_to_buffer(9, true) end)
+map('n', 'g0', function() require('bufferline').go_to_buffer(10, true) end)
+map('n', '&lt;M-j&gt;', '&lt;cmd&gt;BufferLineCyclePrev&lt;CR&gt;') -- Alt+j to move to left
+map('n', '&lt;M-k&gt;', '&lt;cmd&gt;BufferLineCycleNext&lt;CR&gt;') -- Alt+k to move to right
+map('n', '&lt;M-J&gt;', '&lt;cmd&gt;BufferLineMovePrev&lt;CR&gt;') -- Alt+Shift+j grab to with you to left
+map('n', '&lt;M-K&gt;', '&lt;cmd&gt;BufferLineMoveNext&lt;CR&gt;') -- Alt+Shift+k grab to with you to right
+</code></pre>
+<hr />
+<p><a href="chapters/./05-text-objects.html">Previous Chapter</a> | <a href="chapters/./07-vim-goodies.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vim-goodies"><a class="header" href="#vim-goodies">Vim Goodies</a></h1>
+<p>This chapter will briefly cover few of many other vim features.</p>
+<h2 id="quickfix-list"><a class="header" href="#quickfix-list">Quickfix list</a></h2>
+<p>The quickfix list is a list that has entries of <code>file</code>, <code>location(row, col)</code> and <code>text</code>. <br />
+There are many ways to populate the quickfix list, personally I populate it with <code>:help make</code> and <code>telescope.nvim</code> which we will cover later.</p>
+<p>It's mainly used to store search results and compilation errors.</p>
+<h3 id="commands"><a class="header" href="#commands">Commands</a></h3>
+<ul>
+<li><code>:copen</code> - open the quickfix list.</li>
+<li><code>:cclose</code> - close the quickfix list.</li>
+<li><code>:cnext</code> - jump to the next entry in the qf list.</li>
+<li><code>:cprev</code> - jump to the prev entry in the qf list.</li>
+</ul>
+<p>I recommend to install <a href="https://github.com/tpope/vim-unimpaired">vim-unimpaired</a> that adds <code>]q</code> and <code>[q</code> to jump to the next/prev entry.</p>
+<h2 id="substitute-command"><a class="header" href="#substitute-command">Substitute Command</a></h2>
+<p>The <code>s</code> command is used for search &amp; replace in the current buffer you are editing. <br />
+The syntax resembles the <code>sed</code> cli tool.</p>
+<p>The command is very powerful, you can learn more about it in <code>:help :substitute</code> or just google it.</p>
+<p>Few examples:</p>
+<ul>
+<li><code>:s/ofir/gal/</code> - find the first occurrence of <code>ofir</code> in the current line and replace it with <code>gal</code></li>
+<li><code>:s/ofir/gal/g</code> - find all occurrences of <code>ofir</code> in the current line and replace them with <code>gal</code></li>
+<li><code>:%s/ofir/gal/</code> - find the first occurrence of <code>ofir</code> in each line of the current buffer and replace them with <code>gal</code></li>
+<li><code>:%s/ofir/gal/g</code> - same as above but for all occurrences</li>
+</ul>
+<p>Recommended keymap to rename the word under the cursor</p>
+<pre><code class="language-lua">-- My &lt;F2&gt; is binded to lsp rename
+map('n', '&lt;leader&gt;&lt;F2&gt;', '*:%s///g&lt;left&gt;&lt;left&gt;') -- Rename current word with &lt;leader&gt;F2
+map('x', '&lt;F2&gt;', '&quot;hy:%s/&lt;C-r&gt;h//g&lt;left&gt;&lt;left&gt;') -- Rename selected text in visual
+</code></pre>
+<h4 id="plugins-2"><a class="header" href="#plugins-2">Plugins</a></h4>
+<p>With <a href="https://github.com/johmsalas/text-case.nvim">text-case.nvim</a> you can replace text and preserve the casing of the text.</p>
+<p>When executing <code>:Subs/ofir gal/amit tamari</code> on this text:</p>
+<pre><code>OfirGal
+ofirGal
+</code></pre>
+<p>It results this text:</p>
+<pre><code>AmitTamari
+amitTamari
+</code></pre>
+<p>Also it provides lua API to change case, I created these user commands to change casing fast.</p>
+<pre><code class="language-lua">local api = vim.api
+local textcase = require('textcase')
+textcase.setup {
+}
+
+api.nvim_create_user_command('UpperCase', function() textcase.current_word('to_upper_case') end, {})
+api.nvim_create_user_command('LowerCase', function() textcase.current_word('to_lower_case') end, {})
+api.nvim_create_user_command('SnakeCase', function() textcase.current_word('to_snake_case') end, {})
+api.nvim_create_user_command('ConstantCase', function() textcase.current_word('to_dash_case') end, {})
+api.nvim_create_user_command('DashCase', function() textcase.current_word('to_constant_case') end, {})
+api.nvim_create_user_command('DotCase', function() textcase.current_word('to_dot_case') end, {})
+api.nvim_create_user_command('CamelCase', function() textcase.current_word('to_camel_case') end, {})
+api.nvim_create_user_command('PascalCase', function() textcase.current_word('to_pascal_case') end, {})
+api.nvim_create_user_command('TitleCase', function() textcase.current_word('to_title_case') end, {})
+api.nvim_create_user_command('PathCase', function() textcase.current_word('to_path_case') end, {})
+api.nvim_create_user_command('PhraseCase', function() textcase.current_word('to_phrase_case') end, {})
+</code></pre>
+<h2 id="global-command"><a class="header" href="#global-command">Global command</a></h2>
+<p>The <code>g</code> command is used to apply a &quot;vim&quot; command across the buffer by filtering lines with pattern.</p>
+<p>For example:</p>
+<ul>
+<li><code>:g/ofir/d</code> - will delete all the lines with <code>ofir</code></li>
+</ul>
+<p>The command is very powerful, you can learn more about it in <code>:help :global</code> or just google search it.</p>
+<h2 id="macros"><a class="header" href="#macros">Macros</a></h2>
+<p>You can record and replay macros (set of key presses) to apply similar changes fast.</p>
+<p>To start recording press <code>q{a-z}</code>, you will see in the bottom left <code>recording @{a-z}</code> to stop recording press <code>q</code> again, this will save the macro to <code>{a-z}</code> so you can use it later. <br />
+To replay the macro press <code>@{a-z}</code>.</p>
+<p>Record the macro once and use it multiple times on multiple lines.</p>
+<h4 id="usage-example"><a class="header" href="#usage-example">Usage Example</a></h4>
+<p>I have a list of days of the week that I need to store inside a list, all the days need to be in lowercase. <br />
+I have a code with enum of days but I need to migrate it to python</p>
+<pre><code class="language-c">enum Days {
+	Sunday = 0,
+	Monday = 1,
+	Tuesday = 2,
+	Wednesday = 3,
+	Thursday = 4,
+	Friday = 5,
+	Saturday = 6,
+};
+</code></pre>
+<p>Wanted result:</p>
+<pre><code class="language-python">days = [
+	'sunday',
+	'monday',
+	'tuesday',
+	'wednesday',
+	'thursday',
+	'friday',
+	'saturday',
+]
+</code></pre>
+<p>First I'll grab all days from inside the enum to my python file, but I need to make it a list with only the day names. <br />
+I can record a macro that changes the casing of the first letter, deletes the number and adds <code>'</code> to make the day string.</p>
+<p>We are going to change the first day manually while recording the macro.</p>
+<p>The macro: <code>qa^guui'&lt;Esc&gt;ea'&lt;Esc&gt;ldt,jq</code>. <br />
+Breakdown:</p>
+<ol>
+<li><code>qa</code> - start a macro recording on <code>a</code></li>
+<li><code>^</code> - go to the start of the line</li>
+<li><code>guu</code> - change the current char to lowercase</li>
+<li><code>i'&lt;Esc&gt;</code> - enter insert mode, add <code>'</code> and escape from insert mode</li>
+<li><code>e</code> - go the the end of word</li>
+<li><code>a'&lt;Esc&gt;</code> - enter insert mode after the word, add <code>'</code> and escape from insert mode</li>
+<li><code>l</code> - move right from the <code>'</code> we just added</li>
+<li><code>dt,</code> - delete the content until <code>,</code> (the <code>= &lt;num&gt;</code>)</li>
+<li>j - go down a line so we can repeat the macro</li>
+<li>q finish recording the macro.</li>
+</ol>
+<p>After we recorded the macro on top of the first day we have 6 days left, we can press <code>6@a</code> and that will repeat the macro 6 times and will change all the days.</p>
+<h4 id="plugins-3"><a class="header" href="#plugins-3">Plugins</a></h4>
+<p>You can edit macros after recording them with <a href="https://github.com/rbong/vim-buffest">vim-buffest</a></p>
+<h2 id="dot-to-repeat"><a class="header" href="#dot-to-repeat">Dot to repeat</a></h2>
+<p>You can press <code>.</code> to repeat what you just did. <br />
+You can think of it like a macro that holds only the last action you did.</p>
+<h4 id="usage-example-1"><a class="header" href="#usage-example-1">Usage Example</a></h4>
+<pre><code>apple banana orange
+</code></pre>
+<p>I want to change all the fruits to <code>fruit</code>, but I realized it after I already changed <code>apple</code> to <code>fruit</code> by using <code>ciwfruit&lt;Esc&gt;</code> and I don't want to record a macro again.</p>
+<p>After I change it I can just go to the next word (preferably with <code>w</code>) and press <code>.</code> to change the current word to <code>fruit</code>.</p>
+<p>You can do cool stuff with when combining <code>:help gn</code></p>
+<h2 id="external-command"><a class="header" href="#external-command">External Command</a></h2>
+<p>You can run external terminal commands from vim, for example: <code>!ls</code></p>
+<h2 id="folds"><a class="header" href="#folds">Folds</a></h2>
+<p>vim supports folds, personally I never found this feature necessary, I set it to never fold automatically, but you can read more about folds <a href="https://vim.fandom.com/wiki/Folding">here</a> and make sure to check out <a href="https://github.com/kevinhwang91/nvim-ufo">nvim-ufo</a>.</p>
+<pre><code class="language-lua">opt.foldlevelstart = 99 -- no auto folding
+</code></pre>
+<hr />
+<p><a href="chapters/./06-splits-and-actual-tabs.html">Previous Chapter</a> | <a href="chapters/./08-advanced-config.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="advanced-config"><a class="header" href="#advanced-config">Advanced Config</a></h1>
+<p>You learned the basics of vim (and a little bit about nvim). From this chapter on I'll mostly talk about what takes nvim from being a good editor to a great editor, its plugin-rich ecosystem and configurability.</p>
+<h2 id="personal-config-vs-preconfigured-configuration"><a class="header" href="#personal-config-vs-preconfigured-configuration">Personal Config vs Preconfigured Configuration</a></h2>
+<h4 id="preconfigured-config"><a class="header" href="#preconfigured-config">Preconfigured config</a></h4>
+<p>Preconfigured configurations are great, they provide a fast way to get a good config which is maintained by a community. But they add a &quot;layer&quot; of abstraction in the config, when installing new plugins that don't interact with builtin plugins everything works, but if the plugin has to interact with a builtin plugin it can become tricky.
+You have to read how your preconfigured configurations expose those options which sometimes confusing and inconvenient.</p>
+<p>It's like trying to fix stuff in a rented house, you don't know exactly how everything works but you learn as you try, sometimes you just don't want to mess with that.</p>
+<h4 id="personal-config"><a class="header" href="#personal-config">Personal config</a></h4>
+<p>When you build your own config, you build your own house, so you know exactly how the electricity works, how the plumbing works, and how everything is connected.</p>
+<p>Your config = your codebase, configs of nvim are written in Lua, when you write your own config you write a mini project. You know each file, you know the &quot;flow&quot; of the config, you manage your own codebase from scratch rather than &quot;diving&quot; into the existing codebase of your preconfigured configuration.</p>
+<h4 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h4>
+<p>I think that maintaining a personal config is the better option, it takes time and effort at first but it's worthwhile. Not everyone should write their own config but I suggest you try it.</p>
+<p><em><strong>Note</strong></em>: If you stick with a preconfigured configuration, some parts of the next chapters are irrelevant, I'll make sure to let you know you can skip them.</p>
+<hr />
+<h2 id="why-do-i-need-to-configure-my-editor-using-a-programming-language"><a class="header" href="#why-do-i-need-to-configure-my-editor-using-a-programming-language">Why do I need to configure my editor using a programming language?</a></h2>
+<p>At first I didn't understand why do I need to learn and use Lua to configure my editor but soon enough I understood it's the right way to configure your editor. <br />
+It gives the ability to utilize your coding knowledge to improve your own experience in the editor.</p>
+<p>A great basic example for that is my <code>go to definition</code> keybind.</p>
+<pre><code class="language-lua">goto_def = function()
+	local ft = api.nvim_buf_get_option(0, 'filetype')
+	if ft == 'man' then
+		api.nvim_command(':Man ' .. vim.fn.expand('&lt;cWORD&gt;'))
+	elseif ft == 'help' then
+		api.nvim_command(':help ' .. vim.fn.expand('&lt;cword&gt;'))
+	else
+		require'telescope.builtin'.lsp_definitions()
+	end
+end
+</code></pre>
+<p>Which provides me a goto in <code>man page</code>, <code>help page</code> or just a regular code block, all in the same bind! When I'm browsing man I feel like I browse code.</p>
+<p>In other editors it would be a <code>value</code> in a <code>.json</code> which a builtin/plugin function handles, so in order to achieve this kind of behavior I would have to write a plugin.</p>
+<hr />
+<h2 id="basic-lua"><a class="header" href="#basic-lua">Basic Lua</a></h2>
+<p>Regardless of whether you use a preconfigured or a personal config, you need to learn a bit of Lua. Fortunately it's quite a simple language, I suggest you to learn it the same as you would with Python, for instance.</p>
+<p>You can find <a href="https://github.com/nanotee/nvim-lua-guide">Lua resources and the basic of Lua in nvim here</a>. It's a long guide, I used it as a reference document to start with, afterwards I switched to the <code>:help nvim_*</code> method, which I'll cover later.</p>
+<h4 id="lua-modules-packages-and-tables"><a class="header" href="#lua-modules-packages-and-tables">Lua modules, packages and tables</a></h4>
+<p>To understand how <code>module</code> and <code>package</code> work, you have to understand what's a <code>table</code> in Lua.</p>
+<h5 id="lua-table"><a class="header" href="#lua-table">Lua table</a></h5>
+<blockquote>
+<p>Tables are the main (in fact, the only) data structuring mechanism in Lua, and a powerful one. We use tables to represent ordinary arrays, symbol tables, sets, records, queues, and other data structures, in a simple, uniform, and efficient way.
+As far as I know this is the reason Lua is so fast.</p>
+</blockquote>
+<details><summary>Table usage examples (click to expand)</summary>
+<pre><code class="language-lua">local my_table = {
+	ofir = &quot;gal&quot;
+}
+
+for key, value in pairs(my_table) do
+	print(&quot;key: &quot; .. key .. &quot;, value: &quot; .. value)
+end
+-- Output:
+--   key: ofir, value: gal
+print(my_table.ofir) -- Output: gal
+
+-------------------------------
+
+local my_array = { 5, 6, 7 }
+for _, value in ipairs(my_array) do
+	print(value)
+end
+-- Output:
+--  5
+--  6
+--  7
+
+-------------------------------
+
+for index, value in ipairs(my_array) do
+	print(index, value)
+end
+-- Output:
+--  1       5
+--  2       6
+--  3       7
+
+-------------------------------
+
+local my_dict = {
+	[&quot;ofir&quot;] = &quot;gal&quot;
+}
+
+for key, value in pairs(my_dict) do
+	print(&quot;key: &quot; .. key .. &quot;, value: &quot; .. value)
+end
+-- Output:
+--   key: ofir, value: gal
+print(my_dict.ofir) -- Output: gal
+print(my_dict[&quot;ofir&quot;]) -- Output: gal
+print(my_table[&quot;ofir&quot;]) -- Output: gal
+
+</code></pre>
+<p><a href="https://www.lua.org/pil/2.5.html">More examples here</a></p>
+<hr />
+</details>
+<h6 id="lua-module"><a class="header" href="#lua-module">Lua module</a></h6>
+<p>Module is a table of exported functions and vars.</p>
+<details><summary>Module example (click to expand)</summary>
+<p><code>module_example.lua</code>:</p>
+<pre><code class="language-lua">local M = {} -- Initialize the table of the module
+
+-- Example for private function
+local function private_func(input)
+	print(&quot;Foo: &quot; .. input)
+end
+
+-- Example of exported function
+M.public_func = function(input)
+	private_func(input)
+end
+
+return M -- Return the exported functions table
+</code></pre>
+<p>Usage example:</p>
+<pre><code class="language-lua">require('module_example').public_func(&quot;ofir&quot;)
+
+local mod = require('module_example')
+mod.public_func(&quot;ofir&quot;)
+</code></pre>
+<hr />
+</details>
+<h4 id="lua-package"><a class="header" href="#lua-package">Lua package</a></h4>
+<p>Lua package is a folder which has an <code>init.lua</code> which is a Lua module.</p>
+<details><summary>Package example (click to expand)</summary>
+<p><code>package_example/init.lua</code>:</p>
+<pre><code class="language-lua">local M = {}
+local submod = require('anothermodule')
+
+M.boo = function()
+	submod.goo(&quot;ofir gal&quot;)
+end
+
+M.goo = submod.goo -- Expose submod.goo through the package
+
+return M
+</code></pre>
+<p><code>package_example/anothermodule.lua</code>:</p>
+<pre><code class="language-lua">local M = {}
+
+M.goo = function(input)
+	print(&quot;submod.goo: &quot;.. input)
+end
+
+return M
+</code></pre>
+<p>Usage example:</p>
+<pre><code class="language-lua">require('package_example').boo()
+require('package_example').goo(&quot;amit tamari&quot;)
+require('package_example.anothermodule').goo(&quot;direct call to submodule&quot;)
+require('package_example/anothermodule').goo(&quot;another way to direct call to submodule&quot;)
+</code></pre>
+</details>
+<hr />
+<h2 id="how-to-create-a-personal-config"><a class="header" href="#how-to-create-a-personal-config">How to create a personal config</a></h2>
+<h3 id="launch-nvim-in-separate-environments"><a class="header" href="#launch-nvim-in-separate-environments">Launch nvim in separate environments</a></h3>
+<p>The first thing you'll want to do is to start your config in a git repo, you can manage your config in a separate repo and use it as a git submodule in your dotfiles or make it a part of your dotfiles repo.</p>
+<p>nvim loads its config from <code>~/.config/nvim</code> by default, but we can set it to load from a different dir:</p>
+<pre><code class="language-bash">XDG_CONFIG_HOME=~/wip_config/ XDG_DATA_HOME=~/.local/share/wip_nvim XDG_STATE_HOME=~/.local/state/wip_nvim nvim
+</code></pre>
+<p>This line launches nvim, loads the config from <code>~/wip_config/nvim</code>, saves the plugins in <code>~/.local/share/wip_nvim</code> and the state at <code>~/.local/state/wip_nvim</code>.</p>
+<p>This creates a <a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a>-esque setup for nvim. I recommend to set an alias to launch your <code>personal nvim</code> (for example <code>pnv</code>) until your personal config is stable enough.</p>
+<h3 id="folder-structure"><a class="header" href="#folder-structure">Folder structure</a></h3>
+<p>Your config is your codebase, so you have to maintain the order. One of the fundamentals for a clean config is the folder structure.</p>
+<p>Find a structure which allows you to maintain a clean config that doesn't add overhead when editing/adding plugins.</p>
+<h4 id="example-of-basic-config-folder-structure"><a class="header" href="#example-of-basic-config-folder-structure">Example of basic config folder structure</a></h4>
+<p>To understand how nvim loads the config I made a simple folder structure with notes:</p>
+<pre><code class="language-bash">📂 ~/wip_config/nvim
+├── 🌑 init.lua # &lt;---- Entry point
+├── 📂 lua
+│  ├── 🌑 module_example.lua # &lt;---- Interpreted at `require('module_example')`
+│  └── 📂 package_example
+│     ├── 🌑 init.lua # &lt;---- Interpreted at `require('package_example')`
+│     └── 🌑 anothermodule.lua # &lt;---- Interpreted at `require('package_example/anothermodule')`
+├── 📂 vim  # &lt;---- vimscript config files
+└── 📁 pack # &lt;---- `packer` compile dir, added it to .gitignore
+</code></pre>
+<h4 id="recommended-folder-structure"><a class="header" href="#recommended-folder-structure">Recommended folder structure</a></h4>
+<p>This is my personal opinion for how to manage nvim config, feel free to scan through other dotfiles/nvim configs for inspiration.</p>
+<pre><code class="language-bash">📂 ~/wip_config/nvim
+├── 🌑 init.lua # Entrypoint, requires lua/* modules by desired order
+└── 📂 lua
+   ├── 🌑 autocmds.lua    # Generic autocmds
+   ├── 🌑 keymaps.lua     # Keymaps
+   ├── 🌑 plugin_list.lua # Setup `packer`   (plugin list)
+   ├── 🌑 settings.lua    # nvim settings    (vim.opt)
+   ├── 🌑 ui.lua          # UI plugins setup (loaded before other plugins)
+   ├── 🌑 usercmds.lua    # Generic usercmds
+   ├── 🌑 utils.lua       # Utils functions  (can be a package too)
+   └── 📂 plugins
+      ├── 🌑 init.lua         # Loads all the submodules (plugins setup)
+      ├── 🌑 autocomplete.lua # Autocomplete engine setup
+      ├── 🌑 debug.lua        # Debug related plugins
+      ├── 🌑 git.lua          # Git related plugins
+      ├── 🌑 hydra.lua        # Hydras
+      ├── 🌑 lsp.lua          # LSP configuration and related plugins
+      ├── 🌑 misc.lua         # Miscellaneous plugins
+      ├── 🌑 telescope.lua    # Telescope + extensions setup
+      └── 🌑 treesitter.lua   # Treesitter + extensions setup
+</code></pre>
+<p>I suggest to recreate this folder structure and write the files while reading the guide.</p>
+<h3 id="config-setup"><a class="header" href="#config-setup">Config Setup</a></h3>
+<p>Let's start with <code>settings.lua</code>, transfer your vim options (<code>vim.opt.*</code>) to <code>settings.lua</code>. <br />
+Now setup <code>init.lua</code> to require <code>settings.lua</code> like so:</p>
+<pre><code class="language-lua">require('settings')
+</code></pre>
+<p>Restart your nvim and check that your vim options are set. <br />
+Remember you can use <code>print</code></p>
+<p>After that I recommend to write <code>keymaps.lua</code> and <code>autocmds.lua</code>.</p>
+<h4 id="installing-the-first-plugin"><a class="header" href="#installing-the-first-plugin">Installing the first plugin</a></h4>
+<p>Let's start with writing <code>plugin_list.lua</code>, in this file you manage your installed plugins. <br />
+There are several package managers, one that is well-known is <a href="https://github.com/wbthomason/packer.nvim">packer</a>. <br />
+TL;DR copy paste <a href="https://github.com/wbthomason/packer.nvim#bootstrapping">this</a> into <code>plugin_list.lua</code> and add <code>use '{github user}/{repo}'</code> beneath the <code>-- My plugins here</code> comment.</p>
+<p>If you reset your nvim <code>:Packer</code> commands won't exist, you must require it from <code>init.lua</code> like so:</p>
+<pre><code class="language-lua">require('plugin_list')
+</code></pre>
+<p>Make sure to execute <code>:PackerInstall</code> to install the added plugin.</p>
+<p>After you installed your first plugin successfully it's time to set it up.</p>
+<p>Create <code>plugins/init.lua</code> file and copy the code that requires all submodules from <a href="https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/init.lua">here</a> and add <code>require('plugins')</code> in <code>init.lua</code>.</p>
+<p>Now you can add each plugin setup to its corresponding file and restart nvim.</p>
+<hr />
+<h3 id="lua-usage-in-nvim--nvim-lua-api"><a class="header" href="#lua-usage-in-nvim--nvim-lua-api">Lua usage in nvim &amp; nvim lua api</a></h3>
+<p>nvim has an api for almost everything in lua, each lua function generates a help doc, which you can access by <code>:help nvim_*</code>.</p>
+<p>For example, the docs for <code>vim.api.nvim_buf_get_name</code> can be accessed using <code>:h nvim_buf_get_name</code></p>
+<p>You can run lua from the command line, <code>:lua print(vim.api.nvim_buf_get_name(0))</code></p>
+<p>Important reference links from <a href="https://github.com/nanotee/nvim-lua-guide">nanotee/nvim-lua-guide</a> and <code>:help</code> tags:</p>
+<ul>
+<li><a href="https://github.com/nanotee/nvim-lua-guide#using-meta-accessors">Manage nvim options (vim.opt)</a> or <code>:h vim.opt</code></li>
+<li><a href="https://github.com/nanotee/nvim-lua-guide#using-meta-accessors-1">Accessing vim variables (e.g - let:g)</a> or <code>:h lua-vim-variables</code></li>
+<li><a href="https://github.com/nanotee/nvim-lua-guide#defining-user-commands">Define usercommands from lua</a> or <code>:h nvim_create_user_command</code></li>
+<li><a href="https://github.com/nanotee/nvim-lua-guide#vimapinvim_command">Execute usercommand from lua</a> or <code>:h nvim_command</code></li>
+<li><a href="https://github.com/nanotee/nvim-lua-guide#calling-vimscript-functions">Execute vim functions from lua</a> or <code>:h vim.fn</code></li>
+<li><a href="https://github.com/nanotee/nvim-lua-guide#vimapinvim_exec">Execute vimscript from lua</a> or <code>:h nvim_exec</code></li>
+</ul>
+<hr />
+<p><a href="chapters/./07-vim-goodies.html">Previous Chapter</a> | <a href="chapters/./09-ui.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ui"><a class="header" href="#ui">UI</a></h1>
+<p>One of nvim's strengths is that it doesn't provide a real native UI, instead it provides a framework for creating a UI, this enables the community to develop different UI options through the use of various plugins.</p>
+<p>If you are using a preconfigured configuration, probably the UI is already configured, but can be customized. Check your config's docs for more info.</p>
+<h2 id="components"><a class="header" href="#components">Components</a></h2>
+<h3 id="colorscheme"><a class="header" href="#colorscheme">Colorscheme</a></h3>
+<p>Like in any code editor, there are a bunch of color schemes to choose from, I use my own scheme <a href="https://github.com/ofirgall/ofirkai.nvim">ofirkai.nvim</a>. I recommend to choose a color scheme you are already familiar with.</p>
+<p><a href="https://github.com/rockerBOO/awesome-neovim#colorscheme">Color schemes</a></p>
+<h3 id="statusline-and-winbar"><a class="header" href="#statusline-and-winbar">Statusline and Winbar</a></h3>
+<p>Statusline is the bottom line right above the command line. <br />
+You can configure it to show whatever you like but usually it shows the current mode, file, file type and more.</p>
+<p>You can set the status line to global or local.</p>
+<ul>
+<li>global - one status line that shows information about the current active buffer.</li>
+<li>local - status line for each window even if it's inactive, you can configure different designs for active and inactive.</li>
+</ul>
+<p>Winbar is the same as statusline but for each window, it's located at the top of the window instead of the bottom, it's useful if you want information per window but a global status line too.</p>
+<p>I personally use <a href="https://github.com/nvim-lualine/lualine.nvim">lualine.nvim</a>, but I know a lot of people that prefer <a href="https://github.com/feline-nvim/feline.nvim">feline.nvim</a>, <a href="https://github.com/rockerBOO/awesome-neovim#statusline">you can find all statuslines here</a></p>
+<p>How to set a global/local status line</p>
+<pre><code class="language-lua">vim.opt.laststatus = 3 -- Global line
+vim.opt.laststatus = 2 -- The default, local
+</code></pre>
+<p>Check <code>:h laststatus</code> for all the options</p>
+<h3 id="tabline"><a class="header" href="#tabline">Tabline</a></h3>
+<p>Tabline is the row of opened tabs, like in web browsers and other IDEs.</p>
+<p>There isn't much to configure, but here are a couple of plugins that implement it:</p>
+<ul>
+<li><a href="https://github.com/akinsho/bufferline.nvim">bufferline.nvim</a>, that's the one I use.</li>
+<li><a href="https://github.com/romgrk/barbar.nvim">barbar.nvim</a> another popular option.</li>
+<li><a href="https://github.com/rockerBOO/awesome-neovim#tabline">More tablines</a></li>
+</ul>
+<h3 id="file-explorer-file-tree"><a class="header" href="#file-explorer-file-tree">File Explorer (File Tree)</a></h3>
+<p>There is a default file explorer for nvim but it's not widely used.</p>
+<p>Recommended file tree plugins:</p>
+<ul>
+<li><a href="https://github.com/kyazdani42/nvim-tree.lua">nvim-tree.lua</a></li>
+<li><a href="https://github.com/ms-jpq/chadtree">chadtree</a></li>
+<li><a href="https://github.com/rockerBOO/awesome-neovim#file-explorer">More file explorers</a></li>
+</ul>
+<hr />
+<p><a href="chapters/./08-advanced-config.html">Previous Chapter</a> | <a href="chapters/./10-code-navigation.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="code-navigation"><a class="header" href="#code-navigation">Code Navigation</a></h1>
+<h2 id="lsp-1"><a class="header" href="#lsp-1">LSP</a></h2>
+<p>To make nvim &quot;smart&quot; you need to install a LSP server and connect it to nvim's LSP client.</p>
+<p>There are two options to do that:</p>
+<ol>
+<li>Using <a href="https://github.com/williamboman/mason.nvim">mason.nvim</a> with <a href="https://github.com/williamboman/mason-lspconfig.nvim">mason-lspconfig.nvim</a> and <a href="https://github.com/neovim/nvim-lspconfig">nvim-lspconfig</a>, these 3 plugins will manage and install LSP servers, make sure you integrate it with your preconfigured configuration.</li>
+<li>Using <a href="https://github.com/neovim/nvim-lspconfig">nvim-lspconfig</a> and manually maintain the LSP servers binaries (personally I do it with dotfiles), make sure you integrate it with your preconfigured configuration.</li>
+</ol>
+<h2 id="telescope"><a class="header" href="#telescope"><a href="https://github.com/nvim-telescope/telescope.nvim">Telescope</a></a></h2>
+<p>Now we need a tool which can utilize the great capabilities that are provided with LSP.</p>
+<p>One of them is telescope which is a framework for search, preview and pick.</p>
+<p>Some of the features:</p>
+<ul>
+<li>You can live-grep across the project with it, equivalent to CTRL+SHIFT+F in a &quot;modern&quot; IDE.</li>
+<li>You can find a file, equivalent to CTRL+p in a &quot;modern&quot; IDE.</li>
+<li>You can find all the definitions of a function with it (using LSP), equivalent to F12 in a &quot;modern&quot; IDE.</li>
+<li>You can find all the references/implementations/type definitions with it (using LSP).</li>
+<li>You can live grep a local/workspace symbols (functions), using LSP ofc.</li>
+</ul>
+<p>Your preconfigured configuration probably has it installed and binded to keys already, make sure you know how to use it and configure it to your taste, it is very useful.</p>
+<h2 id="lsp-goodies"><a class="header" href="#lsp-goodies">LSP Goodies</a></h2>
+<ul>
+<li><a href="https://github.com/glepnir/lspsaga.nvim">LSP Saga</a> UI for LSP &quot;hover&quot; and rename and code actions (hints).</li>
+<li><a href="https://github.com/RRethy/vim-illuminate">vim-illuminate</a> highlight the symbol your cursor is on and let you jump to next/previous reference, very useful to know what &quot;happened&quot; to a variable.</li>
+<li><a href="https://github.com/ray-x/lsp_signature.nvim">LSP Signature</a> shows the function signature while writing a function call.</li>
+<li><a href="https://github.com/j-hui/fidget.nvim">fidget.nvim</a> shows the LSP server progress in the bottom right corner.</li>
+<li><a href="https://git.sr.ht/~whynothugo/lsp_lines.nvim">lsp_lines.nvim</a> shows the diagnostics in an intuitive way.</li>
+<li><a href="https://github.com/Mofiqul/trld.nvim">trld.nvim</a> shows the current line diagnostic in the top right corner of the buffer.</li>
+<li><a href="https://github.com/SmiteshP/nvim-navic">nvim-navic</a> shows the current context in the status/winbar line.</li>
+<li><a href="https://github.com/rockerBOO/awesome-neovim#lsp">More plugins that integrate with LSP</a></li>
+</ul>
+<hr />
+<p><a href="chapters/./08-advanced-config.html">Previous Chapter</a> | <a href="chapters/./10-complete-engine.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="complete-and-snippets-engines"><a class="header" href="#complete-and-snippets-engines">Complete and Snippets Engines</a></h1>
+<p>If you are using a preconfigured configuration there is a high chance this is already configured and installed, you can skip this chapter.</p>
+<h2 id="complete-engine"><a class="header" href="#complete-engine">Complete Engine</a></h2>
+<p>nvim doesn't provide a native completion menu, we need a menu with fuzzy finding, completion, scrolling and more. <br />
+For that a completion engine is for, the one that everybody use is <a href="https://github.com/hrsh7th/nvim-cmp">nvim-cmp</a>. <br />
+I recommend to start with the recommended setup and configure it more further.</p>
+<h3 id="sources"><a class="header" href="#sources">Sources</a></h3>
+<p>Part of the configuration you pass <code>sources</code> this is where the complete menu get its entries from, you can extend the <code>sources</code> of your completions with other plugins.</p>
+<p>The default ones are presented at the readme of <a href="https://github.com/hrsh7th/nvim-cmp">nvim-cmp</a>. <br />
+One of the sources you want to have is the complete engine source, I'll elaborate about that later.</p>
+<p>Extra cool sources:</p>
+<ul>
+<li><a href="https://github.com/petertriho/cmp-git">cmp-git</a> which provides a source for all the commit hashes and integrates to github and gitlab</li>
+<li><a href="https://gitlab.com/msvechla/cmp-jira">cmp-jira</a> provides source for tickets</li>
+<li><a href="https://github.com/zbirenbaum/copilot-cmp">copilot-cmp</a> integrates github copilot to nvim through nvim-cmp.</li>
+<li><a href="https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources">More can be found here</a></li>
+</ul>
+<h3 id="formatting--window"><a class="header" href="#formatting--window">Formatting &amp; Window</a></h3>
+<p>You can control how the menu is presented</p>
+<h3 id="binds-1"><a class="header" href="#binds-1">Binds</a></h3>
+<p>You can go wild on this one, I recommend to stick with the default ones at first and think about that later.</p>
+<hr />
+<h2 id="snippet-engine"><a class="header" href="#snippet-engine">Snippet Engine</a></h2>
+<p>Snippet engine has 2 parts, the part that translate snippet formats to actual snippet and the one that let you jump between the part of the snippet you need to complete.</p>
+<p>There are multiple snippet engines personally I use <a href="https://github.com/dcampos/nvim-snippy">nvim-snippy</a> which requires to add <a href="https://github.com/dcampos/cmp-snippy">cmp-snippy</a> as a <a href="https://github.com/hrsh7th/nvim-cmp">nvim-cmp</a> source.</p>
+<p>The snippet engine requires a snippets source too, I use a personal fork of <a href="https://github.com/honza/vim-snippets">vim-snippets</a> to remove unwanted snippets.</p>
+<hr />
+<h1 id="my-complete-and-snippet-engines-configuration"><a class="header" href="#my-complete-and-snippet-engines-configuration"><a href="https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/autocomplete.lua">My Complete and Snippet Engines Configuration</a></a></h1>
+<hr />
+<p><a href="chapters/./09-ui.html">Previous Chapter</a> | <a href="chapters/./12-git.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="git"><a class="header" href="#git">Git</a></h1>
+<p>As someone who used the git CLI for everything git has to offer I switched very quickly to use nvim for git management. <br />
+I'll cover some of the plugins I use to manage my git through nvim, I recommend to adapt some of them.</p>
+<hr />
+<h2 id="fugitive"><a class="header" href="#fugitive"><a href="https://github.com/tpope/vim-fugitive">Fugitive</a></a></h2>
+<p>Provides the <code>:Git</code>/<code>:G</code> command which is a basiciliy sends the command to the git CLI and provides interactive window to work with. <br />
+E.g: <code>:G show HEAD</code>/<code>:Git show HEAD</code></p>
+<p>The &quot;main&quot; feature of it is the interactive <code>status</code> window which can be triggered with <code>:G</code> with no params which provide a convenient way to see the diffs, stage files and commit changes.
+<img src="chapters/../media/fugitive.png" alt="nvim Screenshot" /></p>
+<hr />
+<h2 id="gitsigns"><a class="header" href="#gitsigns"><a href="https://github.com/lewis6991/gitsigns.nvim">Gitsigns</a></a></h2>
+<p>Shows the current diff in a column next to the line numbers, lets you to stage/revert/preview/blame hunk's.</p>
+<hr />
+<h2 id="git-blame"><a class="header" href="#git-blame"><a href="https://github.com/f-person/git-blame.nvim">Git blame</a></a></h2>
+<p>Shows the current line blame in the status bar or in virtual text.</p>
+<hr />
+<h2 id="git-tree-git-log"><a class="header" href="#git-tree-git-log">Git Tree (git log)</a></h2>
+<p>To see the git tree I use <a href="https://github.com/rbong/vim-flog">vim-flog</a> which provides interactive git tree viewer. <br />
+You can hit enter on a commit to see the diff, you can perform interactive rebase on the commit when hitting <code>ri</code> and much more. <br />
+It so useful that I created <code>ngh</code> which is an alias to replace <code>git hist</code>, it opens a new nvim with a git tree.
+<img src="chapters/../media/flog.png" alt="nvim Screenshot" /></p>
+<hr />
+<h2 id="diffview"><a class="header" href="#diffview">Diffview</a></h2>
+<p>To see a big diff easily I use <a href="https://github.com/sindrets/diffview.nvim">diffview.nvim</a>.
+<img src="chapters/../media/diffview_diff.png" alt="nvim Screenshot" /></p>
+<p>I use it to see the history of a file too (<code>&lt;leader&gt;gh</code> in my <code>keymap.lua</code>).
+<img src="chapters/../media/diffview_hist.png" alt="nvim Screenshot" /></p>
+<p>I use it to solve conflicts too.
+<img src="chapters/../media/conflict.png" alt="nvim Screenshot" /></p>
+<hr />
+<h2 id="hunk-history"><a class="header" href="#hunk-history">Hunk History</a></h2>
+<p>How many times did you tried <code>git blame</code> to understand why this code exist only to see the last commit just <code>indent</code> the code or made a minor change. <br />
+<a href="https://github.com/rhysd/git-messenger.vim">git-messenger.vim</a> is comes to solve this by providing <code>hunk history</code>.
+<img src="chapters/../media/hunk_history.png" alt="nvim Screenshot" /></p>
+<hr />
+<p><a href="chapters/./11-complete-engine.html">Previous Chapter</a> | <a href="chapters/./13-debug.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="debug"><a class="header" href="#debug">Debug</a></h1>
+<p>The same solution for LSP is exist for debugging, its called <code>DAP</code>, Debug Adapater Protocol. <br />
+To integrate it you need to install <a href="https://github.com/mfussenegger/nvim-dap">nvim-dap</a>.</p>
+<p>As any good nvim plugin <a href="https://github.com/mfussenegger/nvim-dap">nvim-dap</a> is a framework and there is plugins that extends it.</p>
+<p>Extensions:</p>
+<ul>
+<li><a href="https://github.com/rcarriga/nvim-dap-ui">nvim-dap-ui</a> a interactive ui for debugging, its a must!.</li>
+<li><a href="https://github.com/Pocco81/dap-buddy.nvim">dap-buddy.nvim</a> installs DAP servers, you can skip this if you prefer to install the servers manually.</li>
+<li><a href="https://github.com/Weissle/persistent-breakpoints.nvim">persistent-breakpoints.nvim</a> saves the breakpoints across nvim restarts</li>
+<li><a href="https://github.com/ofirgall/goto-breakpoints.nvim">goto-breakpoints.nvim</a> pair binds to cycle through breakpoints, plugin by me :)</li>
+<li><a href="https://github.com/rockerBOO/awesome-neovim#debugging">More extensions can be found here</a></li>
+</ul>
+<hr />
+<p><a href="chapters/./12-git.html">Previous Chapter</a> | <a href="chapters/./14-hydra.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hydra"><a class="header" href="#hydra"><a href="https://github.com/anuvyklack/hydra.nvim">Hydra</a></a></h1>
+<p>Hydra is a framework to create a submode inside nvim, a submode is called <code>Hydra</code>.</p>
+<p>It allows to enter a <code>body</code> with a key bind or a lua command and from there it creates a custom keymapping &quot;ontop&quot; of your exist keys to allow you to do various actions. <br />
+You can create custom ones very easily too.</p>
+<p>Hydras for example:</p>
+<ul>
+<li><a href="https://github.com/anuvyklack/hydra.nvim/wiki/Windows-and-buffers-management">Windows and buffers management</a>, I think its a must, much more convenient from the vanilla method.</li>
+<li><a href="https://github.com/anuvyklack/hydra.nvim/wiki/Git">Git</a> another tool for git management from inside nvim</li>
+<li><a href="https://github.com/anuvyklack/hydra.nvim/wiki">You can find all the community hydra's here</a></li>
+</ul>
+<p>Example for a &quot;custom&quot; hydra of mine, which let met scroll through the functions in the buffer quickly:</p>
+<pre><code class="language-lua">local ts_move = require'nvim-treesitter.textobjects.move'
+-- Move up/down functions
+local curr = Hydra({
+	hint = [[
+ _j_ _J_ : up
+ _k_ _K_ : down
+  _&lt;Esc&gt;_
+	]],
+	config = {
+		timeout = 4000,
+		hint = {
+			border = 'rounded'
+		}
+	},
+	mode = {'n', 'x'},
+	heads = {
+		{ 'j', function ()
+			ts_move.goto_next_start('@function.outer')
+			center_screen()
+		end },
+		{ 'J', function ()
+			ts_move.goto_next_end('@function.outer')
+			center_screen()
+		end },
+		{ 'k', function ()
+			ts_move.goto_previous_start('@function.outer')
+			center_screen()
+		end },
+		{ 'K', function ()
+			ts_move.goto_previous_end('@function.outer')
+			center_screen()
+		end },
+		{ '&lt;Esc&gt;', nil,  { exit = true }}
+	}
+})
+map({'n', 'x'}, 'gj', function ()
+	ts_move.goto_next_start('@function.outer')
+	center_screen()
+	curr:activate()
+end)
+map('o', 'gj', function () ts_move.goto_next_start('@function.outer') end)
+
+map({'n', 'x'}, 'gk', function ()
+	ts_move.goto_previous_start('@function.outer')
+	center_screen()
+	curr:activate()
+end)
+map('o', 'gk', function () ts_move.goto_previous_start('@function.outer') end)
+
+map({'n', 'x'}, 'gJ', function ()
+	ts_move.goto_next_end('@function.outer')
+	center_screen()
+	curr:activate()
+end)
+map('o', 'gJ', function () ts_move.goto_next_end('@function.outer') end)
+
+map({'n', 'x'}, 'gK', function ()
+	ts_move.goto_previous_end('@function.outer')
+	center_screen()
+	curr:activate()
+end)
+map('o', 'gK', function () ts_move.goto_previous_end('@function.outer') end)
+</code></pre>
+<hr />
+<p><a href="chapters/./13-debug.html">Previous Chapter</a> | <a href="chapters/./15-misc-and-summary.html">Next Chapter</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="misc"><a class="header" href="#misc">Misc</a></h1>
+<p>In this chapter I'll mention some misc plugins that I recommend to adapt.</p>
+<h2 id="basic-ide-functionalities"><a class="header" href="#basic-ide-functionalities">Basic IDE Functionalities</a></h2>
+<p>nvim doesn't provide all the expected functionalities of an IDE, plugins are here to close that gap.</p>
+<h3 id="session-manager"><a class="header" href="#session-manager">Session Manager</a></h3>
+<p>I use <a href="https://github.com/rmagatti/auto-session">auto-session</a>.
+<a href="https://github.com/rockerBOO/awesome-neovim#session">Other Session Manager's</a></p>
+<h3 id="comment"><a class="header" href="#comment"><a href="https://github.com/numToStr/Comment.nvim">Comment</a></a></h3>
+<p>Adds a comment operation</p>
+<h3 id="last-place"><a class="header" href="#last-place"><a href="https://github.com/ethanholz/nvim-lastplace">Last Place</a></a></h3>
+<p>Remembers the last place you edited a buffer.</p>
+<h3 id="guess-indent"><a class="header" href="#guess-indent"><a href="https://github.com/NMAC427/guess-indent.nvim">Guess Indent</a></a></h3>
+<p>Guess the indent of the file and override the indent settings.</p>
+<h3 id="auto-pairs"><a class="header" href="#auto-pairs"><a href="https://github.com/windwp/nvim-autopairs">Auto Pairs</a></a></h3>
+<p>Adds closures for your pairs, for example when you type <code>(</code> it make it <code>()</code> and put the cursor in the middle.</p>
+<h3 id="auto-save"><a class="header" href="#auto-save"><a href="https://github.com/Pocco81/auto-save.nvim">Auto Save</a></a></h3>
+<p>Auto saves the file when a text has been edited, don't worry about losing your data.</p>
+<h3 id="trailing-whitespace"><a class="header" href="#trailing-whitespace"><a href="https://github.com/ntpeters/vim-better-whitespace">Trailing whitespace</a></a></h3>
+<p>Be a good programmer and don't leave junk for git.</p>
+<h3 id="multi-cursor"><a class="header" href="#multi-cursor"><a href="https://github.com/mg979/vim-visual-multi">Multi cursor</a></a></h3>
+<p>If you are already good with multi cursor, take that skill with you to nvim, if you don't consider to use macros instead.</p>
+<h3 id="terminal-in-nvim"><a class="header" href="#terminal-in-nvim"><a href="https://github.com/akinsho/toggleterm.nvim">Terminal in nvim</a></a></h3>
+<p>Enables an integrated terminal inside nvim.</p>
+<h3 id="pasta"><a class="header" href="#pasta"><a href="https://github.com/hrsh7th/nvim-pasta">pasta</a></a></h3>
+<p>Fix's the issues with vanilla paste of nvim.</p>
+<h2 id="extras"><a class="header" href="#extras">Extras</a></h2>
+<h3 id="surround"><a class="header" href="#surround"><a href="https://github.com/kylechui/nvim-surround">Surround</a></a></h3>
+<p>Surround parts of your code with <code>[]</code>/<code>()</code>/<code>{}</code>, quickly</p>
+<h3 id="undotree"><a class="header" href="#undotree"><a href="https://github.com/mbbill/undotree">Undotree</a></a></h3>
+<p>Visualize your undo branches, never lose and redo/undo history again!</p>
+<h3 id="unimpaired"><a class="header" href="#unimpaired"><a href="https://github.com/tpope/vim-unimpaired">Unimpaired</a></a></h3>
+<p>Add pair mappings (<code>][</code>) that fills natural.</p>
+<h3 id="vim-repeat"><a class="header" href="#vim-repeat"><a href="https://github.com/tpope/vim-repeat">vim-repeat</a></a></h3>
+<p>Extends dot-repeat action.</p>
+<h3 id="todo-comments"><a class="header" href="#todo-comments"><a href="https://github.com/folke/todo-comments.nvim">Todo Comments</a></a></h3>
+<p>Highlight <code>TODO</code> comments, populate quickfix list with all the todo comments in a workspace</p>
+<h3 id="debug-print"><a class="header" href="#debug-print"><a href="https://github.com/andrewferrier/debugprint.nvim">Debug print</a></a></h3>
+<p>Add debug prints for variables quickly.</p>
+<h3 id="leapnvim"><a class="header" href="#leapnvim"><a href="https://github.com/ggandor/leap.nvim">leap.nvim</a></a></h3>
+<p>Add leap motion to nvim, like vimium, EasyMotion, hop and such. <br />
+If you liked <a href="https://github.com/rhysd/clever-f.vim">clever-f</a> you will love <a href="https://github.com/ggandor/flit.nvim">flit.nvim</a></p>
+<h3 id="vim-tmux-navigator"><a class="header" href="#vim-tmux-navigator"><a href="https://github.com/christoomey/vim-tmux-navigator">vim-tmux-navigator</a></a></h3>
+<p>Make pane switching from/to nvim seamless, if you are using tmux its a must!</p>
+<h3 id="sudavim"><a class="header" href="#sudavim"><a href="https://github.com/lambdalisue/suda.vim">suda.vim</a></a></h3>
+<p>Write/read to/from files that requires sudo without executing nvim as sudo.</p>
+<h3 id="impatientnvim"><a class="header" href="#impatientnvim"><a href="https://github.com/lewis6991/impatient.nvim">impatient.nvim</a></a></h3>
+<p>Improves startup time</p>
+<h3 id="man-pager"><a class="header" href="#man-pager">Man pager</a></h3>
+<p>Consider make nvim your man pager, its so awesome to control man pages as you control your editor. <br />
+Add this to your .shellrc:</p>
+<pre><code class="language-bashrc"># nvim as man viewer
+export MANPAGER='nvim +Man! .'
+export MANWIDTH=999
+</code></pre>
+<h3 id="more"><a class="header" href="#more">More</a></h3>
+<p>There are many many more plugins for neovim, you can check out <a href="https://github.com/rockerBOO/awesome-neovim">awesome-neovim</a>, and you can also my list - <a href="https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/packer.lua">packer.lua</a></p>
+<hr />
+<h1 id="summary"><a class="header" href="#summary">Summary</a></h1>
+<p>Thanks for reading! I hope this guide helped you learn Neovim. <br />
+This guide doesn't cover everything, make sure you keep learning about your text editor and keep improving your skill.</p>
+<p>If you found mistakes make sure to leave feedback at the <a href="https://github.com/ofirgall/learn-nvim/issues">issues section</a> <br />
+If you liked the guide consider to leave a <code>star</code>.</p>
+<p>To keep up with new plugins and updates I recommend to:</p>
+<ul>
+<li>Watch <a href="https://github.com/rockerBOO/awesome-neovim">awesome-neovim</a> to get notified for new PR's (plugins)</li>
+<li>Subscribe to <a href="https://www.reddit.com/r/neovim/">/r/neovim</a></li>
+<li>Keep an eye on <a href="https://this-week-in-neovim.org/">This week in Neovim</a></li>
+</ul>
+<hr />
+<p><a href="chapters/./14-hydra.html">Previous Chapter</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

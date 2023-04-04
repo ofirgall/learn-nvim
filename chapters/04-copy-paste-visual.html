@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Copy, Paste and Visual Mode - Learn Neovim</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapters/00-why-should-i-learn.html"><strong aria-hidden="true">1.</strong> Why Should I Learn?</a></li><li class="chapter-item expanded "><a href="../chapters/01-the-vim-language.html"><strong aria-hidden="true">2.</strong> The vim Language</a></li><li class="chapter-item expanded "><a href="../chapters/02-basic-config.html"><strong aria-hidden="true">3.</strong> Basic Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/03-movements-and-operators.html"><strong aria-hidden="true">4.</strong> Movements and Operators</a></li><li class="chapter-item expanded "><a href="../chapters/04-copy-paste-visual.html" class="active"><strong aria-hidden="true">5.</strong> Copy, Paste and Visual Mode</a></li><li class="chapter-item expanded "><a href="../chapters/05-text-objects.html"><strong aria-hidden="true">6.</strong> Text objects</a></li><li class="chapter-item expanded "><a href="../chapters/06-splits-and-actual-tabs.html"><strong aria-hidden="true">7.</strong> Splits and Actual Tabs</a></li><li class="chapter-item expanded "><a href="../chapters/07-vim-goodies.html"><strong aria-hidden="true">8.</strong> Vim Goodies</a></li><li class="chapter-item expanded "><a href="../chapters/08-advanced-config.html"><strong aria-hidden="true">9.</strong> Advanced Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/09-ui.html"><strong aria-hidden="true">10.</strong> UI</a></li><li class="chapter-item expanded "><a href="../chapters/10-code-navigation.html"><strong aria-hidden="true">11.</strong> Code Navigation</a></li><li class="chapter-item expanded "><a href="../chapters/11-complete-engine.html"><strong aria-hidden="true">12.</strong> Complete and Snippets Engines</a></li><li class="chapter-item expanded "><a href="../chapters/12-git.html"><strong aria-hidden="true">13.</strong> Git</a></li><li class="chapter-item expanded "><a href="../chapters/13-debug.html"><strong aria-hidden="true">14.</strong> Debug</a></li><li class="chapter-item expanded "><a href="../chapters/14-hydra.html"><strong aria-hidden="true">15.</strong> Hydra</a></li><li class="chapter-item expanded "><a href="../chapters/15-misc-and-summary.html"><strong aria-hidden="true">16.</strong> Misc Plugins and Summary</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Learn Neovim</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="copy-paste-and-visual-mode"><a class="header" href="#copy-paste-and-visual-mode">Copy, Paste and Visual Mode</a></h1>
+<p>The default behavior of vim doesn't copy to your OS clipboard, but instead copies to a <code>register</code>, which can also be the OS clipboard.</p>
+<h2 id="copy-and-paste-with-specifying-registers"><a class="header" href="#copy-and-paste-with-specifying-registers">Copy and paste with specifying registers</a></h2>
+<p>To yank (copy) a text, you can copy the text from <code>NORMAL</code> mode with the <code>y</code> operator combined with a <code>movement</code> ,or you can enter <code>visual</code> mode with <code>v</code> and yank the text with <code>y</code>.</p>
+<p>A text is copied to the registers when you <code>change</code> and <code>delete</code> text too.</p>
+<p>To paste the yanked result you can use:</p>
+<ul>
+<li><code>p</code> - paste after the cursor</li>
+<li><code>P</code> - paste before the cursor</li>
+<li><code>&lt;M-p&gt; (Alt+p)</code> - paste in insert mode</li>
+</ul>
+<h2 id="visual-modes"><a class="header" href="#visual-modes">Visual Modes</a></h2>
+<ul>
+<li><code>v</code> - Normal Visual mode</li>
+<li><code>V</code> - Visual Line mode, selects text by lines</li>
+<li><code>&lt;C-v&gt;</code> - Visual Block mode, selects text by block</li>
+</ul>
+<p>You can replace text by pasting new text after selecting the text to replace with visual, this action copies the replaced text to a register too.</p>
+<h2 id="registers"><a class="header" href="#registers">Registers</a></h2>
+<p>To specify a destination for the copy use <code>&quot;</code>. <br />
+For example to copy to register <code>a</code> I'll hit these keys: <code>&quot;ay&lt;movement&gt;&quot;</code>.</p>
+<p>Same for pasting: <code>&quot;ap</code>.</p>
+<p>Use <code>_</code> - as the <code>black hole</code> register, when you want to delete a text without transferring it to a register.</p>
+<p>There are many things you can do with registers, I suggest to briefly read <code>:help registers</code>.</p>
+<h3 id="binds-to-deletechangereplace-without-yanking"><a class="header" href="#binds-to-deletechangereplace-without-yanking">Binds to delete/change/replace without yanking.</a></h3>
+<pre><code class="language-lua">map('x', '&lt;leader&gt;p', '&quot;_dP') -- replace text without changing the copy register
+
+map('n', '&lt;leader&gt;d', '&quot;_d') -- delete without yanking, e.g &lt;leader&gt;dd deletes the current line without yanking it
+map('n', '&lt;leader&gt;D', '&quot;_D') -- delete without yanking
+
+map('n', '&lt;leader&gt;c', '&quot;_c') -- change without yanking
+map('n', '&lt;leader&gt;C', '&quot;_C') -- change without yanking
+</code></pre>
+<h2 id="using-the-os-clipboard"><a class="header" href="#using-the-os-clipboard">Using the OS clipboard</a></h2>
+<p><code>+</code> is the OS clipboard register, you can yank to it and you can paste from it.</p>
+<p>I use these binds to use the OS clipboard without too many key presses:</p>
+<pre><code class="language-lua">map('', '&lt;leader&gt;y', '&quot;+y') -- Start copy to os clipboard E.g: &lt;leader&gt;yy will copy current line to os
+map('', '&lt;leader&gt;Y', '&quot;+y$') -- Copy rest of the line to os clipboard like &quot;Y&quot; but for os clipboard
+
+map('n', '&lt;leader&gt;p', '&quot;+p') -- paste after cursor from os clipboard
+map('n', '&lt;leader&gt;P', '&quot;+P') -- paste before cursor from os clipboard
+</code></pre>
+<h2 id="plugins"><a class="header" href="#plugins">Plugins</a></h2>
+<h3 id="putyank-improvements"><a class="header" href="#putyank-improvements">Put/Yank Improvements</a></h3>
+<ul>
+<li><a href="https://github.com/gbprod/yanky.nvim">yanky.nvim</a> to cycle fast in my copy history after pasting instead of using the <code>registers</code>.</li>
+<li><a href="https://github.com/gennaro-tedesco/nvim-peekup">peekup</a> - dynamically interact with vim registers.</li>
+<li><a href="https://github.com/tversteeg/registers.nvim">registers.nvim</a> to see the registers before yanking from/to them.</li>
+</ul>
+<hr />
+<p><a href="./03-movements-and-operators.html">Previous Chapter</a> | <a href="./05-text-objects.html">Next Chapter</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapters/03-movements-and-operators.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../chapters/05-text-objects.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapters/03-movements-and-operators.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../chapters/05-text-objects.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

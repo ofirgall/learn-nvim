@@ -1,0 +1,442 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Basic Configuration - Learn Neovim</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapters/00-why-should-i-learn.html"><strong aria-hidden="true">1.</strong> Why Should I Learn?</a></li><li class="chapter-item expanded "><a href="../chapters/01-the-vim-language.html"><strong aria-hidden="true">2.</strong> The vim Language</a></li><li class="chapter-item expanded "><a href="../chapters/02-basic-config.html" class="active"><strong aria-hidden="true">3.</strong> Basic Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/03-movements-and-operators.html"><strong aria-hidden="true">4.</strong> Movements and Operators</a></li><li class="chapter-item expanded "><a href="../chapters/04-copy-paste-visual.html"><strong aria-hidden="true">5.</strong> Copy, Paste and Visual Mode</a></li><li class="chapter-item expanded "><a href="../chapters/05-text-objects.html"><strong aria-hidden="true">6.</strong> Text objects</a></li><li class="chapter-item expanded "><a href="../chapters/06-splits-and-actual-tabs.html"><strong aria-hidden="true">7.</strong> Splits and Actual Tabs</a></li><li class="chapter-item expanded "><a href="../chapters/07-vim-goodies.html"><strong aria-hidden="true">8.</strong> Vim Goodies</a></li><li class="chapter-item expanded "><a href="../chapters/08-advanced-config.html"><strong aria-hidden="true">9.</strong> Advanced Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/09-ui.html"><strong aria-hidden="true">10.</strong> UI</a></li><li class="chapter-item expanded "><a href="../chapters/10-code-navigation.html"><strong aria-hidden="true">11.</strong> Code Navigation</a></li><li class="chapter-item expanded "><a href="../chapters/11-complete-engine.html"><strong aria-hidden="true">12.</strong> Complete and Snippets Engines</a></li><li class="chapter-item expanded "><a href="../chapters/12-git.html"><strong aria-hidden="true">13.</strong> Git</a></li><li class="chapter-item expanded "><a href="../chapters/13-debug.html"><strong aria-hidden="true">14.</strong> Debug</a></li><li class="chapter-item expanded "><a href="../chapters/14-hydra.html"><strong aria-hidden="true">15.</strong> Hydra</a></li><li class="chapter-item expanded "><a href="../chapters/15-misc-and-summary.html"><strong aria-hidden="true">16.</strong> Misc Plugins and Summary</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Learn Neovim</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="basic-configuration"><a class="header" href="#basic-configuration">Basic Configuration</a></h1>
+<p>One of nvim's strengths is that it's highly configurable, you can customize everything. <br />
+Setup your editor in a way that'll be nice for you to look at and it won't be filled with useless buttons/stuff.</p>
+<p>I recommend to create your own configuration but it takes time and effort. <br />
+We will talk about the advantages at the <a href="https://github.com/ofirgall/learn-nvim/blob/master/chapters/08-advanced-config.md">advanced configuration chapter</a> but I recommend to use preconfigured configuration for now, unless you are a config nerd like me.</p>
+<hr />
+<h2 id="terminal-emulator-setup"><a class="header" href="#terminal-emulator-setup">Terminal Emulator Setup</a></h2>
+<p>nvim can be run with a GUI frontend or how it was intended to, in a terminal emulator. <br />
+I recommend to use one of the modern cross-platform terminal emulators:</p>
+<ul>
+<li><a href="https://github.com/alacritty/alacritty">Alacritty</a> - recommended with <a href="https://github.com/tmux/tmux">tmux</a>/<a href="https://github.com/i3/i3">i3</a> for splits and sessions (I use Alacritty + tmux)</li>
+<li><a href="https://github.com/kovidgoyal/kitty">Kitty</a> - I never used it but people say it's nice</li>
+<li><a href="https://github.com/wez/wezterm">Wezterm</a> - Lua configured terminal, I don't like the design, especially the way cursor behaves in it, but it seems the community love it.</li>
+</ul>
+<h3 id="nerdfont"><a class="header" href="#nerdfont">Nerdfont</a></h3>
+<p>It's highly recommended to install a <a href="https://www.nerdfonts.com/">nerdfont</a> to support icons in your terminal, many plugins utilize it. <br />
+I use <a href="https://www.programmingfonts.org/#cascadia-code">CascadiaCode</a>, <a href="https://www.programmingfonts.org/#jetbrainsmono">JetBrainsMono</a> is nice too.</p>
+<h3 id="keybinds-limitations"><a class="header" href="#keybinds-limitations">Keybinds limitations</a></h3>
+<p>Because of <code>ascii</code> terminals don't support <code>Ctrl+Shift+&lt;X&gt;</code> keybindings, <a href="https://github.com/tmux/tmux/issues/674#issuecomment-263157843">here's a great comment that explains why</a>. <br />
+Some terminals allow to use a workaround, but it's not a must (I don't use Ctrl+Shift+X binds).</p>
+<h4 id="options-as-alt-in-macos"><a class="header" href="#options-as-alt-in-macos">Options as Alt in macOS</a></h4>
+<p>To be able to use Alt binds in your terminal you need to configure your terminal emulator to do so.</p>
+<ul>
+<li><a href="https://sw.kovidgoyal.net/kitty/conf/#opt-kitty.macos_option_as_alt">For Kitty</a></li>
+<li><a href="https://github.com/alacritty/alacritty/issues/62">For Alacritty</a></li>
+</ul>
+<hr />
+<h2 id="how-to-install-nvim"><a class="header" href="#how-to-install-nvim">How to Install nvim</a></h2>
+<p>I recommend to install the <a href="https://github.com/neovim/neovim/releases">latest release</a>, <code>Nvim development</code> is the nightly. <br />
+You can install <a href="https://github.com/neovim/neovim/releases/tag/nightly">nightly</a> which is pretty stable and doesn't break often but you don't want to bother yourself with bugs as a beginner.</p>
+<hr />
+<h2 id="preconfigured-configurations"><a class="header" href="#preconfigured-configurations"><a href="https://github.com/rockerBOO/awesome-neovim#preconfigured-configuration">Preconfigured Configurations</a></a></h2>
+<p>There are several preconfigured configurations, these are the popular ones:</p>
+<ul>
+<li><a href="https://github.com/LunarVim/LunarVim">LunarVim</a></li>
+<li><a href="https://github.com/AstroNvim/AstroNvim">AstroNvim</a></li>
+<li><a href="https://github.com/NvChad/NvChad">NvChad</a></li>
+</ul>
+<h4 id="lunarvim"><a class="header" href="#lunarvim">LunarVim</a></h4>
+<p>Personally I skipped using a preconfigured configuration, but I highly suggest to use it as a starting point. <a href="https://github.com/LunarVim/LunarVim">LunarVim</a> is the easiest to start with, <a href="https://www.lunarvim.org/docs/installation">Installation link</a>.</p>
+<p>Make sure you read and edit the default configuration to your taste. <br />
+To open the configuration press <code>Space</code>, <code>SHIFT+L</code>, <code>c</code>. <br />
+To see the keybinds press <code>Space</code>, <code>SHIFT+L</code>, <code>k</code>.</p>
+<hr />
+<h2 id="how-to-install-plugins"><a class="header" href="#how-to-install-plugins">How to Install Plugins</a></h2>
+<p>I'll recommend several plugins along the way, make sure you are not lazy to install them.</p>
+<h4 id="how-to-download-a-plugin"><a class="header" href="#how-to-download-a-plugin">How to download a plugin</a></h4>
+<p>nvim plugins are git repositories, a package manager downloads and updates them, <a href="https://github.com/wbthomason/packer.nvim">packer</a> is the standard one and it's already installed in LunarVim.</p>
+<p>In LunarVim's configuration you will find:</p>
+<pre><code class="language-lua">-- Additional Plugins
+lvim.plugins = {
+    {&quot;folke/tokyonight.nvim&quot;},
+    {
+      &quot;folke/trouble.nvim&quot;,
+      cmd = &quot;TroubleToggle&quot;,
+    },
+}
+</code></pre>
+<p><code>lvim.plugins</code> is passed to <a href="https://github.com/wbthomason/packer.nvim">packer</a>, <code>folke/tokyonight.nvim</code> is a short for <a href="https://github.com/folke/tokyonight.nvim">github.com/folke/tokyonight.nvim</a>. <br />
+Which means when a plugin tell you to install it by <code>use { 'plugin_author/plugin_name', more_options }</code>, just copy <code>{ 'plugin_author/plugin_name', more_options }</code>.</p>
+<p><em><strong>Note</strong></em>: LunarVim runs <code>:PackerInstall</code> for you when the config changes.</p>
+<p>Useful Packer Commands:</p>
+<ul>
+<li><code>:PackerInstall</code> - Install new added plugins.</li>
+<li><code>:PackerStatus</code> - List all installed pluigns.</li>
+<li><code>:PackerSnapshot</code> - Take a snapshot of your current plugins versions (useful before updating).</li>
+<li><code>:PackerUpdate</code> - Update all plugins.</li>
+<li><code>:PackerClean</code> - Remove unused plugins.</li>
+</ul>
+<h4 id="how-to-configure-a-plugin"><a class="header" href="#how-to-configure-a-plugin">How to configure a plugin</a></h4>
+<p>Usually a plugin will provide a <code>setup</code> function which configures the plugin's behavior, most plugins won't activate if the setup function isn't called.</p>
+<p>Usually the <code>setup</code> function receives a <code>table</code>, most plugins use the override standard - the keys in the table you pass will override the default, other keys keep their default value. <br />
+The defaults are usually in the plugin <code>README</code> and in the <code>:help &lt;plugin&gt;</code></p>
+<p><em><strong>Note</strong></em>: I recommend to start backing up your config with some kind of dotfiles, I use <a href="https://github.com/anishathalye/dotbot">dotbot</a>.
+<em><strong>Note</strong></em>: I recommend adding the GitHub shorthand above the setup function as a comment, you can use <a href="https://github.com/ofirgall/open.nvim">open.nvim</a> to access the plugin repo quickly.</p>
+<h4 id="how-to-install-vim-plugin"><a class="header" href="#how-to-install-vim-plugin">How to install vim plugin</a></h4>
+<p>nvim supports vim plugins, the install of them is similar to nvim but the configuration is done by vim variables rather than <code>setup</code> function.
+The documentation of the plugin usually would be written in VimScript format as so:</p>
+<pre><code class="language-vim">let g:cool_plugin_variable = 1
+</code></pre>
+<p>The equivalent of that line in Lua is:</p>
+<pre><code class="language-lua">vim.g.cool_plugin_variable = 1
+</code></pre>
+<p>You can read more about vim variables at <code>:help internal-variables</code>.</p>
+<h4 id="recommended-plugins-to-start-with"><a class="header" href="#recommended-plugins-to-start-with">Recommended Plugins to Start With</a></h4>
+<ul>
+<li>Make sure you pick a <a href="https://github.com/rockerBOO/awesome-neovim#colorscheme">colorscheme</a> you like or create your own like I <a href="https://github.com/ofirgall/ofirkai.nvim">did</a>.</li>
+<li><a href="https://github.com/rmagatti/auto-session">auto-session</a> - Auto save your session, so you can jump back to your session after exiting/restarting nvim.</li>
+<li><a href="https://github.com/christoomey/vim-tmux-navigator">vim-tmux-navigator</a> - great plugin for tmux users.</li>
+<li><a href="https://github.com/numToStr/Comment.nvim">Comment.nvim</a> - Adds comment operation (included in LunarVim's <a href="https://www.lunarvim.org/docs/plugins/core-plugins-list">core plugins</a>).</li>
+<li><a href="https://github.com/ray-x/lsp_signature.nvim">lsp_signature.nvim</a> - Show function signature when you type.</li>
+<li><a href="https://github.com/NMAC427/guess-indent.nvim">guess-indent.nvim</a> - Automatic indentation style detection.</li>
+<li><a href="https://github.com/windwp/nvim-autopairs">nvim-autopairs</a> - Auto pair, when typing a pair, eg: <code>(</code>, add the closure and set the cursor in between. (Included in LunarVim)</li>
+<li><a href="https://github.com/ofirgall/open.nvim">open.nvim</a> - Open GitHub shorthand and more straight from vim.</li>
+</ul>
+<h5 id="programming-languages-support"><a class="header" href="#programming-languages-support">Programming languages support</a></h5>
+<p>Some languages have plugins to support them specifically, usually the plugin takes care of the LSP setup (read below), so make sure you don't setup the LSP more than once. I recommend to skip the LSP setup of the plugin and set it up yourself or with mason.</p>
+<ul>
+<li><a href="https://github.com/simrat39/rust-tools.nvim">rust-tools</a></li>
+<li><a href="https://github.com/akinsho/flutter-tools.nvim">flutter-tools</a></li>
+<li><a href="https://github.com/ray-x/go.nvim">go.nvim</a></li>
+<li><a href="https://github.com/folke/neodev.nvim">neodev.nvim</a> - Lua develop for nvim api (Already installed by LunarVim)</li>
+<li>For other languages check out <a href="https://github.com/rockerBOO/awesome-neovim#programming-languages-support">awesome-neovim</a></li>
+</ul>
+<h5 id="auto-savenvim"><a class="header" href="#auto-savenvim"><a href="https://github.com/Pocco81/auto-save.nvim">auto-save.nvim</a></a></h5>
+<p>I hated using autosave in other text editors, but because vim has modes it knows exactly when a text was changed. <br />
+On <code>InsertLeave</code> which is triggered when you leave Insert mode, and on <code>TextChanged</code> which is triggered when text was changed in normal mode.</p>
+<p>Autosave + autoformat = annoying behavior. Make sure you disable auto format, I wrote a <a href="https://github.com/ofirgall/format-on-leave.nvim">simple plugin</a> to format when I switch buffers.</p>
+<p>How to disable autoformat in LunarVim:</p>
+<pre><code class="language-lua">lvim.format_on_save = false
+</code></pre>
+<p>Autosave + live config refresh = annoying behavior. Make sure you disable autosave in your config if you like live config refresh.<br />
+An example for how to do it in LunarVim:</p>
+<pre><code class="language-lua">local user_config_file = require(&quot;lvim.config&quot;):get_user_config_path()
+require(&quot;auto-save&quot;).setup {
+  enabled = true,
+
+  condition = function(buf)
+    local fn = vim.fn
+    local utils = require(&quot;auto-save.utils.data&quot;)
+
+    if vim.api.nvim_buf_get_name(buf) == user_config_file then
+      return false
+    end
+
+    if fn.getbufvar(buf, &quot;&amp;modifiable&quot;) == 1 and
+        utils.not_in(fn.getbufvar(buf, &quot;&amp;filetype&quot;), {}) then
+      return true -- met condition(s), can save
+    end
+    return false -- can't save
+  end,
+}
+</code></pre>
+<hr />
+<h2 id="options"><a class="header" href="#options">Options</a></h2>
+<p>Options control the behavior of nvim, they can be set to <code>boolean</code>, <code>number</code> or <code>string</code>. <br />
+To set an option type <code>:set &lt;option&gt;</code>, to see the current value of an option use <code>:set &lt;option&gt;?</code>. <br />
+boolean options are enabled by <code>:set &lt;option&gt;</code> and disabled by <code>:set no&lt;option&gt;</code>. <br />
+E.g: <code>:set relativenumber</code> enables <code>relativenumber</code> and <code>:set norelativenumber</code> disables it.</p>
+<p>Every option has a help tag for it, for example <code>:h relativenumber</code> <br />
+The options are listed in <code>:h option-list</code>.</p>
+<p>In nvim you can access the options by <code>vim.opt</code></p>
+<h3 id="sensible-options"><a class="header" href="#sensible-options">Sensible Options</a></h3>
+<pre><code class="language-lua">local opt = vim.opt
+
+opt.number = true -- Enables line numbers
+opt.relativenumber = true -- Enables relative line numbers
+opt.autoindent = true -- Indent automatically
+opt.cursorline = true -- Enables cursor line
+opt.ignorecase = true -- Ignore case when searching
+opt.splitright = true -- Split to the right on vertical
+opt.splitbelow = true -- Split below when horizontal
+opt.swapfile = false -- Don't use swap files (I use auto-save.nvim instead)
+opt.wrap = true -- Wrap lines
+opt.updatetime = 100 -- mainly for trld.nvim which utilize CursorHold autocmd
+opt.formatoptions:append('cro') -- continue comments when going down a line, hit C-u to remove the added comment prefix
+opt.sessionoptions:remove('options') -- don't save keymaps and local options
+opt.foldlevelstart = 99 -- no auto folding
+</code></pre>
+<hr />
+<h2 id="key-mapping"><a class="header" href="#key-mapping">Key mapping</a></h2>
+<p>Key map can be set to specific modes. <br />
+The important ones:</p>
+<ul>
+<li><code>n</code> - Normal mode</li>
+<li><code>i</code> - Insert mode</li>
+<li><code>x</code> - Visual &amp; Select mode</li>
+<li><code>v</code> - Visual mode</li>
+<li><code>:h map-commands</code> for the full mode list</li>
+</ul>
+<p>To set a keymap you should use <code>vim.keymap.set</code> or even better a <code>map</code> function with default value for <code>opts</code>.</p>
+<pre><code class="language-lua">local function map(mode, lhs, rhs, desc, opts)
+	opts = opts or { slient = true }
+	opts.desc = desc
+	vim.keymap.set(mode, lhs, rhs, opts)
+end
+</code></pre>
+<ul>
+<li><code>mode</code> - mode for which the keymap is added to, can be a single mode <code>'n'</code>, table of modes <code>{'n', 'x'}</code>, or empty <code>''</code> for all modes.</li>
+<li><code>lhs</code> - The key you need to press to activate the key map</li>
+<li><code>rhs</code> - Can be a lua function to call or a string to let vim &quot;type&quot;, for example <code>nzz</code> executes <code>n</code> and then <code>zz</code> which are binded to <code>next</code> and <code>recenter</code>.</li>
+<li><code>desc</code> - Description for the keymap.</li>
+<li><code>opts</code> - Table of options for the keymap, read more at <code>:h map-arguments</code></li>
+</ul>
+<p><strong><strong>Note:</strong></strong> LunarVim keymaps are set different make to sure to read <a href="https://www.lunarvim.org/docs/configuration/keybindings">this</a> too</p>
+<hr />
+<h2 id="autocommands"><a class="header" href="#autocommands">Autocommands</a></h2>
+<blockquote>
+<p>An autocommand is a command that is executed automatically in response to some
+event, such as a file being read or written or a buffer change.</p>
+</blockquote>
+<p>For example a good autocommand to highlight the text that was yanked.</p>
+<pre><code class="language-lua">-- Highlight on yank
+vim.api.nvim_create_autocmd('TextYankPost', {
+	pattern = '*',
+	callback = function() vim.highlight.on_yank({timeout=350, higroup='Visual'}) end
+})
+</code></pre>
+<p>Plugins can add custom autocommands too! <br />
+For all the builtin autocmds see <code>:h autocmd-list</code>.</p>
+<p>Read <code>:h nvim_create_autocmd</code> for full explanation.</p>
+<hr />
+<h2 id="shell-setup"><a class="header" href="#shell-setup">Shell Setup</a></h2>
+<p>Don't forget to set nvim as your default terminal editor like so:</p>
+<pre><code>export EDITOR='nvim'
+</code></pre>
+<hr />
+<h2 id="other-good-tools-with-vim-binds"><a class="header" href="#other-good-tools-with-vim-binds">Other good tools with vim binds</a></h2>
+<ul>
+<li><a href="https://github.com/philc/vimium">Vimium</a> - Vim binds for your browser.</li>
+<li><a href="https://github.com/aristocratos/btop">btop</a> - Resource viewer that can be configured to use vim binds.</li>
+</ul>
+<hr />
+<h2 id="plugin-tools"><a class="header" href="#plugin-tools">Plugin Tools</a></h2>
+<p>The preconfigured configuration handles the installation of LSP and Treesitter, so you don't need to worry about handling it, but it's recommended to familiarize yourself with both of these tools to understand how other plugins utilize them.</p>
+<h3 id="backend-binaries"><a class="header" href="#backend-binaries">Backend Binaries</a></h3>
+<p>Some plugins utilize external binaries to make nvim fast, I recommend to instal them.</p>
+<ul>
+<li><a href="https://github.com/BurntSushi/ripgrep">ripgrep aka rg</a> - Better <code>grep</code>.</li>
+<li><a href="https://github.com/sharkdp/fd">fd</a> - Better <code>find</code>.</li>
+</ul>
+<h3 id="lsp"><a class="header" href="#lsp"><a href="https://microsoft.github.io/language-server-protocol/">LSP</a></a></h3>
+<blockquote>
+<p>The idea behind the Language Server Protocol (LSP) is to standardize the protocol for how such servers and development tools communicate. This way, a single Language Server can be re-used in multiple development tools, which in turn can support multiple languages with minimal effort.</p>
+</blockquote>
+<p>Which means nvim/sublime/vscode get the same Intellisense. <br />
+The servers run locally on your PC and are optimized to run fast. <br />
+nvim implements the fastest lsp client.</p>
+<p><a href="https://microsoft.github.io/language-server-protocol/implementors/servers/">Server list by language</a></p>
+<h3 id="treesitter"><a class="header" href="#treesitter"><a href="https://github.com/nvim-treesitter/nvim-treesitter">Treesitter</a></a></h3>
+<blockquote>
+<p>Tree-sitter is a parser generator tool and an incremental parsing library. It can build a concrete syntax tree for a source file and efficiently update the syntax tree as the source file is edited. Tree-sitter aims to be:</p>
+<ul>
+<li><strong>General</strong> enough to parse any programming language</li>
+<li><strong>Fast</strong> enough to parse on every keystroke in a text editor</li>
+<li><strong>Robust</strong> enough to provide useful results even in the presence of syntax errors</li>
+<li><strong>Dependency-free</strong> so that the runtime library (which is written in pure C) can be embedded in any application</li>
+</ul>
+</blockquote>
+<p>Basically it provides a fast unified syntax query for different languages, this allows to build plugins that utilize the unified syntax query.</p>
+<p>E.g: <a href="https://github.com/nvim-treesitter/nvim-treesitter-textobjects">nvim-treesitter-textobjects</a> which allows to do an action on a code context such as <code>copy</code> the <code>function/class/argument/loop</code> and more, we will elaborate on that later.</p>
+<p><em><strong>Note:</strong></em> make sure you to install treesitter parser for your language by adding it to the <code>ensure_installed</code> table or run <code>:TSUpdate {lang}</code>.</p>
+<hr />
+<p><a href="./01-the-vim-language.html">Previous Chapter</a> | <a href="./03-movements-and-operators.html">Next Chapter</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapters/01-the-vim-language.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../chapters/03-movements-and-operators.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapters/01-the-vim-language.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../chapters/03-movements-and-operators.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
