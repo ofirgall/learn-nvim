@@ -19,7 +19,9 @@ I didn't understand where to start from, should I learn vim first? how do I conf
 
 I wanted to make a guide that covers the basics of vim, gives the tools to learn vim (the fishing rod instead of the fish), and one that helps you to configure nvim.
 
+---
+
 # The book
 If you find mistakes while reading make sure to let me know at the [issues section](https://github.com/ofirgall/learn-nvim/issues) or create a PR and become a contributor!
 
-[Start read here](https://ofirgall.github.io/learn-nvim/)
+## [Start read here](https://ofirgall.github.io/learn-nvim/)
