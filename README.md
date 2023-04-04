@@ -19,22 +19,7 @@ I didn't understand where to start from, should I learn vim first? how do I conf
 
 I wanted to make a guide that covers the basics of vim, gives the tools to learn vim (the fishing rod instead of the fish), and one that helps you to configure nvim.
 
-# Chapters
+# The book
 If you find mistakes while reading make sure to let me know at the [issues section](https://github.com/ofirgall/learn-nvim/issues) or create a PR and become a contributor!
 
-* [Chapter 0 - Why Should I Learn?](chapters/00-why-should-i-learn.md)
-* [Chapter 1 - The vim Language](chapters/01-the-vim-language.md)
-* [Chapter 2 - Basic Configuration](chapters/02-basic-config.md)
-* [Chapter 3 - Movements and Operators](chapters/03-movements-and-operators.md)
-* [Chapter 4 - Copy, Paste and Visual Mode](chapters/04-copy-paste-visual.md)
-* [Chapter 5 - Text objects](chapters/05-text-objects.md)
-* [Chapter 6 - Splits and Actual Tabs](chapters/06-splits-and-actual-tabs.md)
-* [Chapter 7 - Vim Goodies](chapters/07-vim-goodies.md)
-* [Chapter 8 - Advanced Configuration](chapters/08-advanced-config.md)
-* [Chapter 9 - UI](chapters/09-ui.md)
-* [Chapter 10 - Code Navigation](chapters/10-code-navigation.md)
-* [Chapter 11 - Complete and Snippets Engines](chapters/11-complete-engine.md)
-* [Chapter 12 - Git](chapters/12-git.md)
-* [Chapter 13 - Debug](chapters/13-debug.md)
-* [Chapter 14 - Hydra](chapters/14-hydra.md)
-* [Chapter 15 - Misc Plugins and Summary](chapters/15-misc-and-summary.md)
+TODO: add link to the book

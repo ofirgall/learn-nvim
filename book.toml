@@ -1,0 +1,6 @@
+[book]
+authors = ["Ofir Gal"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Learn Neovim"

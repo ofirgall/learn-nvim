@@ -1,0 +1,18 @@
+# Summary
+
+* [Why Should I Learn?](chapters/00-why-should-i-learn.md)
+* [The vim Language](chapters/01-the-vim-language.md)
+* [Basic Configuration](chapters/02-basic-config.md)
+* [Movements and Operators](chapters/03-movements-and-operators.md)
+* [Copy, Paste and Visual Mode](chapters/04-copy-paste-visual.md)
+* [Text objects](chapters/05-text-objects.md)
+* [Splits and Actual Tabs](chapters/06-splits-and-actual-tabs.md)
+* [Vim Goodies](chapters/07-vim-goodies.md)
+* [Advanced Configuration](chapters/08-advanced-config.md)
+* [UI](chapters/09-ui.md)
+* [Code Navigation](chapters/10-code-navigation.md)
+* [Complete and Snippets Engines](chapters/11-complete-engine.md)
+* [Git](chapters/12-git.md)
+* [Debug](chapters/13-debug.md)
+* [Hydra](chapters/14-hydra.md)
+* [Misc Plugins and Summary](chapters/15-misc-and-summary.md)
