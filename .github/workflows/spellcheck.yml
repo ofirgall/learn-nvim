@@ -1,0 +1,15 @@
+name: Spell check
+
+on: [push, pull_request]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    steps:
+    - name: md-spellcheck-action
+      uses: matheus23/md-spellcheck-action@v4.2.2
