@@ -1,0 +1,12 @@
+Neovim
+nvim
+LSP
+lua
+api
+nvim's
+scalable
+Config
+Preconfigured
+pluginwise
+VSCode
+TODO

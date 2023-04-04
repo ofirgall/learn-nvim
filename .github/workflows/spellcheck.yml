@@ -10,6 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    steps:
     - name: md-spellcheck-action
       uses: matheus23/md-spellcheck-action@v4.2.2
+      with:
+        files-to-check: "*.md"
+        files-to-exclude: "LICENSE.md"
+        words-to-ignore-file: ./.github/workflows/words-to-ignore.txt
