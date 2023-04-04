@@ -199,7 +199,9 @@ This is how I feel when I code in nvim, I sit in a chair I build exactly for my 
 <p>I started by trying to do simple actions with nvim and moving to sublime when I needed to do complicated stuff that I struggled to do with nvim. After I got comfortable with basic functionality, I started trying to do more complex actions with nvim, sometimes I managed to yet sometimes I also failed and went back to sublime. Eventually I felt more comfortable with nvim and stuck with it all day long.</p>
 <p>The bottom line is that it'll take time and effort but eventually it will be worth it, for me it sparked the old feeling of learning how to edit your code, and I still feel it every day.</p>
 <hr />
-<p><a href="chapters/01-the-vim-language.html">Next Chapter</a></p>
+<h1 id="neovim-requires-time"><a class="header" href="#neovim-requires-time">Neovim Requires Time</a></h1>
+<p>Neovim requires a lot of time learning additional to the learning curve you will have to make bunch of configurations other than the nvim config itself, terminal, nerdfont, plugins, etc, it might be not for you.</p>
+<p>If you are 100% dedicated to learn and use neovim. I strongly recommend to start backing up your work environment config with some kind of dotfiles framework. I use <a href="https://github.com/anishathalye/dotbot">dotbot</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-vim-language"><a class="header" href="#the-vim-language">The vim Language</a></h1>
 <h2 id="buffers-splitswindows-and-tabs"><a class="header" href="#buffers-splitswindows-and-tabs">Buffers, Splits/Windows and Tabs</a></h2>
 <ul>
@@ -266,8 +268,6 @@ To exit from each mode back to normal press <code>Escape</code>. I recommend rem
 <li><a href="https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS">macOS</a></li>
 <li>Windows - Install <a href="https://www.autohotkey.com/">AutoHotKey</a> and add <code>Capslock::Esc</code> to an <code>ahk</code> script.</li>
 </ul>
-<hr />
-<p><a href="chapters/00-why-should-i-learn.html">Previous Chapter</a> | <a href="chapters/./02-basic-config.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="basic-configuration"><a class="header" href="#basic-configuration">Basic Configuration</a></h1>
 <p>One of nvim's strengths is that it's highly configurable, you can customize everything. <br />
 Setup your editor in a way that'll be nice for you to look at and it won't be filled with useless buttons/stuff.</p>
@@ -341,8 +341,7 @@ Which means when a plugin tell you to install it by <code>use { 'plugin_author/p
 <p>Usually a plugin will provide a <code>setup</code> function which configures the plugin's behavior, most plugins won't activate if the setup function isn't called.</p>
 <p>Usually the <code>setup</code> function receives a <code>table</code>, most plugins use the override standard - the keys in the table you pass will override the default, other keys keep their default value. <br />
 The defaults are usually in the plugin <code>README</code> and in the <code>:help &lt;plugin&gt;</code></p>
-<p><em><strong>Note</strong></em>: I recommend to start backing up your config with some kind of dotfiles, I use <a href="https://github.com/anishathalye/dotbot">dotbot</a>.
-<em><strong>Note</strong></em>: I recommend adding the GitHub shorthand above the setup function as a comment, you can use <a href="https://github.com/ofirgall/open.nvim">open.nvim</a> to access the plugin repo quickly.</p>
+<p><em><strong>Note</strong></em>: I recommend adding the GitHub shorthand above the setup function as a comment, you can use <a href="https://github.com/ofirgall/open.nvim">open.nvim</a> to access the plugin repo quickly.</p>
 <h4 id="how-to-install-vim-plugin"><a class="header" href="#how-to-install-vim-plugin">How to install vim plugin</a></h4>
 <p>nvim supports vim plugins, the install of them is similar to nvim but the configuration is done by vim variables rather than <code>setup</code> function.
 The documentation of the plugin usually would be written in VimScript format as so:</p>
@@ -510,8 +509,6 @@ nvim implements the fastest lsp client.</p>
 <p>Basically it provides a fast unified syntax query for different languages, this allows to build plugins that utilize the unified syntax query.</p>
 <p>E.g: <a href="https://github.com/nvim-treesitter/nvim-treesitter-textobjects">nvim-treesitter-textobjects</a> which allows to do an action on a code context such as <code>copy</code> the <code>function/class/argument/loop</code> and more, we will elaborate on that later.</p>
 <p><em><strong>Note:</strong></em> make sure you to install treesitter parser for your language by adding it to the <code>ensure_installed</code> table or run <code>:TSUpdate {lang}</code>.</p>
-<hr />
-<p><a href="chapters/./01-the-vim-language.html">Previous Chapter</a> | <a href="chapters/./03-movements-and-operators.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="movements-and-operators"><a class="header" href="#movements-and-operators">Movements and Operators</a></h1>
 <p>vim is built on actions that are mostly built on 2 types, an operator and a movement.</p>
 <h2 id="basic-binds"><a class="header" href="#basic-binds">Basic binds</a></h2>
@@ -640,8 +637,6 @@ For example: </p>
 <p>For example: when I'm using <code>y3j</code>/<code>y3&lt;Enter&gt;</code> I'll think of it as <code>yank 3 down</code>, in my mind I &quot;speak&quot; with the editor rather than remembering which keys to press.</p>
 <hr />
 <p>There are many more movements and operators but these are the ones I feel is the most important, it takes some time getting used to work with this method, but once you understand it, it'll stick well.</p>
-<hr />
-<p><a href="chapters/./02-basic-config.html">Previous Chapter</a> | <a href="chapters/./04-copy-paste-visual.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="copy-paste-and-visual-mode"><a class="header" href="#copy-paste-and-visual-mode">Copy, Paste and Visual Mode</a></h1>
 <p>The default behavior of vim doesn't copy to your OS clipboard, but instead copies to a <code>register</code>, which can also be the OS clipboard.</p>
 <h2 id="copy-and-paste-with-specifying-registers"><a class="header" href="#copy-and-paste-with-specifying-registers">Copy and paste with specifying registers</a></h2>
@@ -691,8 +686,6 @@ map('n', '&lt;leader&gt;P', '&quot;+P') -- paste before cursor from os clipboard
 <li><a href="https://github.com/gennaro-tedesco/nvim-peekup">peekup</a> - dynamically interact with vim registers.</li>
 <li><a href="https://github.com/tversteeg/registers.nvim">registers.nvim</a> to see the registers before yanking from/to them.</li>
 </ul>
-<hr />
-<p><a href="chapters/./03-movements-and-operators.html">Previous Chapter</a> | <a href="chapters/./05-text-objects.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="text-objects"><a class="header" href="#text-objects">Text Objects</a></h1>
 <p>Text objects are what made vim superior from other editors for me by any means.</p>
 <p>Text objects are &quot;movements&quot; that only work after an operator. <br />
@@ -850,8 +843,6 @@ lvim.builtin.treesitter.textobjects.move = {
 	},
 }
 </code></pre>
-<hr />
-<p><a href="chapters/./04-copy-paste-visual.html">Previous Chapter</a> | <a href="chapters/./06-splits-and-actual-tabs.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="splits-and-actual-tabs"><a class="header" href="#splits-and-actual-tabs">Splits and Actual Tabs</a></h1>
 <h2 id="splits-aka-windows"><a class="header" href="#splits-aka-windows">Splits aka Windows</a></h2>
 <p>We already covered what splits are at <a href="chapters/01-the-vim-language.html">Chapter 1</a>, but we didn't cover how to control them.</p>
@@ -908,8 +899,6 @@ map('n', '&lt;M-k&gt;', '&lt;cmd&gt;BufferLineCycleNext&lt;CR&gt;') -- Alt+k to 
 map('n', '&lt;M-J&gt;', '&lt;cmd&gt;BufferLineMovePrev&lt;CR&gt;') -- Alt+Shift+j grab to with you to left
 map('n', '&lt;M-K&gt;', '&lt;cmd&gt;BufferLineMoveNext&lt;CR&gt;') -- Alt+Shift+k grab to with you to right
 </code></pre>
-<hr />
-<p><a href="chapters/./05-text-objects.html">Previous Chapter</a> | <a href="chapters/./07-vim-goodies.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vim-goodies"><a class="header" href="#vim-goodies">Vim Goodies</a></h1>
 <p>This chapter will briefly cover few of many other vim features.</p>
 <h2 id="quickfix-list"><a class="header" href="#quickfix-list">Quickfix list</a></h2>
@@ -1039,8 +1028,6 @@ You can think of it like a macro that holds only the last action you did.</p>
 <p>vim supports folds, personally I never found this feature necessary, I set it to never fold automatically, but you can read more about folds <a href="https://vim.fandom.com/wiki/Folding">here</a> and make sure to check out <a href="https://github.com/kevinhwang91/nvim-ufo">nvim-ufo</a>.</p>
 <pre><code class="language-lua">opt.foldlevelstart = 99 -- no auto folding
 </code></pre>
-<hr />
-<p><a href="chapters/./06-splits-and-actual-tabs.html">Previous Chapter</a> | <a href="chapters/./08-advanced-config.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="advanced-config"><a class="header" href="#advanced-config">Advanced Config</a></h1>
 <p>You learned the basics of vim (and a little bit about nvim). From this chapter on I'll mostly talk about what takes nvim from being a good editor to a great editor, its plugin-rich ecosystem and configurability.</p>
 <h2 id="personal-config-vs-preconfigured-configuration"><a class="header" href="#personal-config-vs-preconfigured-configuration">Personal Config vs Preconfigured Configuration</a></h2>
@@ -1273,8 +1260,6 @@ TL;DR copy paste <a href="https://github.com/wbthomason/packer.nvim#bootstrappin
 <li><a href="https://github.com/nanotee/nvim-lua-guide#calling-vimscript-functions">Execute vim functions from lua</a> or <code>:h vim.fn</code></li>
 <li><a href="https://github.com/nanotee/nvim-lua-guide#vimapinvim_exec">Execute vimscript from lua</a> or <code>:h nvim_exec</code></li>
 </ul>
-<hr />
-<p><a href="chapters/./07-vim-goodies.html">Previous Chapter</a> | <a href="chapters/./09-ui.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ui"><a class="header" href="#ui">UI</a></h1>
 <p>One of nvim's strengths is that it doesn't provide a real native UI, instead it provides a framework for creating a UI, this enables the community to develop different UI options through the use of various plugins.</p>
 <p>If you are using a preconfigured configuration, probably the UI is already configured, but can be customized. Check your config's docs for more info.</p>
@@ -1313,8 +1298,6 @@ vim.opt.laststatus = 2 -- The default, local
 <li><a href="https://github.com/ms-jpq/chadtree">chadtree</a></li>
 <li><a href="https://github.com/rockerBOO/awesome-neovim#file-explorer">More file explorers</a></li>
 </ul>
-<hr />
-<p><a href="chapters/./08-advanced-config.html">Previous Chapter</a> | <a href="chapters/./10-code-navigation.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="code-navigation"><a class="header" href="#code-navigation">Code Navigation</a></h1>
 <h2 id="lsp-1"><a class="header" href="#lsp-1">LSP</a></h2>
 <p>To make nvim &quot;smart&quot; you need to install a LSP server and connect it to nvim's LSP client.</p>
@@ -1346,8 +1329,6 @@ vim.opt.laststatus = 2 -- The default, local
 <li><a href="https://github.com/SmiteshP/nvim-navic">nvim-navic</a> shows the current context in the status/winbar line.</li>
 <li><a href="https://github.com/rockerBOO/awesome-neovim#lsp">More plugins that integrate with LSP</a></li>
 </ul>
-<hr />
-<p><a href="chapters/./08-advanced-config.html">Previous Chapter</a> | <a href="chapters/./10-complete-engine.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="complete-and-snippets-engines"><a class="header" href="#complete-and-snippets-engines">Complete and Snippets Engines</a></h1>
 <p>If you are using a preconfigured configuration there is a high chance this is already configured and installed, you can skip this chapter.</p>
 <h2 id="complete-engine"><a class="header" href="#complete-engine">Complete Engine</a></h2>
@@ -1376,8 +1357,6 @@ One of the sources you want to have is the complete engine source, I'll elaborat
 <p>The snippet engine requires a snippets source too, I use a personal fork of <a href="https://github.com/honza/vim-snippets">vim-snippets</a> to remove unwanted snippets.</p>
 <hr />
 <h1 id="my-complete-and-snippet-engines-configuration"><a class="header" href="#my-complete-and-snippet-engines-configuration"><a href="https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/autocomplete.lua">My Complete and Snippet Engines Configuration</a></a></h1>
-<hr />
-<p><a href="chapters/./09-ui.html">Previous Chapter</a> | <a href="chapters/./12-git.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="git"><a class="header" href="#git">Git</a></h1>
 <p>As someone who used the git CLI for everything git has to offer I switched very quickly to use nvim for git management. <br />
 I'll cover some of the plugins I use to manage my git through nvim, I recommend to adapt some of them.</p>
@@ -1412,8 +1391,6 @@ It so useful that I created <code>ngh</code> which is an alias to replace <code>
 <p>How many times did you tried <code>git blame</code> to understand why this code exist only to see the last commit just <code>indent</code> the code or made a minor change. <br />
 <a href="https://github.com/rhysd/git-messenger.vim">git-messenger.vim</a> is comes to solve this by providing <code>hunk history</code>.
 <img src="chapters/../media/hunk_history.png" alt="nvim Screenshot" /></p>
-<hr />
-<p><a href="chapters/./11-complete-engine.html">Previous Chapter</a> | <a href="chapters/./13-debug.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="debug"><a class="header" href="#debug">Debug</a></h1>
 <p>The same solution for LSP is exist for debugging, its called <code>DAP</code>, Debug Adapater Protocol. <br />
 To integrate it you need to install <a href="https://github.com/mfussenegger/nvim-dap">nvim-dap</a>.</p>
@@ -1426,8 +1403,6 @@ To integrate it you need to install <a href="https://github.com/mfussenegger/nvi
 <li><a href="https://github.com/ofirgall/goto-breakpoints.nvim">goto-breakpoints.nvim</a> pair binds to cycle through breakpoints, plugin by me :)</li>
 <li><a href="https://github.com/rockerBOO/awesome-neovim#debugging">More extensions can be found here</a></li>
 </ul>
-<hr />
-<p><a href="chapters/./12-git.html">Previous Chapter</a> | <a href="chapters/./14-hydra.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hydra"><a class="header" href="#hydra"><a href="https://github.com/anuvyklack/hydra.nvim">Hydra</a></a></h1>
 <p>Hydra is a framework to create a submode inside nvim, a submode is called <code>Hydra</code>.</p>
 <p>It allows to enter a <code>body</code> with a key bind or a lua command and from there it creates a custom keymapping &quot;ontop&quot; of your exist keys to allow you to do various actions. <br />
@@ -1502,8 +1477,6 @@ map({'n', 'x'}, 'gK', function ()
 end)
 map('o', 'gK', function () ts_move.goto_previous_end('@function.outer') end)
 </code></pre>
-<hr />
-<p><a href="chapters/./13-debug.html">Previous Chapter</a> | <a href="chapters/./15-misc-and-summary.html">Next Chapter</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="misc"><a class="header" href="#misc">Misc</a></h1>
 <p>In this chapter I'll mention some misc plugins that I recommend to adapt.</p>
 <h2 id="basic-ide-functionalities"><a class="header" href="#basic-ide-functionalities">Basic IDE Functionalities</a></h2>
@@ -1572,8 +1545,6 @@ If you liked the guide consider to leave a <code>star</code>.</p>
 <li>Subscribe to <a href="https://www.reddit.com/r/neovim/">/r/neovim</a></li>
 <li>Keep an eye on <a href="https://this-week-in-neovim.org/">This week in Neovim</a></li>
 </ul>
-<hr />
-<p><a href="chapters/./14-hydra.html">Previous Chapter</a></p>
 
                     </main>
 

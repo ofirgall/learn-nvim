@@ -217,8 +217,7 @@ Which means when a plugin tell you to install it by <code>use { 'plugin_author/p
 <p>Usually a plugin will provide a <code>setup</code> function which configures the plugin's behavior, most plugins won't activate if the setup function isn't called.</p>
 <p>Usually the <code>setup</code> function receives a <code>table</code>, most plugins use the override standard - the keys in the table you pass will override the default, other keys keep their default value. <br />
 The defaults are usually in the plugin <code>README</code> and in the <code>:help &lt;plugin&gt;</code></p>
-<p><em><strong>Note</strong></em>: I recommend to start backing up your config with some kind of dotfiles, I use <a href="https://github.com/anishathalye/dotbot">dotbot</a>.
-<em><strong>Note</strong></em>: I recommend adding the GitHub shorthand above the setup function as a comment, you can use <a href="https://github.com/ofirgall/open.nvim">open.nvim</a> to access the plugin repo quickly.</p>
+<p><em><strong>Note</strong></em>: I recommend adding the GitHub shorthand above the setup function as a comment, you can use <a href="https://github.com/ofirgall/open.nvim">open.nvim</a> to access the plugin repo quickly.</p>
 <h4 id="how-to-install-vim-plugin"><a class="header" href="#how-to-install-vim-plugin">How to install vim plugin</a></h4>
 <p>nvim supports vim plugins, the install of them is similar to nvim but the configuration is done by vim variables rather than <code>setup</code> function.
 The documentation of the plugin usually would be written in VimScript format as so:</p>
@@ -386,8 +385,6 @@ nvim implements the fastest lsp client.</p>
 <p>Basically it provides a fast unified syntax query for different languages, this allows to build plugins that utilize the unified syntax query.</p>
 <p>E.g: <a href="https://github.com/nvim-treesitter/nvim-treesitter-textobjects">nvim-treesitter-textobjects</a> which allows to do an action on a code context such as <code>copy</code> the <code>function/class/argument/loop</code> and more, we will elaborate on that later.</p>
 <p><em><strong>Note:</strong></em> make sure you to install treesitter parser for your language by adding it to the <code>ensure_installed</code> table or run <code>:TSUpdate {lang}</code>.</p>
-<hr />
-<p><a href="./01-the-vim-language.html">Previous Chapter</a> | <a href="./03-movements-and-operators.html">Next Chapter</a></p>
 
                     </main>
 
