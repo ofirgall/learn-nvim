@@ -158,7 +158,3 @@ vim supports folds, personally I never found this feature necessary, I set it to
 ```lua
 opt.foldlevelstart = 99 -- no auto folding
 ```
-
----
-
-[Previous Chapter](./06-splits-and-actual-tabs.md) | [Next Chapter](./08-advanced-config.md)

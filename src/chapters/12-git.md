@@ -47,7 +47,3 @@ I use it to solve conflicts too.
 How many times did you tried `git blame` to understand why this code exist only to see the last commit just `indent` the code or made a minor change. \
 [git-messenger.vim](https://github.com/rhysd/git-messenger.vim) is comes to solve this by providing `hunk history`.
 ![nvim Screenshot](../media/hunk_history.png)
-
----
-
-[Previous Chapter](./11-complete-engine.md) | [Next Chapter](./13-debug.md)

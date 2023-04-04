@@ -30,7 +30,3 @@ Your preconfigured configuration probably has it installed and binded to keys al
 * [trld.nvim](https://github.com/Mofiqul/trld.nvim) shows the current line diagnostic in the top right corner of the buffer.
 * [nvim-navic](https://github.com/SmiteshP/nvim-navic) shows the current context in the status/winbar line.
 * [More plugins that integrate with LSP](https://github.com/rockerBOO/awesome-neovim#lsp)
-
----
-
-[Previous Chapter](./08-advanced-config.md) | [Next Chapter](./10-complete-engine.md)

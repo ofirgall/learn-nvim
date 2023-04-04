@@ -93,7 +93,3 @@ To keep up with new plugins and updates I recommend to:
 * Watch [awesome-neovim](https://github.com/rockerBOO/awesome-neovim) to get notified for new PR's (plugins)
 * Subscribe to [/r/neovim](https://www.reddit.com/r/neovim/)
 * Keep an eye on [This week in Neovim](https://this-week-in-neovim.org/)
-
----
-
-[Previous Chapter](./14-hydra.md)

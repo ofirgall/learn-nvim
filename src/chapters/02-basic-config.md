@@ -281,7 +281,3 @@ Basically it provides a fast unified syntax query for different languages, this 
 E.g: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) which allows to do an action on a code context such as `copy` the `function/class/argument/loop` and more, we will elaborate on that later.
 
 _**Note:**_ make sure you to install treesitter parser for your language by adding it to the `ensure_installed` table or run `:TSUpdate {lang}`.
-
----
-
-[Previous Chapter](./01-the-vim-language.md) | [Next Chapter](./03-movements-and-operators.md)

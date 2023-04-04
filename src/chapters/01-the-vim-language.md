@@ -63,7 +63,3 @@ To exit from each mode back to normal press `Escape`. I recommend remapping it t
 * GNOME (Ubuntu) - Install `gnome-tweak-tool`, start `Tweaks` then `Keyboard & Mouse -> Additional Layout Options -> Caps Lock behavior`.
 * [macOS](https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS)
 * Windows - Install [AutoHotKey](https://www.autohotkey.com/) and add `Capslock::Esc` to an `ahk` script.
-
----
-
-[Previous Chapter](00-why-should-i-learn.md) | [Next Chapter](./02-basic-config.md)

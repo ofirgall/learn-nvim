@@ -74,7 +74,3 @@ map({'n', 'x'}, 'gK', function ()
 end)
 map('o', 'gK', function () ts_move.goto_previous_end('@function.outer') end)
 ```
-
----
-
-[Previous Chapter](./13-debug.md) | [Next Chapter](./15-misc-and-summary.md)

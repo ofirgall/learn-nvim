@@ -77,8 +77,3 @@ The bottom line is that it'll take time and effort but eventually it will be wor
 Neovim requires a lot of time learning additional to the learning curve you will have to make bunch of configurations other than the nvim config itself, terminal, nerdfont, plugins, etc, it might be not for you.
 
 If you are 100% dedicated to learn and use neovim. I strongly recommend to start backing up your work environment config with some kind of dotfiles framework. I use [dotbot](https://github.com/anishathalye/dotbot).
-
-
----
-
-[Next Chapter](01-the-vim-language.md)

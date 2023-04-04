@@ -10,7 +10,3 @@ Extensions:
 * [persistent-breakpoints.nvim](https://github.com/Weissle/persistent-breakpoints.nvim) saves the breakpoints across nvim restarts
 * [goto-breakpoints.nvim](https://github.com/ofirgall/goto-breakpoints.nvim) pair binds to cycle through breakpoints, plugin by me :)
 * [More extensions can be found here](https://github.com/rockerBOO/awesome-neovim#debugging)
-
----
-
-[Previous Chapter](./12-git.md) | [Next Chapter](./14-hydra.md)

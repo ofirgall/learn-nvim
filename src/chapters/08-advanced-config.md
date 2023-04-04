@@ -288,7 +288,3 @@ Important reference links from [nanotee/nvim-lua-guide](https://github.com/nanot
 * [Execute usercommand from lua](https://github.com/nanotee/nvim-lua-guide#vimapinvim_command) or `:h nvim_command`
 * [Execute vim functions from lua](https://github.com/nanotee/nvim-lua-guide#calling-vimscript-functions) or `:h vim.fn`
 * [Execute vimscript from lua](https://github.com/nanotee/nvim-lua-guide#vimapinvim_exec) or `:h nvim_exec`
-
----
-
-[Previous Chapter](./07-vim-goodies.md) | [Next Chapter](./09-ui.md)

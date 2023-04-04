@@ -175,7 +175,3 @@ lvim.builtin.treesitter.textobjects.move = {
 	},
 }
 ```
-
----
-
-[Previous Chapter](./04-copy-paste-visual.md) | [Next Chapter](./06-splits-and-actual-tabs.md)

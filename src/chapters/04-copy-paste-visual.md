@@ -56,7 +56,3 @@ map('n', '<leader>P', '"+P') -- paste before cursor from os clipboard
 * [yanky.nvim](https://github.com/gbprod/yanky.nvim) to cycle fast in my copy history after pasting instead of using the `registers`.
 * [peekup](https://github.com/gennaro-tedesco/nvim-peekup) - dynamically interact with vim registers.
 * [registers.nvim](https://github.com/tversteeg/registers.nvim) to see the registers before yanking from/to them.
-
----
-
-[Previous Chapter](./03-movements-and-operators.md) | [Next Chapter](./05-text-objects.md)

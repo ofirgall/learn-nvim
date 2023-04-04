@@ -36,7 +36,3 @@ The snippet engine requires a snippets source too, I use a personal fork of [vim
 ---
 
 # [My Complete and Snippet Engines Configuration](https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/autocomplete.lua)
-
----
-
-[Previous Chapter](./09-ui.md) | [Next Chapter](./12-git.md)
