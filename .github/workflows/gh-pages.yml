@@ -4,22 +4,20 @@ on: [push, pull_request]
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
 
-  runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
 
-  steps:
-  - uses: actions/checkout@v2
+    - name: Setup mdBook
+      uses: peaceiris/actions-mdbook@v1
+      with:
+        mdbook-version: 'latest'
 
-  - name: Setup mdBook
-    uses: peaceiris/actions-mdbook@v1
-    with:
-      mdbook-version: 'latest'
+    - run: mdbook build
 
-  - run: mdbook build
-
-  - name: Deploy
-    uses: peaceiris/actions-gh-pages@v3
-    if: ${{ github.ref == 'refs/heads/master' }}
-    with:
-      github_token: ${{ secrets.GITHUB_TOKEN }}
-      publish_dir: ./book
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./book
