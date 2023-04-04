@@ -22,4 +22,4 @@ I wanted to make a guide that covers the basics of vim, gives the tools to learn
 # The book
 If you find mistakes while reading make sure to let me know at the [issues section](https://github.com/ofirgall/learn-nvim/issues) or create a PR and become a contributor!
 
-TODO: add link to the book
+[Start read here](https://ofirgall.github.io/learn-nvim/)
