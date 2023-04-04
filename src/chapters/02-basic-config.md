@@ -87,7 +87,6 @@ Usually a plugin will provide a `setup` function which configures the plugin's b
 Usually the `setup` function receives a `table`, most plugins use the override standard - the keys in the table you pass will override the default, other keys keep their default value. \
 The defaults are usually in the plugin `README` and in the `:help <plugin>`
 
-_**Note**_: I recommend to start backing up your config with some kind of dotfiles, I use [dotbot](https://github.com/anishathalye/dotbot).
 _**Note**_: I recommend adding the GitHub shorthand above the setup function as a comment, you can use [open.nvim](https://github.com/ofirgall/open.nvim) to access the plugin repo quickly.
 
 #### How to install vim plugin
