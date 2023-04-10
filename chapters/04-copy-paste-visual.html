@@ -169,7 +169,8 @@ For example to copy to register <code>a</code> I'll hit these keys: <code>&quot;
 <p>Use <code>_</code> - as the <code>black hole</code> register, when you want to delete a text without transferring it to a register.</p>
 <p>There are many things you can do with registers, I suggest to briefly read <code>:help registers</code>.</p>
 <h3 id="binds-to-deletechangereplace-without-yanking"><a class="header" href="#binds-to-deletechangereplace-without-yanking">Binds to delete/change/replace without yanking.</a></h3>
-<pre><code class="language-lua">map('x', '&lt;leader&gt;p', '&quot;_dP') -- replace text without changing the copy register
+<pre><code class="language-lua">map('x', '&lt;leader&gt;p', '&quot;_dp') -- replace text without changing the copy register
+map('x', '&lt;leader&gt;P', '&quot;_dP') -- replace text without changing the copy register
 
 map('n', '&lt;leader&gt;d', '&quot;_d') -- delete without yanking, e.g &lt;leader&gt;dd deletes the current line without yanking it
 map('n', '&lt;leader&gt;D', '&quot;_D') -- delete without yanking
