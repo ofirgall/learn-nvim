@@ -30,14 +30,13 @@ There are many things you can do with registers, I suggest to briefly read `:hel
 
 ### Binds to delete/change/replace without yanking.
 ```lua
-map('x', '<leader>p', '"_dp') -- replace text without changing the copy register
-map('x', '<leader>P', '"_dP') -- replace text without changing the copy register
+map('x', '<leader>p', '"_dP', 'Replace without yanking')
 
-map('n', '<leader>d', '"_d') -- delete without yanking, e.g <leader>dd deletes the current line without yanking it
-map('n', '<leader>D', '"_D') -- delete without yanking
+map('n', '<leader>d', '"_d', 'Delete without yanking') -- e.g <leader>dd deletes the current line without yanking it
+map('n', '<leader>D', '"_D', 'Delete until EOL without yanking')
 
-map('n', '<leader>c', '"_c') -- change without yanking
-map('n', '<leader>C', '"_C') -- change without yanking
+map('n', '<leader>c', '"_c', 'Change without yanking')
+map('n', '<leader>C', '"_C', 'Change until EOL without yanking')
 ```
 
 ## Using the OS clipboard
@@ -45,11 +44,11 @@ map('n', '<leader>C', '"_C') -- change without yanking
 
 I use these binds to use the OS clipboard without too many key presses:
 ```lua
-map('', '<leader>y', '"+y') -- Start copy to os clipboard E.g: <leader>yy will copy current line to os
-map('', '<leader>Y', '"+y$') -- Copy rest of the line to os clipboard like "Y" but for os clipboard
+map('', '<leader>y', '"+y', 'Yank to clipboard') -- E.g: <leader>yy will yank current line to os clipboard
+map('', '<leader>Y', '"+y$', 'Yank until EOL to clipboard')
 
-map('n', '<leader>p', '"+p') -- paste after cursor from os clipboard
-map('n', '<leader>P', '"+P') -- paste before cursor from os clipboard
+map('n', '<leader>p', '"+p', 'Paste after cursor from clipboard')
+map('n', '<leader>P', '"+P', 'Paste before cursor from clipboard')
 ```
 
 ## Plugins
