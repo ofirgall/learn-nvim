@@ -169,23 +169,22 @@ For example to copy to register <code>a</code> I'll hit these keys: <code>&quot;
 <p>Use <code>_</code> - as the <code>black hole</code> register, when you want to delete a text without transferring it to a register.</p>
 <p>There are many things you can do with registers, I suggest to briefly read <code>:help registers</code>.</p>
 <h3 id="binds-to-deletechangereplace-without-yanking"><a class="header" href="#binds-to-deletechangereplace-without-yanking">Binds to delete/change/replace without yanking.</a></h3>
-<pre><code class="language-lua">map('x', '&lt;leader&gt;p', '&quot;_dp') -- replace text without changing the copy register
-map('x', '&lt;leader&gt;P', '&quot;_dP') -- replace text without changing the copy register
+<pre><code class="language-lua">map('x', '&lt;leader&gt;p', '&quot;_dP', 'Replace without yanking')
 
-map('n', '&lt;leader&gt;d', '&quot;_d') -- delete without yanking, e.g &lt;leader&gt;dd deletes the current line without yanking it
-map('n', '&lt;leader&gt;D', '&quot;_D') -- delete without yanking
+map('n', '&lt;leader&gt;d', '&quot;_d', 'Delete without yanking') -- e.g &lt;leader&gt;dd deletes the current line without yanking it
+map('n', '&lt;leader&gt;D', '&quot;_D', 'Delete until EOL without yanking')
 
-map('n', '&lt;leader&gt;c', '&quot;_c') -- change without yanking
-map('n', '&lt;leader&gt;C', '&quot;_C') -- change without yanking
+map('n', '&lt;leader&gt;c', '&quot;_c', 'Change without yanking')
+map('n', '&lt;leader&gt;C', '&quot;_C', 'Change until EOL without yanking')
 </code></pre>
 <h2 id="using-the-os-clipboard"><a class="header" href="#using-the-os-clipboard">Using the OS clipboard</a></h2>
 <p><code>+</code> is the OS clipboard register, you can yank to it and you can paste from it.</p>
 <p>I use these binds to use the OS clipboard without too many key presses:</p>
-<pre><code class="language-lua">map('', '&lt;leader&gt;y', '&quot;+y') -- Start copy to os clipboard E.g: &lt;leader&gt;yy will copy current line to os
-map('', '&lt;leader&gt;Y', '&quot;+y$') -- Copy rest of the line to os clipboard like &quot;Y&quot; but for os clipboard
+<pre><code class="language-lua">map('', '&lt;leader&gt;y', '&quot;+y', 'Yank to clipboard') -- E.g: &lt;leader&gt;yy will yank current line to os clipboard
+map('', '&lt;leader&gt;Y', '&quot;+y$', 'Yank until EOL to clipboard')
 
-map('n', '&lt;leader&gt;p', '&quot;+p') -- paste after cursor from os clipboard
-map('n', '&lt;leader&gt;P', '&quot;+P') -- paste before cursor from os clipboard
+map('n', '&lt;leader&gt;p', '&quot;+p', 'Paste after cursor from clipboard')
+map('n', '&lt;leader&gt;P', '&quot;+P', 'Paste before cursor from clipboard')
 </code></pre>
 <h2 id="plugins"><a class="header" href="#plugins">Plugins</a></h2>
 <h3 id="putyank-improvements"><a class="header" href="#putyank-improvements">Put/Yank Improvements</a></h3>
