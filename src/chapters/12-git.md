@@ -5,7 +5,7 @@ I'll cover some of the plugins I use to manage my git through nvim, I recommend 
 ---
 
 ## [Fugitive](https://github.com/tpope/vim-fugitive)
-Provides the `:Git`/`:G` command which is a basiciliy sends the command to the git CLI and provides interactive window to work with. \
+Provides the `:Git`/`:G` command which basically sends the command to the git CLI and provides an interactive window to work with. \
 E.g: `:G show HEAD`/`:Git show HEAD`
 
 The "main" feature of it is the interactive `status` window which can be triggered with `:G` with no params which provide a convenient way to see the diffs, stage files and commit changes.
