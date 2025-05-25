@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -24,26 +24,40 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,24 +71,22 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -82,45 +94,25 @@
                 sidebar = 'hidden';
             }
             sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapters/00-why-should-i-learn.html" class="active"><strong aria-hidden="true">1.</strong> Why Should I Learn?</a></li><li class="chapter-item expanded "><a href="../chapters/01-the-vim-language.html"><strong aria-hidden="true">2.</strong> The vim Language</a></li><li class="chapter-item expanded "><a href="../chapters/02-basic-config.html"><strong aria-hidden="true">3.</strong> Basic Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/03-movements-and-operators.html"><strong aria-hidden="true">4.</strong> Movements and Operators</a></li><li class="chapter-item expanded "><a href="../chapters/04-copy-paste-visual.html"><strong aria-hidden="true">5.</strong> Copy, Paste and Visual Mode</a></li><li class="chapter-item expanded "><a href="../chapters/05-text-objects.html"><strong aria-hidden="true">6.</strong> Text objects</a></li><li class="chapter-item expanded "><a href="../chapters/06-splits-and-actual-tabs.html"><strong aria-hidden="true">7.</strong> Splits and Actual Tabs</a></li><li class="chapter-item expanded "><a href="../chapters/07-vim-goodies.html"><strong aria-hidden="true">8.</strong> Vim Goodies</a></li><li class="chapter-item expanded "><a href="../chapters/08-advanced-config.html"><strong aria-hidden="true">9.</strong> Advanced Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/09-ui.html"><strong aria-hidden="true">10.</strong> UI</a></li><li class="chapter-item expanded "><a href="../chapters/10-code-navigation.html"><strong aria-hidden="true">11.</strong> Code Navigation</a></li><li class="chapter-item expanded "><a href="../chapters/11-complete-engine.html"><strong aria-hidden="true">12.</strong> Complete and Snippets Engines</a></li><li class="chapter-item expanded "><a href="../chapters/12-git.html"><strong aria-hidden="true">13.</strong> Git</a></li><li class="chapter-item expanded "><a href="../chapters/13-debug.html"><strong aria-hidden="true">14.</strong> Debug</a></li><li class="chapter-item expanded "><a href="../chapters/14-hydra.html"><strong aria-hidden="true">15.</strong> Hydra</a></li><li class="chapter-item expanded "><a href="../chapters/15-misc-and-summary.html"><strong aria-hidden="true">16.</strong> Misc Plugins and Summary</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -130,13 +122,14 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -181,18 +174,18 @@ nvim is fun: fun to learn, fun to write with, fun to improve at and most importa
 You don't need to find where is end, pageup/down and home each time you switch a keyboard/laptop.</p>
 <p>If you can type on a keyboard, you can use vim the way you're used to.</p>
 <h4 id="keep-your-hands-on-the-keyboard"><a class="header" href="#keep-your-hands-on-the-keyboard">Keep your hands on the keyboard</a></h4>
-<p>vim can be used without a mouse at all, and it's even recommended to use it this way, as it will &quot;force&quot; you to stay in the &quot;flow&quot; while programming without needing to move your hand over to the mouse and back to the keyboard.</p>
+<p>vim can be used without a mouse at all, and it's even recommended to use it this way, as it will "force" you to stay in the "flow" while programming without needing to move your hand over to the mouse and back to the keyboard.</p>
 <p>vim is designed to be used with <a href="https://www.ratatype.com/static/i/learn/keyboard/en/keyboard.webp">type touching</a>.<br />
 The important binds are on/next to the keys your hands should always be on: <code>asdf jkl;</code>. <br />
 It isn't a must to touch type (I don't touch type 100%) but I recommend trying to switch anyways.</p>
 <h5 id="disclaimer"><a class="header" href="#disclaimer">Disclaimer</a></h5>
 <p>You can use a mouse. <br />
-I configured a mouse to allow &quot;guests&quot; to show me stuff in my workstation. <br />
+I configured a mouse to allow "guests" to show me stuff in my workstation. <br />
 I use a mouse to <strong>read</strong> code, personally I find it more convenient. <br />
 I use a mouse when showing someone in my workstation so they can follow along.</p>
 <h4 id="the-right-way-to-program"><a class="header" href="#the-right-way-to-program">The right way to program</a></h4>
-<p>It's a strong saying but I'm convinced that <code>nvim</code> is the right way to program. </p>
-<p>When you're using vim, you &quot;talk&quot; to the editor rather than &quot;move&quot; it. <br />
+<p>It's a strong saying but I'm convinced that <code>nvim</code> is the right way to program.</p>
+<p>When you're using vim, you "talk" to the editor rather than "move" it. <br />
 Imagine, instead of asking your friend to pour you a glass of water, you would give instructions to your friend on how to pour you a glass of water, which would look like something like this:</p>
 <ol>
 <li>Open the bottle</li>
@@ -202,11 +195,11 @@ Imagine, instead of asking your friend to pour you a glass of water, you would g
 <li>Put down the bottle</li>
 <li>Close the bottle</li>
 </ol>
-<p>Wouldn't it be easier to just say &quot;Hey, can you pour me glass of water?&quot;
-Well, that how it feels to use other editors after you're using vim, vim lets you &quot;talk&quot; to the editor.</p>
-<h4 id="feel-at-home-everywhere"><a class="header" href="#feel-at-home-everywhere">Feel &quot;at home&quot; everywhere</a></h4>
+<p>Wouldn't it be easier to just say "Hey, can you pour me glass of water?"
+Well, that how it feels to use other editors after you're using vim, vim lets you "talk" to the editor.</p>
+<h4 id="feel-at-home-everywhere"><a class="header" href="#feel-at-home-everywhere">Feel "at home" everywhere</a></h4>
 <p>Most TUIs programs support <code>vim</code> binds which will make you feel fast in any program that you usually use, <code>less</code>, <code>man</code>, <code>tmux</code> and many more.</p>
-<p>You can feel &quot;at home&quot; in browsers too, with the <a href="https://addons.mozilla.org/he/firefox/addon/vimium-ff/">vimium extension</a></p>
+<p>You can feel "at home" in browsers too, with the <a href="https://addons.mozilla.org/he/firefox/addon/vimium-ff/">vimium extension</a></p>
 <p>Edit files through <code>ssh</code> with ease</p>
 <h4 id="lightweight-and-native"><a class="header" href="#lightweight-and-native">Lightweight and Native</a></h4>
 <p>nvim is lightweight, starts up fast, renders fast and a lot of the plugins tend to use a strong native binary to run the heavyweight tasks. <br />
@@ -214,8 +207,8 @@ For example, to search for text across the project <a href="https://github.com/n
 <h4 id="rich-plugin-ecosystem"><a class="header" href="#rich-plugin-ecosystem">Rich plugin ecosystem</a></h4>
 <p>nvim has a huge community that develops plugins for everything you can and can't imagine. <br />
 nvim doesn't miss on any IDE feature that other IDEs have to offer. <br />
-nvim plugins are the first to &quot;evolve&quot; when a new tech is coming to the IDE world, the nvim community is the first to adapt it, e.g: ripgrep</p>
-<p>You can take a look at the <a href="https://github.com/rockerBOO/awesome-neovim">awesome nvim plugin list</a>. I recommend to &quot;watch&quot; to get updates about new plugins.</p>
+nvim plugins are the first to "evolve" when a new tech is coming to the IDE world, the nvim community is the first to adapt it, e.g: ripgrep</p>
+<p>You can take a look at the <a href="https://github.com/rockerBOO/awesome-neovim">awesome nvim plugin list</a>. I recommend to "watch" to get updates about new plugins.</p>
 <h4 id="be-comfortable"><a class="header" href="#be-comfortable">Be comfortable</a></h4>
 <p>nvim is basically a framework for an editor, it can't do much without plugins but it gives the user the ability to configure the editor in a way they're most comfortable with.</p>
 <p>Imagine sitting on a chair you built exactly to your size. The back rest covers all of your back, the head rest is exactly in the right height and has the perfect shape to support your head and neck. The arm rests match exactly the height of your desk, and the chair is at the perfect height for your legs. <br />

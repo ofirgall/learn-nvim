@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -8,7 +8,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -25,26 +25,40 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -58,24 +72,22 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -83,45 +95,25 @@
                 sidebar = 'hidden';
             }
             sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapters/00-why-should-i-learn.html"><strong aria-hidden="true">1.</strong> Why Should I Learn?</a></li><li class="chapter-item expanded "><a href="chapters/01-the-vim-language.html"><strong aria-hidden="true">2.</strong> The vim Language</a></li><li class="chapter-item expanded "><a href="chapters/02-basic-config.html"><strong aria-hidden="true">3.</strong> Basic Configuration</a></li><li class="chapter-item expanded "><a href="chapters/03-movements-and-operators.html"><strong aria-hidden="true">4.</strong> Movements and Operators</a></li><li class="chapter-item expanded "><a href="chapters/04-copy-paste-visual.html"><strong aria-hidden="true">5.</strong> Copy, Paste and Visual Mode</a></li><li class="chapter-item expanded "><a href="chapters/05-text-objects.html"><strong aria-hidden="true">6.</strong> Text objects</a></li><li class="chapter-item expanded "><a href="chapters/06-splits-and-actual-tabs.html"><strong aria-hidden="true">7.</strong> Splits and Actual Tabs</a></li><li class="chapter-item expanded "><a href="chapters/07-vim-goodies.html"><strong aria-hidden="true">8.</strong> Vim Goodies</a></li><li class="chapter-item expanded "><a href="chapters/08-advanced-config.html"><strong aria-hidden="true">9.</strong> Advanced Configuration</a></li><li class="chapter-item expanded "><a href="chapters/09-ui.html"><strong aria-hidden="true">10.</strong> UI</a></li><li class="chapter-item expanded "><a href="chapters/10-code-navigation.html"><strong aria-hidden="true">11.</strong> Code Navigation</a></li><li class="chapter-item expanded "><a href="chapters/11-complete-engine.html"><strong aria-hidden="true">12.</strong> Complete and Snippets Engines</a></li><li class="chapter-item expanded "><a href="chapters/12-git.html"><strong aria-hidden="true">13.</strong> Git</a></li><li class="chapter-item expanded "><a href="chapters/13-debug.html"><strong aria-hidden="true">14.</strong> Debug</a></li><li class="chapter-item expanded "><a href="chapters/14-hydra.html"><strong aria-hidden="true">15.</strong> Hydra</a></li><li class="chapter-item expanded "><a href="chapters/15-misc-and-summary.html"><strong aria-hidden="true">16.</strong> Misc Plugins and Summary</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -131,13 +123,14 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -182,18 +175,18 @@ nvim is fun: fun to learn, fun to write with, fun to improve at and most importa
 You don't need to find where is end, pageup/down and home each time you switch a keyboard/laptop.</p>
 <p>If you can type on a keyboard, you can use vim the way you're used to.</p>
 <h4 id="keep-your-hands-on-the-keyboard"><a class="header" href="#keep-your-hands-on-the-keyboard">Keep your hands on the keyboard</a></h4>
-<p>vim can be used without a mouse at all, and it's even recommended to use it this way, as it will &quot;force&quot; you to stay in the &quot;flow&quot; while programming without needing to move your hand over to the mouse and back to the keyboard.</p>
+<p>vim can be used without a mouse at all, and it's even recommended to use it this way, as it will "force" you to stay in the "flow" while programming without needing to move your hand over to the mouse and back to the keyboard.</p>
 <p>vim is designed to be used with <a href="https://www.ratatype.com/static/i/learn/keyboard/en/keyboard.webp">type touching</a>.<br />
 The important binds are on/next to the keys your hands should always be on: <code>asdf jkl;</code>. <br />
 It isn't a must to touch type (I don't touch type 100%) but I recommend trying to switch anyways.</p>
 <h5 id="disclaimer"><a class="header" href="#disclaimer">Disclaimer</a></h5>
 <p>You can use a mouse. <br />
-I configured a mouse to allow &quot;guests&quot; to show me stuff in my workstation. <br />
+I configured a mouse to allow "guests" to show me stuff in my workstation. <br />
 I use a mouse to <strong>read</strong> code, personally I find it more convenient. <br />
 I use a mouse when showing someone in my workstation so they can follow along.</p>
 <h4 id="the-right-way-to-program"><a class="header" href="#the-right-way-to-program">The right way to program</a></h4>
-<p>It's a strong saying but I'm convinced that <code>nvim</code> is the right way to program. </p>
-<p>When you're using vim, you &quot;talk&quot; to the editor rather than &quot;move&quot; it. <br />
+<p>It's a strong saying but I'm convinced that <code>nvim</code> is the right way to program.</p>
+<p>When you're using vim, you "talk" to the editor rather than "move" it. <br />
 Imagine, instead of asking your friend to pour you a glass of water, you would give instructions to your friend on how to pour you a glass of water, which would look like something like this:</p>
 <ol>
 <li>Open the bottle</li>
@@ -203,11 +196,11 @@ Imagine, instead of asking your friend to pour you a glass of water, you would g
 <li>Put down the bottle</li>
 <li>Close the bottle</li>
 </ol>
-<p>Wouldn't it be easier to just say &quot;Hey, can you pour me glass of water?&quot;
-Well, that how it feels to use other editors after you're using vim, vim lets you &quot;talk&quot; to the editor.</p>
-<h4 id="feel-at-home-everywhere"><a class="header" href="#feel-at-home-everywhere">Feel &quot;at home&quot; everywhere</a></h4>
+<p>Wouldn't it be easier to just say "Hey, can you pour me glass of water?"
+Well, that how it feels to use other editors after you're using vim, vim lets you "talk" to the editor.</p>
+<h4 id="feel-at-home-everywhere"><a class="header" href="#feel-at-home-everywhere">Feel "at home" everywhere</a></h4>
 <p>Most TUIs programs support <code>vim</code> binds which will make you feel fast in any program that you usually use, <code>less</code>, <code>man</code>, <code>tmux</code> and many more.</p>
-<p>You can feel &quot;at home&quot; in browsers too, with the <a href="https://addons.mozilla.org/he/firefox/addon/vimium-ff/">vimium extension</a></p>
+<p>You can feel "at home" in browsers too, with the <a href="https://addons.mozilla.org/he/firefox/addon/vimium-ff/">vimium extension</a></p>
 <p>Edit files through <code>ssh</code> with ease</p>
 <h4 id="lightweight-and-native"><a class="header" href="#lightweight-and-native">Lightweight and Native</a></h4>
 <p>nvim is lightweight, starts up fast, renders fast and a lot of the plugins tend to use a strong native binary to run the heavyweight tasks. <br />
@@ -215,8 +208,8 @@ For example, to search for text across the project <a href="https://github.com/n
 <h4 id="rich-plugin-ecosystem"><a class="header" href="#rich-plugin-ecosystem">Rich plugin ecosystem</a></h4>
 <p>nvim has a huge community that develops plugins for everything you can and can't imagine. <br />
 nvim doesn't miss on any IDE feature that other IDEs have to offer. <br />
-nvim plugins are the first to &quot;evolve&quot; when a new tech is coming to the IDE world, the nvim community is the first to adapt it, e.g: ripgrep</p>
-<p>You can take a look at the <a href="https://github.com/rockerBOO/awesome-neovim">awesome nvim plugin list</a>. I recommend to &quot;watch&quot; to get updates about new plugins.</p>
+nvim plugins are the first to "evolve" when a new tech is coming to the IDE world, the nvim community is the first to adapt it, e.g: ripgrep</p>
+<p>You can take a look at the <a href="https://github.com/rockerBOO/awesome-neovim">awesome nvim plugin list</a>. I recommend to "watch" to get updates about new plugins.</p>
 <h4 id="be-comfortable"><a class="header" href="#be-comfortable">Be comfortable</a></h4>
 <p>nvim is basically a framework for an editor, it can't do much without plugins but it gives the user the ability to configure the editor in a way they're most comfortable with.</p>
 <p>Imagine sitting on a chair you built exactly to your size. The back rest covers all of your back, the head rest is exactly in the right height and has the perfect shape to support your head and neck. The arm rests match exactly the height of your desk, and the chair is at the perfect height for your legs. <br />
@@ -240,7 +233,7 @@ This is how I feel when I code in nvim, I sit in a chair I build exactly for my 
 </ul>
 <h5 id="binds"><a class="header" href="#binds">Binds</a></h5>
 <ul>
-<li><code>:e &lt;file&gt;</code> - will open a new file (buffer) </li>
+<li><code>:e &lt;file&gt;</code> - will open a new file (buffer)</li>
 <li><code>:b &lt;buffer&gt;</code> - will switch to an already opened file (buffer)</li>
 <li><code>:vsplit</code> - will open a vertical split</li>
 <li><code>:split</code> - will open a horizontal split</li>
@@ -348,10 +341,10 @@ To see the keybinds press <code>Space</code>, <code>SHIFT+L</code>, <code>k</cod
 <p>In LunarVim's configuration you will find:</p>
 <pre><code class="language-lua">-- Additional Plugins
 lvim.plugins = {
-    {&quot;folke/tokyonight.nvim&quot;},
+    {"folke/tokyonight.nvim"},
     {
-      &quot;folke/trouble.nvim&quot;,
-      cmd = &quot;TroubleToggle&quot;,
+      "folke/trouble.nvim",
+      cmd = "TroubleToggle",
     },
 }
 </code></pre>
@@ -409,20 +402,20 @@ On <code>InsertLeave</code> which is triggered when you leave Insert mode, and o
 </code></pre>
 <p>Autosave + live config refresh = annoying behavior. Make sure you disable autosave in your config if you like live config refresh.<br />
 An example for how to do it in LunarVim:</p>
-<pre><code class="language-lua">local user_config_file = require(&quot;lvim.config&quot;):get_user_config_path()
-require(&quot;auto-save&quot;).setup {
+<pre><code class="language-lua">local user_config_file = require("lvim.config"):get_user_config_path()
+require("auto-save").setup {
   enabled = true,
 
   condition = function(buf)
     local fn = vim.fn
-    local utils = require(&quot;auto-save.utils.data&quot;)
+    local utils = require("auto-save.utils.data")
 
     if vim.api.nvim_buf_get_name(buf) == user_config_file then
       return false
     end
 
-    if fn.getbufvar(buf, &quot;&amp;modifiable&quot;) == 1 and
-        utils.not_in(fn.getbufvar(buf, &quot;&amp;filetype&quot;), {}) then
+    if fn.getbufvar(buf, "&amp;modifiable") == 1 and
+        utils.not_in(fn.getbufvar(buf, "&amp;filetype"), {}) then
       return true -- met condition(s), can save
     end
     return false -- can't save
@@ -476,7 +469,7 @@ end
 <ul>
 <li><code>mode</code> - mode for which the keymap is added to, can be a single mode <code>'n'</code>, table of modes <code>{'n', 'x'}</code>, or empty <code>''</code> for all modes.</li>
 <li><code>lhs</code> - The key you need to press to activate the key map</li>
-<li><code>rhs</code> - Can be a lua function to call or a string to let vim &quot;type&quot;, for example <code>nzz</code> executes <code>n</code> and then <code>zz</code> which are binded to <code>next</code> and <code>recenter</code>.</li>
+<li><code>rhs</code> - Can be a lua function to call or a string to let vim "type", for example <code>nzz</code> executes <code>n</code> and then <code>zz</code> which are binded to <code>next</code> and <code>recenter</code>.</li>
 <li><code>desc</code> - Description for the keymap.</li>
 <li><code>opts</code> - Table of options for the keymap, read more at <code>:h map-arguments</code></li>
 </ul>
@@ -642,13 +635,13 @@ Repeating the operator key will apply the operation for the entire line, e.g: <c
 <hr />
 <h2 id="action"><a class="header" href="#action">Action</a></h2>
 <p>Action is an <code>operator + movement</code> <br />
-For example: </p>
+For example:</p>
 <ul>
 <li><code>y3k</code> - yank 2 lines above the cursor, including the current line.</li>
 <li><code>ct,</code> - change the text until <code>,</code>, very useful to change function arguments and more.</li>
 </ul>
 <p>This is why you <strong>must</strong> have <code>relativenumber</code> on, it will make your life much easier.</p>
-<h3 id="special-actions"><a class="header" href="#special-actions">&quot;Special&quot; actions</a></h3>
+<h3 id="special-actions"><a class="header" href="#special-actions">"Special" actions</a></h3>
 <ul>
 <li>Hit the operator twice to activate it on the current line. <code>yy</code> will yank the entire line you are on.</li>
 <li><code>Shift+operator</code> to activate the operator from the cursor the end of the line. <code>C</code> will change the line from the cursor to the end.</li>
@@ -663,7 +656,7 @@ For example: </p>
 <hr />
 <h2 id="how-should-i-remember-all-those-binds"><a class="header" href="#how-should-i-remember-all-those-binds">How should I remember all those binds?</a></h2>
 <p>Think of a key sequence as an English sentence.</p>
-<p>For example: when I'm using <code>y3j</code>/<code>y3&lt;Enter&gt;</code> I'll think of it as <code>yank 3 down</code>, in my mind I &quot;speak&quot; with the editor rather than remembering which keys to press.</p>
+<p>For example: when I'm using <code>y3j</code>/<code>y3&lt;Enter&gt;</code> I'll think of it as <code>yank 3 down</code>, in my mind I "speak" with the editor rather than remembering which keys to press.</p>
 <hr />
 <p>There are many more movements and operators but these are the ones I feel is the most important, it takes some time getting used to work with this method, but once you understand it, it'll stick well.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="copy-paste-and-visual-mode"><a class="header" href="#copy-paste-and-visual-mode">Copy, Paste and Visual Mode</a></h1>
@@ -685,28 +678,28 @@ For example: </p>
 </ul>
 <p>You can replace text by pasting new text after selecting the text to replace with visual, this action copies the replaced text to a register too.</p>
 <h2 id="registers"><a class="header" href="#registers">Registers</a></h2>
-<p>To specify a destination for the copy use <code>&quot;</code>. <br />
-For example to copy to register <code>a</code> I'll hit these keys: <code>&quot;ay&lt;movement&gt;&quot;</code>.</p>
-<p>Same for pasting: <code>&quot;ap</code>.</p>
+<p>To specify a destination for the copy use <code>"</code>. <br />
+For example to copy to register <code>a</code> I'll hit these keys: <code>"ay&lt;movement&gt;"</code>.</p>
+<p>Same for pasting: <code>"ap</code>.</p>
 <p>Use <code>_</code> - as the <code>black hole</code> register, when you want to delete a text without transferring it to a register.</p>
 <p>There are many things you can do with registers, I suggest to briefly read <code>:help registers</code>.</p>
 <h3 id="binds-to-deletechangereplace-without-yanking"><a class="header" href="#binds-to-deletechangereplace-without-yanking">Binds to delete/change/replace without yanking.</a></h3>
-<pre><code class="language-lua">map('x', '&lt;leader&gt;p', '&quot;_dP', 'Replace without yanking')
+<pre><code class="language-lua">map('x', '&lt;leader&gt;p', '"_dP', 'Replace without yanking')
 
-map('n', '&lt;leader&gt;d', '&quot;_d', 'Delete without yanking') -- e.g &lt;leader&gt;dd deletes the current line without yanking it
-map('n', '&lt;leader&gt;D', '&quot;_D', 'Delete until EOL without yanking')
+map('n', '&lt;leader&gt;d', '"_d', 'Delete without yanking') -- e.g &lt;leader&gt;dd deletes the current line without yanking it
+map('n', '&lt;leader&gt;D', '"_D', 'Delete until EOL without yanking')
 
-map('n', '&lt;leader&gt;c', '&quot;_c', 'Change without yanking')
-map('n', '&lt;leader&gt;C', '&quot;_C', 'Change until EOL without yanking')
+map('n', '&lt;leader&gt;c', '"_c', 'Change without yanking')
+map('n', '&lt;leader&gt;C', '"_C', 'Change until EOL without yanking')
 </code></pre>
 <h2 id="using-the-os-clipboard"><a class="header" href="#using-the-os-clipboard">Using the OS clipboard</a></h2>
 <p><code>+</code> is the OS clipboard register, you can yank to it and you can paste from it.</p>
 <p>I use these binds to use the OS clipboard without too many key presses:</p>
-<pre><code class="language-lua">map('', '&lt;leader&gt;y', '&quot;+y', 'Yank to clipboard') -- E.g: &lt;leader&gt;yy will yank current line to os clipboard
-map('', '&lt;leader&gt;Y', '&quot;+y$', 'Yank until EOL to clipboard')
+<pre><code class="language-lua">map('', '&lt;leader&gt;y', '"+y', 'Yank to clipboard') -- E.g: &lt;leader&gt;yy will yank current line to os clipboard
+map('', '&lt;leader&gt;Y', '"+y$', 'Yank until EOL to clipboard')
 
-map('n', '&lt;leader&gt;p', '&quot;+p', 'Paste after cursor from clipboard')
-map('n', '&lt;leader&gt;P', '&quot;+P', 'Paste before cursor from clipboard')
+map('n', '&lt;leader&gt;p', '"+p', 'Paste after cursor from clipboard')
+map('n', '&lt;leader&gt;P', '"+P', 'Paste before cursor from clipboard')
 </code></pre>
 <h2 id="plugins"><a class="header" href="#plugins">Plugins</a></h2>
 <h3 id="putyank-improvements"><a class="header" href="#putyank-improvements">Put/Yank Improvements</a></h3>
@@ -717,7 +710,7 @@ map('n', '&lt;leader&gt;P', '&quot;+P', 'Paste before cursor from clipboard')
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="text-objects"><a class="header" href="#text-objects">Text Objects</a></h1>
 <p>Text objects are what made vim superior from other editors for me by any means.</p>
-<p>Text objects are &quot;movements&quot; that only work after an operator. <br />
+<p>Text objects are "movements" that only work after an operator. <br />
 A text object consists of a start and an end. <br />
 The default and the most used ones are <code>inner</code>/<code>a</code> + <code>X</code>.</p>
 <p>Modifiers:</p>
@@ -733,7 +726,7 @@ The default and the most used ones are <code>inner</code>/<code>a</code> + <code
 <li><code>ci'</code> - <code>change inner '</code>, will change the inner text inside the next/current pair of <code>'</code> aka a string.</li>
 <li><code>ca(</code> - <code>delete a (</code>, will delete the text inside and the <code>(</code> of the next/current pair of <code>(</code>.</li>
 </ul>
-<p>You can do these actions for every pair, <code>(</code>/<code>{</code>/<code>'</code>/<code>&quot;</code>. <br />
+<p>You can do these actions for every pair, <code>(</code>/<code>{</code>/<code>'</code>/<code>"</code>. <br />
 You can do these actions for html tags(<code>t</code>), paragraphs(<code>p</code>), and more.</p>
 <p>You can repeat the action when entering a number before, e.g: <code>3daw</code> deletes the current word and the next 2.</p>
 <p>Feel free to enter visual mode and test how it works.</p>
@@ -772,50 +765,50 @@ For example, change the 3rd argument in the next function.</p>
 		enable = true,
 		set_jumps = true, -- whether to set jumps in the jumplist
 		goto_next_start = {
-			[&quot;]m&quot;] = &quot;@function.outer&quot;,
-			[&quot;gj&quot;] = &quot;@function.outer&quot;,
-			[&quot;]]&quot;] = &quot;@class.outer&quot;,
-			[&quot;]b&quot;] = &quot;@block.outer&quot;,
-			[&quot;]a&quot;] = &quot;@parameter.inner&quot;,
+			["]m"] = "@function.outer",
+			["gj"] = "@function.outer",
+			["]]"] = "@class.outer",
+			["]b"] = "@block.outer",
+			["]a"] = "@parameter.inner",
 		},
 		goto_next_end = {
-			[&quot;]M&quot;] = &quot;@function.outer&quot;,
-			[&quot;gJ&quot;] = &quot;@function.outer&quot;,
-			[&quot;][&quot;] = &quot;@class.outer&quot;,
-			[&quot;]B&quot;] = &quot;@block.outer&quot;,
-			[&quot;]A&quot;] = &quot;@parameter.inner&quot;,
+			["]M"] = "@function.outer",
+			["gJ"] = "@function.outer",
+			["]["] = "@class.outer",
+			["]B"] = "@block.outer",
+			["]A"] = "@parameter.inner",
 		},
 		goto_previous_start = {
-			[&quot;[m&quot;] = &quot;@function.outer&quot;,
-			[&quot;gk&quot;] = &quot;@function.outer&quot;,
-			[&quot;[[&quot;] = &quot;@class.outer&quot;,
-			[&quot;[b&quot;] = &quot;@block.outer&quot;,
-			[&quot;[a&quot;] = &quot;@parameter.inner&quot;,
+			["[m"] = "@function.outer",
+			["gk"] = "@function.outer",
+			["[["] = "@class.outer",
+			["[b"] = "@block.outer",
+			["[a"] = "@parameter.inner",
 		},
 		goto_previous_end = {
-			[&quot;[M&quot;] = &quot;@function.outer&quot;,
-			[&quot;gK&quot;] = &quot;@function.outer&quot;,
-			[&quot;[]&quot;] = &quot;@class.outer&quot;,
-			[&quot;[B&quot;] = &quot;@block.outer&quot;,
-			[&quot;[A&quot;] = &quot;@parameter.inner&quot;,
+			["[M"] = "@function.outer",
+			["gK"] = "@function.outer",
+			["[]"] = "@class.outer",
+			["[B"] = "@block.outer",
+			["[A"] = "@parameter.inner",
 		},
 	},
 	select = {
 		enable = true,
 		lookahead = true,
 		keymaps = {
-			[&quot;af&quot;] = &quot;@function.outer&quot;,
-			[&quot;if&quot;] = &quot;@function.inner&quot;,
-			[&quot;ac&quot;] = &quot;@class.outer&quot;,
-			[&quot;ic&quot;] = &quot;@class.inner&quot;,
-			[&quot;ab&quot;] = &quot;@block.outer&quot;,
-			[&quot;ib&quot;] = &quot;@block.inner&quot;,
-			[&quot;al&quot;] = &quot;@loop.outer&quot;,
-			[&quot;il&quot;] = &quot;@loop.inner&quot;,
-			[&quot;a/&quot;] = &quot;@comment.outer&quot;,
-			[&quot;i/&quot;] = &quot;@comment.outer&quot;, -- no inner for comment
-			[&quot;aa&quot;] = &quot;@parameter.outer&quot;, -- parameter -&gt; argument
-			[&quot;ia&quot;] = &quot;@parameter.inner&quot;,
+			["af"] = "@function.outer",
+			["if"] = "@function.inner",
+			["ac"] = "@class.outer",
+			["ic"] = "@class.inner",
+			["ab"] = "@block.outer",
+			["ib"] = "@block.inner",
+			["al"] = "@loop.outer",
+			["il"] = "@loop.inner",
+			["a/"] = "@comment.outer",
+			["i/"] = "@comment.outer", -- no inner for comment
+			["aa"] = "@parameter.outer", -- parameter -&gt; argument
+			["ia"] = "@parameter.inner",
 		},
 	},
 },
@@ -825,50 +818,50 @@ For example, change the 3rd argument in the next function.</p>
 	enable = true,
 	lookahead = true,
 	keymaps = {
-		[&quot;af&quot;] = &quot;@function.outer&quot;,
-		[&quot;if&quot;] = &quot;@function.inner&quot;,
-		[&quot;ac&quot;] = &quot;@class.outer&quot;,
-		[&quot;ic&quot;] = &quot;@class.inner&quot;,
-		[&quot;ab&quot;] = &quot;@block.outer&quot;,
-		[&quot;ib&quot;] = &quot;@block.inner&quot;,
-		[&quot;al&quot;] = &quot;@loop.outer&quot;,
-		[&quot;il&quot;] = &quot;@loop.inner&quot;,
-		[&quot;a/&quot;] = &quot;@comment.outer&quot;,
-		[&quot;i/&quot;] = &quot;@comment.outer&quot;, -- no inner for comment
-		[&quot;aa&quot;] = &quot;@parameter.outer&quot;, -- parameter -&gt; argument
-		[&quot;ia&quot;] = &quot;@parameter.inner&quot;,
+		["af"] = "@function.outer",
+		["if"] = "@function.inner",
+		["ac"] = "@class.outer",
+		["ic"] = "@class.inner",
+		["ab"] = "@block.outer",
+		["ib"] = "@block.inner",
+		["al"] = "@loop.outer",
+		["il"] = "@loop.inner",
+		["a/"] = "@comment.outer",
+		["i/"] = "@comment.outer", -- no inner for comment
+		["aa"] = "@parameter.outer", -- parameter -&gt; argument
+		["ia"] = "@parameter.inner",
 	},
 }
 lvim.builtin.treesitter.textobjects.move = {
 	enable = true,
 	set_jumps = true, -- whether to set jumps in the jumplist
 	goto_next_start = {
-		[&quot;]m&quot;] = &quot;@function.outer&quot;,
-		[&quot;gj&quot;] = &quot;@function.outer&quot;,
-		[&quot;]]&quot;] = &quot;@class.outer&quot;,
-		[&quot;]b&quot;] = &quot;@block.outer&quot;,
-		[&quot;]a&quot;] = &quot;@parameter.inner&quot;,
+		["]m"] = "@function.outer",
+		["gj"] = "@function.outer",
+		["]]"] = "@class.outer",
+		["]b"] = "@block.outer",
+		["]a"] = "@parameter.inner",
 	},
 	goto_next_end = {
-		[&quot;]M&quot;] = &quot;@function.outer&quot;,
-		[&quot;gJ&quot;] = &quot;@function.outer&quot;,
-		[&quot;][&quot;] = &quot;@class.outer&quot;,
-		[&quot;]B&quot;] = &quot;@block.outer&quot;,
-		[&quot;]A&quot;] = &quot;@parameter.inner&quot;,
+		["]M"] = "@function.outer",
+		["gJ"] = "@function.outer",
+		["]["] = "@class.outer",
+		["]B"] = "@block.outer",
+		["]A"] = "@parameter.inner",
 	},
 	goto_previous_start = {
-		[&quot;[m&quot;] = &quot;@function.outer&quot;,
-		[&quot;gk&quot;] = &quot;@function.outer&quot;,
-		[&quot;[[&quot;] = &quot;@class.outer&quot;,
-		[&quot;[b&quot;] = &quot;@block.outer&quot;,
-		[&quot;[a&quot;] = &quot;@parameter.inner&quot;,
+		["[m"] = "@function.outer",
+		["gk"] = "@function.outer",
+		["[["] = "@class.outer",
+		["[b"] = "@block.outer",
+		["[a"] = "@parameter.inner",
 	},
 	goto_previous_end = {
-		[&quot;[M&quot;] = &quot;@function.outer&quot;,
-		[&quot;gK&quot;] = &quot;@function.outer&quot;,
-		[&quot;[]&quot;] = &quot;@class.outer&quot;,
-		[&quot;[B&quot;] = &quot;@block.outer&quot;,
-		[&quot;[A&quot;] = &quot;@parameter.inner&quot;,
+		["[M"] = "@function.outer",
+		["gK"] = "@function.outer",
+		["[]"] = "@class.outer",
+		["[B"] = "@block.outer",
+		["[A"] = "@parameter.inner",
 	},
 }
 </code></pre>
@@ -956,7 +949,7 @@ The syntax resembles the <code>sed</code> cli tool.</p>
 <p>Recommended keymap to rename the word under the cursor</p>
 <pre><code class="language-lua">-- My &lt;F2&gt; is binded to lsp rename
 map('n', '&lt;leader&gt;&lt;F2&gt;', '*:%s///g&lt;left&gt;&lt;left&gt;') -- Rename current word with &lt;leader&gt;F2
-map('x', '&lt;F2&gt;', '&quot;hy:%s/&lt;C-r&gt;h//g&lt;left&gt;&lt;left&gt;') -- Rename selected text in visual
+map('x', '&lt;F2&gt;', '"hy:%s/&lt;C-r&gt;h//g&lt;left&gt;&lt;left&gt;') -- Rename selected text in visual
 </code></pre>
 <h4 id="plugins-2"><a class="header" href="#plugins-2">Plugins</a></h4>
 <p>With <a href="https://github.com/johmsalas/text-case.nvim">text-case.nvim</a> you can replace text and preserve the casing of the text.</p>
@@ -987,7 +980,7 @@ api.nvim_create_user_command('PathCase', function() textcase.current_word('to_pa
 api.nvim_create_user_command('PhraseCase', function() textcase.current_word('to_phrase_case') end, {})
 </code></pre>
 <h2 id="global-command"><a class="header" href="#global-command">Global command</a></h2>
-<p>The <code>g</code> command is used to apply a &quot;vim&quot; command across the buffer by filtering lines with pattern.</p>
+<p>The <code>g</code> command is used to apply a "vim" command across the buffer by filtering lines with pattern.</p>
 <p>For example:</p>
 <ul>
 <li><code>:g/ofir/d</code> - will delete all the lines with <code>ofir</code></li>
@@ -1061,12 +1054,12 @@ You can think of it like a macro that holds only the last action you did.</p>
 <p>You learned the basics of vim (and a little bit about nvim). From this chapter on I'll mostly talk about what takes nvim from being a good editor to a great editor, its plugin-rich ecosystem and configurability.</p>
 <h2 id="personal-config-vs-preconfigured-configuration"><a class="header" href="#personal-config-vs-preconfigured-configuration">Personal Config vs Preconfigured Configuration</a></h2>
 <h4 id="preconfigured-config"><a class="header" href="#preconfigured-config">Preconfigured config</a></h4>
-<p>Preconfigured configurations are great, they provide a fast way to get a good config which is maintained by a community. But they add a &quot;layer&quot; of abstraction in the config, when installing new plugins that don't interact with builtin plugins everything works, but if the plugin has to interact with a builtin plugin it can become tricky.
+<p>Preconfigured configurations are great, they provide a fast way to get a good config which is maintained by a community. But they add a "layer" of abstraction in the config, when installing new plugins that don't interact with builtin plugins everything works, but if the plugin has to interact with a builtin plugin it can become tricky.
 You have to read how your preconfigured configurations expose those options which sometimes confusing and inconvenient.</p>
 <p>It's like trying to fix stuff in a rented house, you don't know exactly how everything works but you learn as you try, sometimes you just don't want to mess with that.</p>
 <h4 id="personal-config"><a class="header" href="#personal-config">Personal config</a></h4>
 <p>When you build your own config, you build your own house, so you know exactly how the electricity works, how the plumbing works, and how everything is connected.</p>
-<p>Your config = your codebase, configs of nvim are written in Lua, when you write your own config you write a mini project. You know each file, you know the &quot;flow&quot; of the config, you manage your own codebase from scratch rather than &quot;diving&quot; into the existing codebase of your preconfigured configuration.</p>
+<p>Your config = your codebase, configs of nvim are written in Lua, when you write your own config you write a mini project. You know each file, you know the "flow" of the config, you manage your own codebase from scratch rather than "diving" into the existing codebase of your preconfigured configuration.</p>
 <h4 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h4>
 <p>I think that maintaining a personal config is the better option, it takes time and effort at first but it's worthwhile. Not everyone should write their own config but I suggest you try it.</p>
 <p><em><strong>Note</strong></em>: If you stick with a preconfigured configuration, some parts of the next chapters are irrelevant, I'll make sure to let you know you can skip them.</p>
@@ -1101,11 +1094,11 @@ As far as I know this is the reason Lua is so fast.</p>
 </blockquote>
 <details><summary>Table usage examples (click to expand)</summary>
 <pre><code class="language-lua">local my_table = {
-	ofir = &quot;gal&quot;
+	ofir = "gal"
 }
 
 for key, value in pairs(my_table) do
-	print(&quot;key: &quot; .. key .. &quot;, value: &quot; .. value)
+	print("key: " .. key .. ", value: " .. value)
 end
 -- Output:
 --   key: ofir, value: gal
@@ -1135,17 +1128,17 @@ end
 -------------------------------
 
 local my_dict = {
-	[&quot;ofir&quot;] = &quot;gal&quot;
+	["ofir"] = "gal"
 }
 
 for key, value in pairs(my_dict) do
-	print(&quot;key: &quot; .. key .. &quot;, value: &quot; .. value)
+	print("key: " .. key .. ", value: " .. value)
 end
 -- Output:
 --   key: ofir, value: gal
 print(my_dict.ofir) -- Output: gal
-print(my_dict[&quot;ofir&quot;]) -- Output: gal
-print(my_table[&quot;ofir&quot;]) -- Output: gal
+print(my_dict["ofir"]) -- Output: gal
+print(my_table["ofir"]) -- Output: gal
 
 </code></pre>
 <p><a href="https://www.lua.org/pil/2.5.html">More examples here</a></p>
@@ -1159,7 +1152,7 @@ print(my_table[&quot;ofir&quot;]) -- Output: gal
 
 -- Example for private function
 local function private_func(input)
-	print(&quot;Foo: &quot; .. input)
+	print("Foo: " .. input)
 end
 
 -- Example of exported function
@@ -1170,10 +1163,10 @@ end
 return M -- Return the exported functions table
 </code></pre>
 <p>Usage example:</p>
-<pre><code class="language-lua">require('module_example').public_func(&quot;ofir&quot;)
+<pre><code class="language-lua">require('module_example').public_func("ofir")
 
 local mod = require('module_example')
-mod.public_func(&quot;ofir&quot;)
+mod.public_func("ofir")
 </code></pre>
 <hr />
 </details>
@@ -1185,7 +1178,7 @@ mod.public_func(&quot;ofir&quot;)
 local submod = require('anothermodule')
 
 M.boo = function()
-	submod.goo(&quot;ofir gal&quot;)
+	submod.goo("ofir gal")
 end
 
 M.goo = submod.goo -- Expose submod.goo through the package
@@ -1196,16 +1189,16 @@ return M
 <pre><code class="language-lua">local M = {}
 
 M.goo = function(input)
-	print(&quot;submod.goo: &quot;.. input)
+	print("submod.goo: ".. input)
 end
 
 return M
 </code></pre>
 <p>Usage example:</p>
 <pre><code class="language-lua">require('package_example').boo()
-require('package_example').goo(&quot;amit tamari&quot;)
-require('package_example.anothermodule').goo(&quot;direct call to submodule&quot;)
-require('package_example/anothermodule').goo(&quot;another way to direct call to submodule&quot;)
+require('package_example').goo("amit tamari")
+require('package_example.anothermodule').goo("direct call to submodule")
+require('package_example/anothermodule').goo("another way to direct call to submodule")
 </code></pre>
 </details>
 <hr />
@@ -1329,7 +1322,7 @@ vim.opt.laststatus = 2 -- The default, local
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="code-navigation"><a class="header" href="#code-navigation">Code Navigation</a></h1>
 <h2 id="lsp-1"><a class="header" href="#lsp-1">LSP</a></h2>
-<p>To make nvim &quot;smart&quot; you need to install a LSP server and connect it to nvim's LSP client.</p>
+<p>To make nvim "smart" you need to install a LSP server and connect it to nvim's LSP client.</p>
 <p>There are two options to do that:</p>
 <ol>
 <li>Using <a href="https://github.com/williamboman/mason.nvim">mason.nvim</a> with <a href="https://github.com/williamboman/mason-lspconfig.nvim">mason-lspconfig.nvim</a> and <a href="https://github.com/neovim/nvim-lspconfig">nvim-lspconfig</a>, these 3 plugins will manage and install LSP servers, make sure you integrate it with your preconfigured configuration.</li>
@@ -1340,17 +1333,17 @@ vim.opt.laststatus = 2 -- The default, local
 <p>One of them is telescope which is a framework for search, preview and pick.</p>
 <p>Some of the features:</p>
 <ul>
-<li>You can live-grep across the project with it, equivalent to CTRL+SHIFT+F in a &quot;modern&quot; IDE.</li>
-<li>You can find a file, equivalent to CTRL+p in a &quot;modern&quot; IDE.</li>
-<li>You can find all the definitions of a function with it (using LSP), equivalent to F12 in a &quot;modern&quot; IDE.</li>
+<li>You can live-grep across the project with it, equivalent to CTRL+SHIFT+F in a "modern" IDE.</li>
+<li>You can find a file, equivalent to CTRL+p in a "modern" IDE.</li>
+<li>You can find all the definitions of a function with it (using LSP), equivalent to F12 in a "modern" IDE.</li>
 <li>You can find all the references/implementations/type definitions with it (using LSP).</li>
 <li>You can live grep a local/workspace symbols (functions), using LSP ofc.</li>
 </ul>
 <p>Your preconfigured configuration probably has it installed and binded to keys already, make sure you know how to use it and configure it to your taste, it is very useful.</p>
 <h2 id="lsp-goodies"><a class="header" href="#lsp-goodies">LSP Goodies</a></h2>
 <ul>
-<li><a href="https://github.com/glepnir/lspsaga.nvim">LSP Saga</a> UI for LSP &quot;hover&quot; and rename and code actions (hints).</li>
-<li><a href="https://github.com/RRethy/vim-illuminate">vim-illuminate</a> highlight the symbol your cursor is on and let you jump to next/previous reference, very useful to know what &quot;happened&quot; to a variable.</li>
+<li><a href="https://github.com/glepnir/lspsaga.nvim">LSP Saga</a> UI for LSP "hover" and rename and code actions (hints).</li>
+<li><a href="https://github.com/RRethy/vim-illuminate">vim-illuminate</a> highlight the symbol your cursor is on and let you jump to next/previous reference, very useful to know what "happened" to a variable.</li>
 <li><a href="https://github.com/ray-x/lsp_signature.nvim">LSP Signature</a> shows the function signature while writing a function call.</li>
 <li><a href="https://github.com/j-hui/fidget.nvim">fidget.nvim</a> shows the LSP server progress in the bottom right corner.</li>
 <li><a href="https://git.sr.ht/~whynothugo/lsp_lines.nvim">lsp_lines.nvim</a> shows the diagnostics in an intuitive way.</li>
@@ -1393,7 +1386,7 @@ I'll cover some of the plugins I use to manage my git through nvim, I recommend 
 <h2 id="fugitive"><a class="header" href="#fugitive"><a href="https://github.com/tpope/vim-fugitive">Fugitive</a></a></h2>
 <p>Provides the <code>:Git</code>/<code>:G</code> command which basically sends the command to the git CLI and provides an interactive window to work with. <br />
 E.g: <code>:G show HEAD</code>/<code>:Git show HEAD</code></p>
-<p>The &quot;main&quot; feature of it is the interactive <code>status</code> window which can be triggered with <code>:G</code> with no params which provide a convenient way to see the diffs, stage files and commit changes.
+<p>The "main" feature of it is the interactive <code>status</code> window which can be triggered with <code>:G</code> with no params which provide a convenient way to see the diffs, stage files and commit changes.
 <img src="chapters/../media/fugitive.png" alt="nvim Screenshot" /></p>
 <hr />
 <h2 id="gitsigns"><a class="header" href="#gitsigns"><a href="https://github.com/lewis6991/gitsigns.nvim">Gitsigns</a></a></h2>
@@ -1434,7 +1427,7 @@ To integrate it you need to install <a href="https://github.com/mfussenegger/nvi
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hydra"><a class="header" href="#hydra"><a href="https://github.com/anuvyklack/hydra.nvim">Hydra</a></a></h1>
 <p>Hydra is a framework to create a submode inside nvim, a submode is called <code>Hydra</code>.</p>
-<p>It allows to enter a <code>body</code> with a key bind or a lua command and from there it creates a custom keymapping &quot;ontop&quot; of your exist keys to allow you to do various actions. <br />
+<p>It allows to enter a <code>body</code> with a key bind or a lua command and from there it creates a custom keymapping "ontop" of your exist keys to allow you to do various actions. <br />
 You can create custom ones very easily too.</p>
 <p>Hydras for example:</p>
 <ul>
@@ -1442,7 +1435,7 @@ You can create custom ones very easily too.</p>
 <li><a href="https://github.com/anuvyklack/hydra.nvim/wiki/Git">Git</a> another tool for git management from inside nvim</li>
 <li><a href="https://github.com/anuvyklack/hydra.nvim/wiki">You can find all the community hydra's here</a></li>
 </ul>
-<p>Example for a &quot;custom&quot; hydra of mine, which let met scroll through the functions in the buffer quickly:</p>
+<p>Example for a "custom" hydra of mine, which let met scroll through the functions in the buffer quickly:</p>
 <pre><code class="language-lua">local ts_move = require'nvim-treesitter.textobjects.move'
 -- Move up/down functions
 local curr = Hydra({

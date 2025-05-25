@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -24,26 +24,40 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,24 +71,22 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -82,45 +94,25 @@
                 sidebar = 'hidden';
             }
             sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapters/00-why-should-i-learn.html"><strong aria-hidden="true">1.</strong> Why Should I Learn?</a></li><li class="chapter-item expanded "><a href="../chapters/01-the-vim-language.html"><strong aria-hidden="true">2.</strong> The vim Language</a></li><li class="chapter-item expanded "><a href="../chapters/02-basic-config.html"><strong aria-hidden="true">3.</strong> Basic Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/03-movements-and-operators.html"><strong aria-hidden="true">4.</strong> Movements and Operators</a></li><li class="chapter-item expanded "><a href="../chapters/04-copy-paste-visual.html"><strong aria-hidden="true">5.</strong> Copy, Paste and Visual Mode</a></li><li class="chapter-item expanded "><a href="../chapters/05-text-objects.html"><strong aria-hidden="true">6.</strong> Text objects</a></li><li class="chapter-item expanded "><a href="../chapters/06-splits-and-actual-tabs.html"><strong aria-hidden="true">7.</strong> Splits and Actual Tabs</a></li><li class="chapter-item expanded "><a href="../chapters/07-vim-goodies.html"><strong aria-hidden="true">8.</strong> Vim Goodies</a></li><li class="chapter-item expanded "><a href="../chapters/08-advanced-config.html" class="active"><strong aria-hidden="true">9.</strong> Advanced Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/09-ui.html"><strong aria-hidden="true">10.</strong> UI</a></li><li class="chapter-item expanded "><a href="../chapters/10-code-navigation.html"><strong aria-hidden="true">11.</strong> Code Navigation</a></li><li class="chapter-item expanded "><a href="../chapters/11-complete-engine.html"><strong aria-hidden="true">12.</strong> Complete and Snippets Engines</a></li><li class="chapter-item expanded "><a href="../chapters/12-git.html"><strong aria-hidden="true">13.</strong> Git</a></li><li class="chapter-item expanded "><a href="../chapters/13-debug.html"><strong aria-hidden="true">14.</strong> Debug</a></li><li class="chapter-item expanded "><a href="../chapters/14-hydra.html"><strong aria-hidden="true">15.</strong> Hydra</a></li><li class="chapter-item expanded "><a href="../chapters/15-misc-and-summary.html"><strong aria-hidden="true">16.</strong> Misc Plugins and Summary</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -130,13 +122,14 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -177,12 +170,12 @@
 <p>You learned the basics of vim (and a little bit about nvim). From this chapter on I'll mostly talk about what takes nvim from being a good editor to a great editor, its plugin-rich ecosystem and configurability.</p>
 <h2 id="personal-config-vs-preconfigured-configuration"><a class="header" href="#personal-config-vs-preconfigured-configuration">Personal Config vs Preconfigured Configuration</a></h2>
 <h4 id="preconfigured-config"><a class="header" href="#preconfigured-config">Preconfigured config</a></h4>
-<p>Preconfigured configurations are great, they provide a fast way to get a good config which is maintained by a community. But they add a &quot;layer&quot; of abstraction in the config, when installing new plugins that don't interact with builtin plugins everything works, but if the plugin has to interact with a builtin plugin it can become tricky.
+<p>Preconfigured configurations are great, they provide a fast way to get a good config which is maintained by a community. But they add a "layer" of abstraction in the config, when installing new plugins that don't interact with builtin plugins everything works, but if the plugin has to interact with a builtin plugin it can become tricky.
 You have to read how your preconfigured configurations expose those options which sometimes confusing and inconvenient.</p>
 <p>It's like trying to fix stuff in a rented house, you don't know exactly how everything works but you learn as you try, sometimes you just don't want to mess with that.</p>
 <h4 id="personal-config"><a class="header" href="#personal-config">Personal config</a></h4>
 <p>When you build your own config, you build your own house, so you know exactly how the electricity works, how the plumbing works, and how everything is connected.</p>
-<p>Your config = your codebase, configs of nvim are written in Lua, when you write your own config you write a mini project. You know each file, you know the &quot;flow&quot; of the config, you manage your own codebase from scratch rather than &quot;diving&quot; into the existing codebase of your preconfigured configuration.</p>
+<p>Your config = your codebase, configs of nvim are written in Lua, when you write your own config you write a mini project. You know each file, you know the "flow" of the config, you manage your own codebase from scratch rather than "diving" into the existing codebase of your preconfigured configuration.</p>
 <h4 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h4>
 <p>I think that maintaining a personal config is the better option, it takes time and effort at first but it's worthwhile. Not everyone should write their own config but I suggest you try it.</p>
 <p><em><strong>Note</strong></em>: If you stick with a preconfigured configuration, some parts of the next chapters are irrelevant, I'll make sure to let you know you can skip them.</p>
@@ -217,11 +210,11 @@ As far as I know this is the reason Lua is so fast.</p>
 </blockquote>
 <details><summary>Table usage examples (click to expand)</summary>
 <pre><code class="language-lua">local my_table = {
-	ofir = &quot;gal&quot;
+	ofir = "gal"
 }
 
 for key, value in pairs(my_table) do
-	print(&quot;key: &quot; .. key .. &quot;, value: &quot; .. value)
+	print("key: " .. key .. ", value: " .. value)
 end
 -- Output:
 --   key: ofir, value: gal
@@ -251,17 +244,17 @@ end
 -------------------------------
 
 local my_dict = {
-	[&quot;ofir&quot;] = &quot;gal&quot;
+	["ofir"] = "gal"
 }
 
 for key, value in pairs(my_dict) do
-	print(&quot;key: &quot; .. key .. &quot;, value: &quot; .. value)
+	print("key: " .. key .. ", value: " .. value)
 end
 -- Output:
 --   key: ofir, value: gal
 print(my_dict.ofir) -- Output: gal
-print(my_dict[&quot;ofir&quot;]) -- Output: gal
-print(my_table[&quot;ofir&quot;]) -- Output: gal
+print(my_dict["ofir"]) -- Output: gal
+print(my_table["ofir"]) -- Output: gal
 
 </code></pre>
 <p><a href="https://www.lua.org/pil/2.5.html">More examples here</a></p>
@@ -275,7 +268,7 @@ print(my_table[&quot;ofir&quot;]) -- Output: gal
 
 -- Example for private function
 local function private_func(input)
-	print(&quot;Foo: &quot; .. input)
+	print("Foo: " .. input)
 end
 
 -- Example of exported function
@@ -286,10 +279,10 @@ end
 return M -- Return the exported functions table
 </code></pre>
 <p>Usage example:</p>
-<pre><code class="language-lua">require('module_example').public_func(&quot;ofir&quot;)
+<pre><code class="language-lua">require('module_example').public_func("ofir")
 
 local mod = require('module_example')
-mod.public_func(&quot;ofir&quot;)
+mod.public_func("ofir")
 </code></pre>
 <hr />
 </details>
@@ -301,7 +294,7 @@ mod.public_func(&quot;ofir&quot;)
 local submod = require('anothermodule')
 
 M.boo = function()
-	submod.goo(&quot;ofir gal&quot;)
+	submod.goo("ofir gal")
 end
 
 M.goo = submod.goo -- Expose submod.goo through the package
@@ -312,16 +305,16 @@ return M
 <pre><code class="language-lua">local M = {}
 
 M.goo = function(input)
-	print(&quot;submod.goo: &quot;.. input)
+	print("submod.goo: ".. input)
 end
 
 return M
 </code></pre>
 <p>Usage example:</p>
 <pre><code class="language-lua">require('package_example').boo()
-require('package_example').goo(&quot;amit tamari&quot;)
-require('package_example.anothermodule').goo(&quot;direct call to submodule&quot;)
-require('package_example/anothermodule').goo(&quot;another way to direct call to submodule&quot;)
+require('package_example').goo("amit tamari")
+require('package_example.anothermodule').goo("direct call to submodule")
+require('package_example/anothermodule').goo("another way to direct call to submodule")
 </code></pre>
 </details>
 <hr />

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -24,26 +24,40 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,24 +71,22 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -82,45 +94,25 @@
                 sidebar = 'hidden';
             }
             sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../chapters/00-why-should-i-learn.html"><strong aria-hidden="true">1.</strong> Why Should I Learn?</a></li><li class="chapter-item expanded "><a href="../chapters/01-the-vim-language.html"><strong aria-hidden="true">2.</strong> The vim Language</a></li><li class="chapter-item expanded "><a href="../chapters/02-basic-config.html"><strong aria-hidden="true">3.</strong> Basic Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/03-movements-and-operators.html"><strong aria-hidden="true">4.</strong> Movements and Operators</a></li><li class="chapter-item expanded "><a href="../chapters/04-copy-paste-visual.html"><strong aria-hidden="true">5.</strong> Copy, Paste and Visual Mode</a></li><li class="chapter-item expanded "><a href="../chapters/05-text-objects.html" class="active"><strong aria-hidden="true">6.</strong> Text objects</a></li><li class="chapter-item expanded "><a href="../chapters/06-splits-and-actual-tabs.html"><strong aria-hidden="true">7.</strong> Splits and Actual Tabs</a></li><li class="chapter-item expanded "><a href="../chapters/07-vim-goodies.html"><strong aria-hidden="true">8.</strong> Vim Goodies</a></li><li class="chapter-item expanded "><a href="../chapters/08-advanced-config.html"><strong aria-hidden="true">9.</strong> Advanced Configuration</a></li><li class="chapter-item expanded "><a href="../chapters/09-ui.html"><strong aria-hidden="true">10.</strong> UI</a></li><li class="chapter-item expanded "><a href="../chapters/10-code-navigation.html"><strong aria-hidden="true">11.</strong> Code Navigation</a></li><li class="chapter-item expanded "><a href="../chapters/11-complete-engine.html"><strong aria-hidden="true">12.</strong> Complete and Snippets Engines</a></li><li class="chapter-item expanded "><a href="../chapters/12-git.html"><strong aria-hidden="true">13.</strong> Git</a></li><li class="chapter-item expanded "><a href="../chapters/13-debug.html"><strong aria-hidden="true">14.</strong> Debug</a></li><li class="chapter-item expanded "><a href="../chapters/14-hydra.html"><strong aria-hidden="true">15.</strong> Hydra</a></li><li class="chapter-item expanded "><a href="../chapters/15-misc-and-summary.html"><strong aria-hidden="true">16.</strong> Misc Plugins and Summary</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -130,13 +122,14 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -175,7 +168,7 @@
                     <main>
                         <h1 id="text-objects"><a class="header" href="#text-objects">Text Objects</a></h1>
 <p>Text objects are what made vim superior from other editors for me by any means.</p>
-<p>Text objects are &quot;movements&quot; that only work after an operator. <br />
+<p>Text objects are "movements" that only work after an operator. <br />
 A text object consists of a start and an end. <br />
 The default and the most used ones are <code>inner</code>/<code>a</code> + <code>X</code>.</p>
 <p>Modifiers:</p>
@@ -191,7 +184,7 @@ The default and the most used ones are <code>inner</code>/<code>a</code> + <code
 <li><code>ci'</code> - <code>change inner '</code>, will change the inner text inside the next/current pair of <code>'</code> aka a string.</li>
 <li><code>ca(</code> - <code>delete a (</code>, will delete the text inside and the <code>(</code> of the next/current pair of <code>(</code>.</li>
 </ul>
-<p>You can do these actions for every pair, <code>(</code>/<code>{</code>/<code>'</code>/<code>&quot;</code>. <br />
+<p>You can do these actions for every pair, <code>(</code>/<code>{</code>/<code>'</code>/<code>"</code>. <br />
 You can do these actions for html tags(<code>t</code>), paragraphs(<code>p</code>), and more.</p>
 <p>You can repeat the action when entering a number before, e.g: <code>3daw</code> deletes the current word and the next 2.</p>
 <p>Feel free to enter visual mode and test how it works.</p>
@@ -230,50 +223,50 @@ For example, change the 3rd argument in the next function.</p>
 		enable = true,
 		set_jumps = true, -- whether to set jumps in the jumplist
 		goto_next_start = {
-			[&quot;]m&quot;] = &quot;@function.outer&quot;,
-			[&quot;gj&quot;] = &quot;@function.outer&quot;,
-			[&quot;]]&quot;] = &quot;@class.outer&quot;,
-			[&quot;]b&quot;] = &quot;@block.outer&quot;,
-			[&quot;]a&quot;] = &quot;@parameter.inner&quot;,
+			["]m"] = "@function.outer",
+			["gj"] = "@function.outer",
+			["]]"] = "@class.outer",
+			["]b"] = "@block.outer",
+			["]a"] = "@parameter.inner",
 		},
 		goto_next_end = {
-			[&quot;]M&quot;] = &quot;@function.outer&quot;,
-			[&quot;gJ&quot;] = &quot;@function.outer&quot;,
-			[&quot;][&quot;] = &quot;@class.outer&quot;,
-			[&quot;]B&quot;] = &quot;@block.outer&quot;,
-			[&quot;]A&quot;] = &quot;@parameter.inner&quot;,
+			["]M"] = "@function.outer",
+			["gJ"] = "@function.outer",
+			["]["] = "@class.outer",
+			["]B"] = "@block.outer",
+			["]A"] = "@parameter.inner",
 		},
 		goto_previous_start = {
-			[&quot;[m&quot;] = &quot;@function.outer&quot;,
-			[&quot;gk&quot;] = &quot;@function.outer&quot;,
-			[&quot;[[&quot;] = &quot;@class.outer&quot;,
-			[&quot;[b&quot;] = &quot;@block.outer&quot;,
-			[&quot;[a&quot;] = &quot;@parameter.inner&quot;,
+			["[m"] = "@function.outer",
+			["gk"] = "@function.outer",
+			["[["] = "@class.outer",
+			["[b"] = "@block.outer",
+			["[a"] = "@parameter.inner",
 		},
 		goto_previous_end = {
-			[&quot;[M&quot;] = &quot;@function.outer&quot;,
-			[&quot;gK&quot;] = &quot;@function.outer&quot;,
-			[&quot;[]&quot;] = &quot;@class.outer&quot;,
-			[&quot;[B&quot;] = &quot;@block.outer&quot;,
-			[&quot;[A&quot;] = &quot;@parameter.inner&quot;,
+			["[M"] = "@function.outer",
+			["gK"] = "@function.outer",
+			["[]"] = "@class.outer",
+			["[B"] = "@block.outer",
+			["[A"] = "@parameter.inner",
 		},
 	},
 	select = {
 		enable = true,
 		lookahead = true,
 		keymaps = {
-			[&quot;af&quot;] = &quot;@function.outer&quot;,
-			[&quot;if&quot;] = &quot;@function.inner&quot;,
-			[&quot;ac&quot;] = &quot;@class.outer&quot;,
-			[&quot;ic&quot;] = &quot;@class.inner&quot;,
-			[&quot;ab&quot;] = &quot;@block.outer&quot;,
-			[&quot;ib&quot;] = &quot;@block.inner&quot;,
-			[&quot;al&quot;] = &quot;@loop.outer&quot;,
-			[&quot;il&quot;] = &quot;@loop.inner&quot;,
-			[&quot;a/&quot;] = &quot;@comment.outer&quot;,
-			[&quot;i/&quot;] = &quot;@comment.outer&quot;, -- no inner for comment
-			[&quot;aa&quot;] = &quot;@parameter.outer&quot;, -- parameter -&gt; argument
-			[&quot;ia&quot;] = &quot;@parameter.inner&quot;,
+			["af"] = "@function.outer",
+			["if"] = "@function.inner",
+			["ac"] = "@class.outer",
+			["ic"] = "@class.inner",
+			["ab"] = "@block.outer",
+			["ib"] = "@block.inner",
+			["al"] = "@loop.outer",
+			["il"] = "@loop.inner",
+			["a/"] = "@comment.outer",
+			["i/"] = "@comment.outer", -- no inner for comment
+			["aa"] = "@parameter.outer", -- parameter -&gt; argument
+			["ia"] = "@parameter.inner",
 		},
 	},
 },
@@ -283,50 +276,50 @@ For example, change the 3rd argument in the next function.</p>
 	enable = true,
 	lookahead = true,
 	keymaps = {
-		[&quot;af&quot;] = &quot;@function.outer&quot;,
-		[&quot;if&quot;] = &quot;@function.inner&quot;,
-		[&quot;ac&quot;] = &quot;@class.outer&quot;,
-		[&quot;ic&quot;] = &quot;@class.inner&quot;,
-		[&quot;ab&quot;] = &quot;@block.outer&quot;,
-		[&quot;ib&quot;] = &quot;@block.inner&quot;,
-		[&quot;al&quot;] = &quot;@loop.outer&quot;,
-		[&quot;il&quot;] = &quot;@loop.inner&quot;,
-		[&quot;a/&quot;] = &quot;@comment.outer&quot;,
-		[&quot;i/&quot;] = &quot;@comment.outer&quot;, -- no inner for comment
-		[&quot;aa&quot;] = &quot;@parameter.outer&quot;, -- parameter -&gt; argument
-		[&quot;ia&quot;] = &quot;@parameter.inner&quot;,
+		["af"] = "@function.outer",
+		["if"] = "@function.inner",
+		["ac"] = "@class.outer",
+		["ic"] = "@class.inner",
+		["ab"] = "@block.outer",
+		["ib"] = "@block.inner",
+		["al"] = "@loop.outer",
+		["il"] = "@loop.inner",
+		["a/"] = "@comment.outer",
+		["i/"] = "@comment.outer", -- no inner for comment
+		["aa"] = "@parameter.outer", -- parameter -&gt; argument
+		["ia"] = "@parameter.inner",
 	},
 }
 lvim.builtin.treesitter.textobjects.move = {
 	enable = true,
 	set_jumps = true, -- whether to set jumps in the jumplist
 	goto_next_start = {
-		[&quot;]m&quot;] = &quot;@function.outer&quot;,
-		[&quot;gj&quot;] = &quot;@function.outer&quot;,
-		[&quot;]]&quot;] = &quot;@class.outer&quot;,
-		[&quot;]b&quot;] = &quot;@block.outer&quot;,
-		[&quot;]a&quot;] = &quot;@parameter.inner&quot;,
+		["]m"] = "@function.outer",
+		["gj"] = "@function.outer",
+		["]]"] = "@class.outer",
+		["]b"] = "@block.outer",
+		["]a"] = "@parameter.inner",
 	},
 	goto_next_end = {
-		[&quot;]M&quot;] = &quot;@function.outer&quot;,
-		[&quot;gJ&quot;] = &quot;@function.outer&quot;,
-		[&quot;][&quot;] = &quot;@class.outer&quot;,
-		[&quot;]B&quot;] = &quot;@block.outer&quot;,
-		[&quot;]A&quot;] = &quot;@parameter.inner&quot;,
+		["]M"] = "@function.outer",
+		["gJ"] = "@function.outer",
+		["]["] = "@class.outer",
+		["]B"] = "@block.outer",
+		["]A"] = "@parameter.inner",
 	},
 	goto_previous_start = {
-		[&quot;[m&quot;] = &quot;@function.outer&quot;,
-		[&quot;gk&quot;] = &quot;@function.outer&quot;,
-		[&quot;[[&quot;] = &quot;@class.outer&quot;,
-		[&quot;[b&quot;] = &quot;@block.outer&quot;,
-		[&quot;[a&quot;] = &quot;@parameter.inner&quot;,
+		["[m"] = "@function.outer",
+		["gk"] = "@function.outer",
+		["[["] = "@class.outer",
+		["[b"] = "@block.outer",
+		["[a"] = "@parameter.inner",
 	},
 	goto_previous_end = {
-		[&quot;[M&quot;] = &quot;@function.outer&quot;,
-		[&quot;gK&quot;] = &quot;@function.outer&quot;,
-		[&quot;[]&quot;] = &quot;@class.outer&quot;,
-		[&quot;[B&quot;] = &quot;@block.outer&quot;,
-		[&quot;[A&quot;] = &quot;@parameter.inner&quot;,
+		["[M"] = "@function.outer",
+		["gK"] = "@function.outer",
+		["[]"] = "@class.outer",
+		["[B"] = "@block.outer",
+		["[A"] = "@parameter.inner",
 	},
 }
 </code></pre>
