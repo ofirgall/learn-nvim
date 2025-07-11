@@ -78,7 +78,7 @@ export MANWIDTH=999
 ```
 
 ### More
-There are many many more plugins for neovim, you can check out [awesome-neovim](https://github.com/rockerBOO/awesome-neovim), and you can also my list - [packer.lua](https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/packer.lua)
+There are many many more plugins for neovim, you can check out [awesome-neovim](https://github.com/rockerBOO/awesome-neovim), and you can also [my list](https://github.com/KoalaVim/KoalaVim/tree/master/lua/KoalaVim/plugins)
 
 ---
 

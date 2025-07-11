@@ -147,7 +147,7 @@ I want to change all the fruits to `fruit`, but I realized it after I already ch
 
 After I change it I can just go to the next word (preferably with `w`) and press `.` to change the current word to `fruit`.
 
-You can do cool stuff with when combining `:help gn`
+You can do cool stuff when combining `.` with `:help gn`
 
 ## External Command
 You can run external terminal commands from vim, for example: `!ls`

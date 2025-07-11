@@ -268,7 +268,7 @@ Make sure to execute `:PackerInstall` to install the added plugin.
 
 After you installed your first plugin successfully it's time to set it up.
 
-Create `plugins/init.lua` file and copy the code that requires all submodules from [here](https://github.com/ofirgall/dotfiles/blob/master/editors/nvim/lua/plugins/init.lua) and add `require('plugins')` in `init.lua`.
+Create `plugins/init.lua` file and copy the code that requires all submodules from [here](https://github.com/ofirgall/dotfiles/blob/662cabe7977b29fa0dbeb1be2028437790810b86/editors/nvim/lua/plugins/init.lua) and add `require('plugins')` in `init.lua`.
 
 Now you can add each plugin setup to its corresponding file and restart nvim.
 
