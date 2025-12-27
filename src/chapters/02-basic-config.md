@@ -203,7 +203,7 @@ The important ones:
 To set a keymap you should use `vim.keymap.set` or even better a `map` function with default value for `opts`.
 ```lua
 local function map(mode, lhs, rhs, desc, opts)
-	opts = opts or { slient = true }
+	opts = opts or { silent = true }
 	opts.desc = desc
 	vim.keymap.set(mode, lhs, rhs, opts)
 end
